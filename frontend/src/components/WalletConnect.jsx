@@ -1,32 +1,23 @@
 import React from 'react';
-import { useWallet } from '../context/WalletContext';
+import { ConnectButton } from '@mysten/dapp-kit';
+import { useSuiWallet } from '../context/SuiWalletContext';
 import { truncateAddress } from '../utils/truncateAddress';
-import { Wallet } from 'lucide-react';
 
 export default function WalletConnect() {
-    const { account, connectWallet, disconnectWallet } = useWallet();
+    const { account, isConnected } = useSuiWallet();
 
     return (
         <div>
-            {account ? (
-                <div className="flex items-center space-x-3 bg-surface-100 px-4 py-2 rounded-full border border-surface-200">
+            {isConnected && account ? (
+                <div className="flex items-center space-x-3 bg-surface-100 dark:bg-surface-800 px-4 py-2 rounded-full border border-surface-200 dark:border-surface-700">
                     <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-surface-700">{truncateAddress(account)}</span>
-                    <button
-                        onClick={disconnectWallet}
-                        className="text-xs text-red-500 hover:text-red-700 font-medium ml-2"
-                    >
-                        Disconnect
-                    </button>
+                    <span className="text-sm font-medium text-surface-700 dark:text-surface-300">
+                        {truncateAddress(account)}
+                    </span>
+                    <ConnectButton />
                 </div>
             ) : (
-                <button
-                    onClick={connectWallet}
-                    className="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-colors shadow-sm hover:shadow-md"
-                >
-                    <Wallet className="h-4 w-4" />
-                    Connect Wallet
-                </button>
+                <ConnectButton className="!px-6 !py-2.5 !text-sm !font-semibold !text-white !bg-primary-600 !rounded-full hover:!bg-primary-700 !transition-colors !shadow-sm hover:!shadow-md" />
             )}
         </div>
     );
