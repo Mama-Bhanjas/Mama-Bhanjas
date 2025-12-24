@@ -1,0 +1,36 @@
+============================================================
+TESTING ARTICLE: City Road Repairs
+============================================================
+Sending for Classification...
+Category: Infrastructure (Confidence: 0.28)
+Top 3: Infrastructure(0.28), Transportation(0.25), Community Services(0.18)
+
+Sending for Summarization...
+Summary: The city municipal corporation has announced a major pothole repair drive starting next Monday. Residents of the downtown area have been complaining about the poor condition of the roads. Traffic diversions will be in place during the night to minimize disruption to commuters.
+Compressed: 558 chars -> 277 chars (0.50 ratio)
+
+
+============================================================
+TESTING ARTICLE: Dengue Outbreak Warning
+============================================================
+Sending for Classification...
+Category: Public Safety (Confidence: 0.32)
+Top 3: Public Safety(0.32), Other(0.28), Environment(0.12)
+
+Sending for Summarization...
+Summary: Department of Health reported 50 new cases in the last week alone. Authorities are urging people to eliminate standing water where mosquitoes breed. A fumigation campaign is being launched in the affected neighborhoods.
+Compressed: 528 chars -> 219 chars (0.41 ratio)
+
+
+============================================================
+TESTING ARTICLE: Urban Parks Study
+============================================================
+Sending for Classification...
+Category: Environment (Confidence: 0.50)
+Top 3: Environment(0.50), Other(0.26), Community Services(0.17)
+
+Sending for Summarization...
+Summary: People living within 300 meters of a park reported 30 lower levels of stress and anxiety compared to those in concrete-only neighborhoods. City planners are now being urged to prioritize pocket parks and tree-lined avenues in future development plans.
+Compressed: 529 chars -> 251 chars (0.47 ratio)
+
+
