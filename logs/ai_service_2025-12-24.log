@@ -453,3 +453,13 @@ Caused by:
 2025-12-24 17:48:57 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Deep Sea Expedition Finds Living Fossil with Silicon-Based Genetic Structure. Content A clandestine research vessel operating in the Mariana news
 2025-12-24 17:49:06 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Global Central Bank Collective Announces Expiration Dates for Digital Currency to Force Spending. Content In a radical move to news
 2025-12-24 17:55:29 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Emergency Recall Issued for Latest Generation of Smartwatches Over Skin-Deep Laser Radiation. Content A secret report leaked from a news
+2025-12-24 17:56:16 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-24 17:56:17 | INFO | ai_service.api:get_verification_pipeline:152 | Initializing Verification Pipeline (Lazy Loading)...
+2025-12-24 17:56:17 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-24 17:56:17 | INFO | ai_service.pipelines.verification:__init__:43 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
+2025-12-24 17:56:17 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-24 17:56:19 | INFO | ai_service.models.classifier:__init__:54 | Classifier loaded successfully on cpu
+2025-12-24 17:56:19 | INFO | ai_service.pipelines.verification:__init__:51 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
+2025-12-24 17:56:21 | INFO | ai_service.pipelines.verification:__init__:66 | Verification pipeline initialized
+2025-12-24 17:56:26 | INFO | ai_service.pipelines.fact_check:__init__:28 | FactCheck pipeline initialized
+2025-12-24 17:56:26 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Emergency Recall Issued for Latest Generation of Smartwatches Over Skin-Deep Laser Radiation. Content A secret report leaked from a news
