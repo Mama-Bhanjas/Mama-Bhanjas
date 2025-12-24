@@ -29,8 +29,16 @@ export function SuiWalletProvider({ children }) {
 
 export function useSuiWallet() {
     const context = useContext(SuiWalletContext);
+    // If used outside provider, return default structure safely or logged warning
     if (!context) {
-        throw new Error('useSuiWallet must be used within SuiWalletProvider');
+        console.warn('useSuiWallet used outside of SuiWalletProvider');
+        return {
+            account: null,
+            currentAccount: null,
+            signAndExecuteTransaction: async () => {},
+            suiClient: null,
+            isConnected: false,
+        };
     }
     return context;
 }

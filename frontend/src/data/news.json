@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "type": "earthquake",
+        "title": "7.2 Magnitude Earthquake Detected in Central Region",
+        "description": "A significant earthquake has been reported near the capital. Emergency services are on high alert. Residents are advised to stay outdoors and away from tall structures. Initial reports suggest some damage to older buildings in the historic district.",
+        "fullContent": "A 7.2 magnitude earthquake struck central region at 10:45 AM local time. The epicenter was located approximately 20km north of the capital city. Major tremors were felt across the entire valley. \n\nEmergency Response: \n- Search and Rescue teams deployed to high-risk areas.\n- Hospitals are on emergency status.\n- Utility companies are checking for gas and water leaks.\n\nSafety Instructions:\n1. Remain outdoors if possible.\n2. Do NOT use elevators.\n3. Turn off gas valves.\n4. Stay tuned to official emergency broadcasts.",
+        "location": "Kathmandu, Central Region",
+        "time": "10 mins ago",
+        "verified": true,
+        "author": "National Emergency Center",
+        "coordinates": "27.7172° N, 85.3240° E"
+    },
+    {
+        "id": 2,
+        "type": "flood",
+        "title": "Flash Flood Warning for Koshi River Banks",
+        "description": "Heavy rainfall has caused the Koshi river levels to rise rapidly. Local authorities have issued an immediate evacuation order for low-lying areas. Water levels have already exceeded the danger mark at several gauging stations.",
+        "fullContent": "The Department of Hydrology and Meteorology has issued an extreme danger warning for the Koshi river basin. Persistent heavy rainfall in the catchment areas has led to a record rise in water levels.\n\nCurrent Situation:\n- Water level at Chatara: 8.5m (Danger Level: 6m)\n- All 56 sluice gates of the Koshi Barrage have been opened.\n- Multiple villages in Sunsari and Saptari districts are experiencing inundation.\n\nEvacuation centers have been set up at local schools and government buildings. Citizens are urged to move to higher ground immediately.",
+        "location": "Sunsari, Eastern Region",
+        "time": "1 hour ago",
+        "verified": true,
+        "author": "Dept. of Hydrology",
+        "coordinates": "26.5491° N, 87.0853° E"
+    },
+    {
+        "id": 3,
+        "type": "fire",
+        "title": "Forest Fire Spreading in Shivapuri National Park",
+        "description": "Dry conditions and high winds are fueling a forest fire in the northern hills. Firefighting helicopters have been deployed to contain the blaze. Smoke is affecting visibility in northern parts of the city.",
+        "fullContent": "A rapidly spreading forest fire was reported in the Shivapuri-Nagarjun National Park early this morning. Due to the dense undergrowth and dry winter conditions, the fire has spread over approximately 15 hectares.\n\nOperations:\n- Two specialized firefighting helicopters using 'Bambi buckets'.\n- Over 200 personnel from the Army and local volunteer groups on the ground.\n- Focus is on creating fire lines to prevent progress towards residential settlements.\n\nHealth Advisory: Residents with respiratory issues are advised to stay indoors and keep windows closed.",
+        "location": "Budhanilkantha, Bagmati",
+        "time": "3 hours ago",
+        "verified": true,
+        "author": "Park Administration",
+        "coordinates": "27.8016° N, 85.3857° E"
+    },
+    {
+        "id": 4,
+        "type": "landslide",
+        "title": "Prithvi Highway Blocked by Massive Landslide",
+        "description": "A landslide triggered by overnight rains has blocked the highway near Mugling. Travelers are advised to take alternate routes while clearing is in progress. Heavy machinery has been moved to the site.",
+        "fullContent": "Intermittent landslides since 2 AM have completely blocked the Prithvi Highway at a section known for geological instability. A massive chunk of the hillside has collapsed onto the roadway.\n\nStatus:\n- Approximately 50 meters of the road is buried under debris.\n- Road clearing operations are underway but hampered by continuous light rain.\n- No casualties reported, but several vehicles were trapped between two minor slides.\n\nExpected Clearing Time: 18-24 hours depending on weather conditions.",
+        "location": "Mugling, Gandaki",
+        "time": "5 hours ago",
+        "verified": true,
+        "author": "Road Department",
+        "coordinates": "27.8540° N, 84.5583° E"
+    },
+    {
+        "id": 5,
+        "type": "others",
+        "title": "Unidentified Chemical Leak in Birgunj Industrial Estate",
+        "description": "A pungent odor and mysterious smoke have been reported from a chemical storage warehouse. Emergency teams are investigating the source and chemical composition.",
+        "fullContent": "A local factory in the Birgunj Industrial Estate reported a minor rupture in a storage tank containing unidentified industrial chemicals. \n\nResponse:\n- Hazmat team dispatched to the site.\n- 500m radius evacuated as a precaution.\n- Air quality monitoring stations are being established.\n\nCitizens are advised to avoid the area and wear masks if nearby.",
+        "location": "Birgunj, Parsa",
+        "time": "6 hours ago",
+        "verified": true,
+        "author": "Industrial Security",
+        "coordinates": "27.0101° N, 84.8778° E"
+    }
+]

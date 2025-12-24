@@ -152,3 +152,27 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-primary-500);
 }
+
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-surface-700) transparent;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-surface-800);
+    border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-600);
+}
