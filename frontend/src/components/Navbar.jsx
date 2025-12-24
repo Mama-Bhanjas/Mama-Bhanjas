@@ -22,7 +22,7 @@ export default function Navbar() {
     const navLinks = [
         { name: 'Dashboard', href: '/', icon: Activity },
         { name: 'Submit Report', href: '/submit', icon: FileText },
-        { name: 'Verify', href: '/verify', icon: Shield },
+        { name: 'Verified News', href: '/verify', icon: Shield },
     ];
 
     return (
