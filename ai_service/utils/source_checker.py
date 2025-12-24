@@ -34,7 +34,8 @@ class SourceChecker:
         "who.int", "un.org", "reliefweb.int",
         # Regional (Nepal)
         "kathmandupost.com", "kathmandugazette.com", "risingnepal.org.np",
-        "nepalnews.com", "khabarhub.com", "himalayadiary.com",
+        "nepalnews.com", "khabarhub.com", "himalayadiary.com", "setopati.com",
+        "spacenews.com", "tass.com",
         # Universities/Research
         "rmit.edu.au", "sciencedaily.com", "mit.edu", "harvard.edu", "stanford.edu"
     }
@@ -45,7 +46,8 @@ class SourceChecker:
         "babylonbee.com", "dailybuzz.live", "infowars.com", "naturalnews.com",
         "breitbart.com", "gatewaypundit.com", "zerohedge.com", "sputniknews.com",
         "rt.com", "conspiracy-theories.net", "thetruthobserver.blog",
-        "londondailytruth.site", "tech-expose.blog"
+        "londondailytruth.site", "tech-expose.blog", "ocean-council.online",
+        "medical-truth.blog"
     }
 
     # Trusted top-level domains
@@ -58,7 +60,8 @@ class SourceChecker:
         "dailytruth", "leaked-document", "lockout", "smart-fridge",
         "silicon-based", "clandestine", "shadow-biosphere",
         "official-notice", "emergency-alert", "truth", "leaked",
-        "memory-wipe", "MNEM-7", "expiration-date", "bank-collective"
+        "memory-wipe", "MNEM-7", "expiration-date", "bank-collective",
+        "tidal-tax", "continental-shield", "micro-cellular", "ocean-council"
     }
 
     SUSPICIOUS_TLDS = {".blog", ".site", ".online", ".xyz", ".top", ".buzz"}

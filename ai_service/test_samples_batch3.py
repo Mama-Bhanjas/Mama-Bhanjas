@@ -4,7 +4,7 @@ import sys
 from loguru import logger
 
 # Configuration
-BASE_URL = "http://localhost:8029/api"
+BASE_URL = "http://localhost:8000/api"
 
 # Configure logger
 logger.remove()

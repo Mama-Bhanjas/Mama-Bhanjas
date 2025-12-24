@@ -1,0 +1,52 @@
+STARTING VERIFICATION BATCH 5 TESTS (DEC 24, 2025)
+============================================================
+TEST: Article I: Education Mandamus (Real)
+Source: https://en.setopati.com/social/165641
+Text Snippet: Headline: Supreme Court Issues Mandamus Barring Community Schools from Charging ...
+Status: Verified (Trusted Source)
+Reliable: True
+Confidence: 1.00
+Method: Model + Provided Source
+Explanation: Source https://en.setopati.com/social/165641 is a recognized trusted news or institutional outlet.
+--------------------
+============================================================
+TEST: Article J: Border Conflict (Real)
+Source: https://www.aljazeera.com/news/2025/12/24/new-clashes-as-cambodia-thailand-hold-first-talks-to-end-latest-violence
+Text Snippet: Headline: Fresh Fighting Erupts on Thailand-Cambodia Border as Ceasefire Talks C...
+Status: Verified (Trusted Source)
+Reliable: True
+Confidence: 1.00
+Method: Model + Provided Source
+Explanation: Source https://www.aljazeera.com/news/2025/12/24/new-clashes-as-cambodia-thailand-hold-first-talks-to-end-latest-violence is a recognized trusted news or institutional outlet.
+--------------------
+============================================================
+TEST: Article K: Space Record (Real)
+Source: https://spacenews.com/spacex-170-orbital-launches-2025/
+Text Snippet: Headline: Annual Orbital Launch Count Hits New High as Private Rocket Firm Surpa...
+Status: Verified (Trusted Source)
+Reliable: True
+Confidence: 1.00
+Method: Model + Provided Source
+Explanation: Source https://spacenews.com/spacex-170-orbital-launches-2025/ is a recognized trusted news or institutional outlet.
+--------------------
+============================================================
+TEST: Article L: Tidal Tax (Fake)
+Source: https://ocean-council.online/tidal-tax-mandate
+Text Snippet: Headline: Global Ocean Council Mandates 'Tidal Tax' on Coastal Residents to Fund...
+Status: Likely Fake (Untrusted Source)
+Reliable: False
+Confidence: 1.00
+Method: Model + Provided Source
+Explanation: Source https://ocean-council.online/tidal-tax-mandate is known for misinformation or satire.
+--------------------
+============================================================
+TEST: Article M: Smartwatch Radiation (Fake)
+Source: NONE (Auto-Search)
+Text Snippet: Headline: Emergency Recall Issued for Latest Generation of Smartwatches Over 'Sk...
+Status: Unverified (Real by text analysis)
+Reliable: True
+Confidence: 0.65
+Method: Model + Internet Search
+Explanation: No relevant sources found. No corroborating high-trust sources found. Proceed with caution.
+--------------------
+BATCH 5 TESTS COMPLETED
