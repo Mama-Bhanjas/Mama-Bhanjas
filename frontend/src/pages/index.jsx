@@ -43,24 +43,23 @@ export default function Home() {
             </Head>
 
             {/* Hero Section */}
-            <section className="relative overflow-hidden bg-surface-900 text-white rounded-3xl mx-4 sm:mx-6 lg:mx-8 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-indigo-900 opacity-90"></div>
-                <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-                <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            <section className="relative overflow-hidden bg-surface-900 text-white rounded-xl mx-4 sm:mx-6 lg:mx-8 shadow-md">
+                <div className="absolute inset-0 bg-gradient-to-br from-surface-800 to-surface-900"></div>
 
-                <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-24 text-center">
+                <div className="relative z-10 px-8 py-12 sm:px-16 sm:py-20 text-center">
                     <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6"
+                        transition={{ duration: 0.4 }}
+                        className="text-3xl sm:text-5xl font-bold tracking-tight mb-4"
                     >
                         Decentralized Disaster Response
                     </motion.h1>
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg sm:text-xl text-primary-100 max-w-2xl mx-auto mb-10"
+                        transition={{ delay: 0.1, duration: 0.4 }}
+                        className="text-lg sm:text-xl text-surface-200 max-w-2xl mx-auto mb-8 leading-relaxed"
                     >
                         Verify incidents in real-time using blockchain technology. Report disasters, validate claims, and help your community faster.
                     </motion.p>
@@ -83,31 +82,31 @@ export default function Home() {
             {/* Stats Section */}
             <section className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4">
-                        <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                    <div className="bg-white dark:bg-surface-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-700 flex items-center space-x-4">
+                        <div className="p-3 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl">
                             <BarChart3 className="h-6 w-6" />
                         </div>
                         <div>
-                            <p className="text-sm text-gray-500 font-medium">Total Reports</p>
-                            <h4 className="text-2xl font-bold text-gray-900">1,024</h4>
+                            <p className="text-sm text-gray-500 dark:text-surface-400 font-medium">Total Reports</p>
+                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">1,024</h4>
                         </div>
                     </div>
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4">
-                        <div className="p-3 bg-green-100 text-green-600 rounded-xl">
+                    <div className="bg-white dark:bg-surface-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-700 flex items-center space-x-4">
+                        <div className="p-3 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl">
                             <CheckCircle className="h-6 w-6" />
                         </div>
                         <div>
-                            <p className="text-sm text-gray-500 font-medium">Verified Events</p>
-                            <h4 className="text-2xl font-bold text-gray-900">856</h4>
+                            <p className="text-sm text-gray-500 dark:text-surface-400 font-medium">Verified Events</p>
+                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">856</h4>
                         </div>
                     </div>
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4">
-                        <div className="p-3 bg-purple-100 text-purple-600 rounded-xl">
+                    <div className="bg-white dark:bg-surface-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-700 flex items-center space-x-4">
+                        <div className="p-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl">
                             <Users className="h-6 w-6" />
                         </div>
                         <div>
-                            <p className="text-sm text-gray-500 font-medium">Active Verifiers</p>
-                            <h4 className="text-2xl font-bold text-gray-900">342</h4>
+                            <p className="text-sm text-gray-500 dark:text-surface-400 font-medium">Active Verifiers</p>
+                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">342</h4>
                         </div>
                     </div>
                 </div>
@@ -116,7 +115,7 @@ export default function Home() {
             {/* Recent Activity */}
             <section className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 sm:mb-0">Recent Activity</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-0">Recent Activity</h2>
                     <CategoryTabs activeCategory={category} onCategoryChange={setCategory} />
                 </div>
 

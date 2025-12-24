@@ -15,8 +15,8 @@ export default function Submit() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-10"
                 >
-                    <h1 className="text-3xl font-bold text-gray-900 mb-4">Submit Disaster Report</h1>
-                    <p className="text-gray-600">
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center">Submit Disaster Report</h1>
+                    <p className="text-gray-600 dark:text-surface-300">
                         Provide accurate details about the incident. Your report will be verified by the community on the blockchain.
                     </p>
                 </motion.div>

@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import WalletConnect from './WalletConnect';
 import { Menu, X, Shield, Activity, FileText } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar() {
+    const { theme, toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const router = useRouter();
@@ -24,7 +26,10 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'glass shadow-sm' : 'bg-transparent'}`}>
+        <nav className={`fixed w-full z-50 transition-all duration-500 shadow-2xl ${scrolled
+            ? (theme === 'dark')
+            : 'bg-transparent'
+            }`}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex items-center">
@@ -55,7 +60,7 @@ export default function Navbar() {
                             })}
                         </div>
                     </div>
-                    <div className="hidden md:flex items-center">
+                    <div className="hidden md:flex items-center space-x-4">
                         <WalletConnect />
                     </div>
                     <div className="flex items-center md:hidden">
@@ -71,7 +76,7 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             {isOpen && (
-                <div className="md:hidden glass border-t border-gray-200">
+                <div className="md:hidden bg-white/95 dark:bg-surface-950/98 backdrop-blur-xl border-t border-gray-200 dark:border-surface-800">
                     <div className="pt-2 pb-3 space-y-1">
                         {navLinks.map((link) => {
                             const isActive = router.pathname === link.href;
@@ -79,10 +84,10 @@ export default function Navbar() {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium
+                                    className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors
                     ${isActive
-                                            ? 'bg-primary-50 border-primary-500 text-primary-700'
-                                            : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                                            ? 'bg-primary-50 dark:bg-primary-900/20 border-primary-500 text-primary-700 dark:text-primary-400'
+                                            : 'border-transparent text-gray-500 dark:text-surface-400 hover:bg-gray-50 dark:hover:bg-surface-800 hover:border-gray-300 dark:hover:border-surface-600 hover:text-gray-700 dark:hover:text-white'
                                         }`}
                                     onClick={() => setIsOpen(false)}
                                 >

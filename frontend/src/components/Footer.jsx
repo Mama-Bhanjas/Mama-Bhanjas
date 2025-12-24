@@ -1,32 +1,30 @@
 import React from 'react';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
     return (
-        <footer className="bg-white border-t border-gray-200 mt-auto">
-            <div className="container mx-auto px-4 py-8">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                    <div className="mb-4 md:mb-0">
-                        <p className="text-sm text-gray-500">
-                            &copy; {new Date().getFullYear()} Mama-Bhanjas. Decentralized Disaster Verification.
+        <motion.footer
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="bg-surface-950 text-white border-t border-surface-800 mt-auto"
+        >
+            <div className="container mx-auto px-4 py-12">
+                <div className="flex flex-col items-center">
+                    <div className="text-center">
+                        <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-200 mb-2">
+                            Mama-Bhanjas
+                        </h3>
+                        <p className="text-sm text-surface-400 max-w-xs mx-auto">
+                            Decentralized Disaster Verification. Empowering communities with truth and speed.
                         </p>
-                    </div>
-                    <div className="flex space-x-6">
-                        <a href="#" className="text-gray-400 hover:text-gray-500">
-                            <span className="sr-only">GitHub</span>
-                            <Github className="h-5 w-5" />
-                        </a>
-                        <a href="#" className="text-gray-400 hover:text-gray-500">
-                            <span className="sr-only">Twitter</span>
-                            <Twitter className="h-5 w-5" />
-                        </a>
-                        <a href="#" className="text-gray-400 hover:text-gray-500">
-                            <span className="sr-only">LinkedIn</span>
-                            <Linkedin className="h-5 w-5" />
-                        </a>
+                        <p className="text-xs text-surface-500 mt-4">
+                            &copy; {new Date().getFullYear()} All rights reserved.
+                        </p>
                     </div>
                 </div>
             </div>
-        </footer>
+        </motion.footer>
     );
 }

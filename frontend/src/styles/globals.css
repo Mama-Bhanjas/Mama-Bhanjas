@@ -1,18 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary-50: #eef2ff;
+    /* Modern Indigo/Violet Palette (Creative, Premium, Vibrant) */
+    --color-primary-50: #eff6ff;
+    /* Softest Tint */
     --color-primary-100: #e0e7ff;
+    /* Soft Tint */
     --color-primary-200: #c7d2fe;
+    /* Light Lavender */
     --color-primary-300: #a5b4fc;
+    /* Soft Violet */
     --color-primary-400: #818cf8;
+    /* Vibrant Purple-Blue */
     --color-primary-500: #6366f1;
+    /* Electric Indigo (Main) */
     --color-primary-600: #4f46e5;
+    /* Deep Indigo */
     --color-primary-700: #4338ca;
+    /* Rich Violet */
     --color-primary-800: #3730a3;
+    /* Deep Purple */
     --color-primary-900: #312e81;
+    /* Midnight Indigo */
     --color-primary-950: #1e1b4b;
+    /* Darkest Indigo */
 
+    /* Refined Surface Colors (Slate with a hint of coolness) */
     --color-surface-50: #f8fafc;
     --color-surface-100: #f1f5f9;
     --color-surface-200: #e2e8f0;
@@ -23,16 +36,20 @@
     --color-surface-700: #334155;
     --color-surface-800: #1e293b;
     --color-surface-900: #0f172a;
+    /* Deep Navy */
     --color-surface-950: #020617;
+    /* Obsidian */
 
     --font-sans: var(--font-outfit), sans-serif;
 
-    --animate-fade-in: fadeIn 0.5s ease-out;
-    --animate-slide-up: slideUp 0.5s ease-out;
-    --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animate-fade-in: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-slide-up: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-pulse-slow: pulseSlow 3s infinite ease-in-out;
 
-    --image-gradient-subtle: linear-gradient(to top right, #e0e7ff, #f3e8ff, #fae8ff);
-    --image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+    /* Enhanced Gradients */
+    --image-gradient-subtle: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    --image-gradient-dark: linear-gradient(135deg, #020617 0%, #1e1b4b 100%);
+    --image-gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
 
     @keyframes fadeIn {
         0% {
@@ -55,28 +72,37 @@
             opacity: 1;
         }
     }
+
+    @keyframes pulseSlow {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.7;
+        }
+    }
 }
 
 @layer utilities {
     .glass {
-        background-color: rgb(255 255 255 / 0.6);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-width: 1px;
-        border-color: rgb(255 255 255 / 0.4);
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-        background-image: linear-gradient(to bottom right, rgb(255 255 255 / 0.2), rgb(255 255 255 / 0));
+        background: rgba(255, 255, 255, 0.4);
+        /* Clearer light glass */
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
     }
 
     .glass-dark {
-        background-color: rgb(15 23 42 / 0.8);
-        /* surface-900/80 */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-width: 1px;
-        border-color: rgb(51 65 85 / 0.5);
-        /* surface-700/50 */
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        background: rgba(2, 6, 23, 0.9);
+        /* Deep Obsidian Clear tint */
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
         color: white;
     }
 
@@ -93,10 +119,36 @@
 }
 
 /* Base styles */
+html {
+    overflow-y: scroll;
+}
+
 body {
     background-color: var(--color-surface-50);
     color: var(--color-surface-900);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-surface-300);
+    border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-700);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-500);
 }
