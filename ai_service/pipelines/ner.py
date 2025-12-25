@@ -1,4 +1,3 @@
-
 from typing import List, Dict, Optional
 from loguru import logger
 
@@ -20,7 +19,7 @@ class NERPipeline:
 
     def __init__(
         self,
-        ner_model: str = "dslim/distilbert-NER",
+        ner_model: str = "dslim/bert-base-NER",
         use_cache: bool = True,
         device: Optional[str] = None
     ):
@@ -43,8 +42,11 @@ class NERPipeline:
         locations = self.extractor.get_locations(text)
         
         # 2. Extract specific Disaster Type using Zero-Shot
+        # Using truncated text for better accuracy on news links
+        prompt_text = text[:1500] if len(text) > 1500 else text
+        
         type_result = self.type_classifier.classify(
-            text=text,
+            text=prompt_text,
             categories=self.DISASTER_TYPES,
             hypothesis_template="This report is about a {}."
         )

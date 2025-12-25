@@ -1,4 +1,3 @@
-
 from typing import List, Dict, Optional
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
@@ -22,12 +21,13 @@ class CategoryClassifier:
         "Education",
         "Utilities",
         "Community Services",
-        "Other"
+        "Other",
+        "Disaster"
     ]
     
     def __init__(
         self,
-        model_name: str = "typeform/distilbert-base-uncased-mnli",
+        model_name: str = "valhalla/distilbart-mnli-12-1",
         categories: Optional[List[str]] = None,
         device: Optional[str] = None
     ):
@@ -36,7 +36,7 @@ class CategoryClassifier:
         
         Args:
             model_name: Hugging Face model name for zero-shot classification
-                       Default: typeform/distilbert-base-uncased-mnli (~250MB, fast and efficient)
+                       Default: valhalla/distilbart-mnli-12-1 (~400MB, more accurate than distilbert)
             categories: List of category labels
             device: Device to run model on ('cuda' or 'cpu')
         """
@@ -53,13 +53,16 @@ class CategoryClassifier:
             self.model.eval()
             
             # Detect entailment index dynamically
-            self.entailment_idx = 2 # Default for BART
+            self.entailment_idx = 2 # Default for BART/DistilBART
             if hasattr(self.model.config, 'label2id'):
                 label_map = {k.lower(): v for k, v in self.model.config.label2id.items()}
                 if 'entailment' in label_map:
                     self.entailment_idx = label_map['entailment']
-                    logger.info(f"Detected entailment index: {self.entailment_idx}")
-            
+                elif 'labels' in label_map and 'entailment' in label_map['labels']:
+                    # Some models have nested label maps
+                    pass 
+                
+            logger.info(f"Detected entailment index: {self.entailment_idx}")
             logger.info(f"Classifier loaded successfully on {self.device}")
         except Exception as e:
             logger.error(f"Failed to load classifier model: {e}")
@@ -104,7 +107,8 @@ class CategoryClassifier:
             
             for category in target_categories:
                 # Create hypothesis for zero-shot classification
-                hypothesis = hypothesis_template.format(category.lower())
+                # Use a more descriptive hypothesis if available
+                hypothesis = hypothesis_template.format(category)
                 
                 # Tokenize
                 inputs = self.tokenizer(
@@ -124,26 +128,33 @@ class CategoryClassifier:
                     probs = torch.softmax(logits, dim=1)
                     entailment_score = probs[0][self.entailment_idx].item()
                     scores.append(entailment_score)
+                    # logger.debug(f"Label: {category}, Score: {entailment_score:.4f}")
             
-            # Normalize scores
+            # Normalize scores (Softmax over entailment scores for competition between labels)
             scores = np.array(scores)
-            scores = scores / scores.sum()
+            # Log raw scores for debugging if it's suspicious
+            if scores.max() < 0.2:
+                logger.warning(f"Low confidence classification. Top raw score: {scores.max():.4f}")
+            
+            exp_scores = np.exp(scores - np.max(scores))
+            normalized_scores = exp_scores / exp_scores.sum()
             
             # Get top categories
-            top_indices = np.argsort(scores)[::-1][:top_k]
+            top_indices = np.argsort(normalized_scores)[::-1][:top_k]
             top_categories = [
                 {
                     "category": target_categories[idx],
-                    "confidence": float(scores[idx])
+                    "confidence": float(normalized_scores[idx]),
+                    "raw_score": float(scores[idx])
                 }
                 for idx in top_indices
-                if scores[idx] >= threshold
+                if normalized_scores[idx] >= threshold
             ]
             
             # Get primary category
             primary_idx = top_indices[0]
             primary_category = target_categories[primary_idx]
-            primary_confidence = float(scores[primary_idx])
+            primary_confidence = float(normalized_scores[primary_idx])
             
             logger.info(f"Classified as '{primary_category}' with confidence {primary_confidence:.3f}")
             
