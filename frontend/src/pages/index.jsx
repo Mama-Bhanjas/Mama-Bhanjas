@@ -1,20 +1,46 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SummaryCard from '../components/SummaryCard';
 import CategoryTabs from '../components/CategoryTabs';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronRight, BarChart3, Users, CheckCircle } from 'lucide-react';
+import { fetchReports } from '../services/api';
+
+// ... (imports remain the same)
 
 export default function Home() {
     const [category, setCategory] = useState('all');
+    const [reports, setReports] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Dummy data
-    const reports = [
-        { id: 1, title: 'Flood in Sector 4', description: 'Severe water logging observed.', category: 'flood', timestamp: Date.now() - 3600000, location: 'Mumbai' },
-        { id: 2, title: 'Building crack observed', description: 'Large crack appeared after tremors.', category: 'earthquake', timestamp: Date.now() - 7200000, location: 'Delhi' },
-        // Add more dummy items if needed
-    ];
+    useEffect(() => {
+        const loadReports = async () => {
+            try {
+                const data = await fetchReports();
+                // Map backend data to frontend format if necessary
+                // Backend: { id, text, source_type, timestamp, disaster_category, ... }
+                // Frontend expects: { id, title, description, category, timestamp, location }
+
+                const formattedData = data.map(r => ({
+                    id: r.id,
+                    title: r.disaster_category || "Unclassified Event", // Use category as title
+                    description: r.text,
+                    category: (r.disaster_category || "other").toLowerCase(),
+                    timestamp: new Date(r.timestamp).getTime(),
+                    location: r.location || "Unknown",
+                    isVerified: r.is_verified,
+                    verificationStatus: r.verification_status
+                }));
+                setReports(formattedData);
+            } catch (error) {
+                console.error("Failed to load reports", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadReports();
+    }, []);
 
     const filteredReports = category === 'all'
         ? reports

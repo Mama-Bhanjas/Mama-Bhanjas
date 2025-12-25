@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import { AppProvider } from '../context/AppContext';
+import { WalletProvider as LocalWalletProvider } from '../context/WalletContext';
 import { ThemeProvider } from '../context/ThemeContext';
 import { AuthProvider } from '../context/AuthContext';
 import Navbar from '../components/Navbar';

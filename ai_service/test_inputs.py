@@ -2,7 +2,7 @@
 import requests
 import os
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://localhost:8002"
 
 def test_url_processing():
     print("\n--- TESTING URL PROCESSING ---")
