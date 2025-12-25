@@ -21,9 +21,15 @@ def create_report(report: ReportCreate, db: Session = Depends(get_db)):
     location = report.location  # Start with user-provided location
     verification_status = "Pending"
     is_verified = False
+    text_to_store = report.text  # Default to original text
 
     if ai_result.get("success") and ai_result.get("data"):
         data = ai_result["data"]
+        
+        # If URL was extracted, use the extracted text or summary instead of URL
+        if data.get("extraction_method") == "url" and data.get("extracted_text"):
+            # Use summary if available (more concise), otherwise use extracted text
+            text_to_store = data.get("summary") or data.get("extracted_text")
         
         # 1. Category: Prefer user input, fallback to AI 'primary_category' or 'disaster_type'
         if report.disaster_category:
@@ -44,7 +50,7 @@ def create_report(report: ReportCreate, db: Session = Depends(get_db)):
             is_verified = verification_data.get("is_reliable", False)
 
     db_report = Report(
-        text=report.text,
+        text=text_to_store,  # Use extracted/summarized text instead of URL
         source_type=report.source_type,
         source_identifier=report.source_identifier,
         location=location,

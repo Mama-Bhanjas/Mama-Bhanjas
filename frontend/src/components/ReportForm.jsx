@@ -6,10 +6,12 @@ import { submitReport } from '../services/api';
 
 export default function ReportForm() {
     const [formData, setFormData] = useState({
+        inputMode: 'text', // 'text' or 'url'
         title: '',
         description: '',
         category: CATEGORIES[0].id,
         location: '',
+        url: '',
         source_type: 'WEB',
         source_identifier: 'anonymous'
     });
@@ -28,28 +30,42 @@ export default function ReportForm() {
         setSubmitStatus(null);
 
         try {
-            // Combine title and description for the backend 'text' field
-            const payload = {
-                text: `${formData.title}: ${formData.description}`,
-                source_type: "WEB_USER",
-                source_identifier: "anonymous_web",
-                location: formData.location || null,
-                disaster_category: formData.category
-            };
+            // Build payload based on input mode
+            const payload = formData.inputMode === 'url'
+                ? {
+                    // URL mode: send URL as text, AI will extract content
+                    text: formData.url,
+                    source_type: "WEB_USER",
+                    source_identifier: "anonymous_web",
+                    location: formData.location || null,
+                    disaster_category: formData.category
+                }
+                : {
+                    // Text mode: combine title and description
+                    text: `${formData.title}: ${formData.description}`,
+                    source_type: "WEB_USER",
+                    source_identifier: "anonymous_web",
+                    location: formData.location || null,
+                    disaster_category: formData.category
+                };
 
             await submitReport(payload);
 
             setSubmitStatus({
                 type: 'success',
-                message: '✅ Report submitted successfully to the AI Service!'
+                message: formData.inputMode === 'url'
+                    ? '✅ URL submitted! Extracting and analyzing content...'
+                    : '✅ Report submitted successfully!'
             });
 
             // Reset form
             setFormData({
+                inputMode: 'text',
                 title: '',
                 description: '',
                 category: CATEGORIES[0].id,
                 location: '',
+                url: '',
                 source_type: 'WEB',
                 source_identifier: 'anonymous'
             });
@@ -91,18 +107,75 @@ export default function ReportForm() {
                 onSubmit={handleSubmit}
                 className="space-y-6 max-w-lg mx-auto bg-white dark:bg-surface-800 p-8 rounded-xl shadow-md border border-gray-200 dark:border-surface-700"
             >
-                <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Title</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
-                        placeholder="What happened?"
-                        required
-                    />
+                {/* Input Mode Toggle */}
+                <div className="flex gap-2 p-1 bg-gray-100 dark:bg-surface-900 rounded-lg">
+                    <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, inputMode: 'text' }))}
+                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${formData.inputMode === 'text'
+                            ? 'bg-white dark:bg-surface-700 text-primary-600 dark:text-primary-400 shadow-sm'
+                            : 'text-gray-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white'
+                            }`}
+                    >
+                        📝 Type Report
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, inputMode: 'url' }))}
+                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${formData.inputMode === 'url'
+                            ? 'bg-white dark:bg-surface-700 text-primary-600 dark:text-primary-400 shadow-sm'
+                            : 'text-gray-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white'
+                            }`}
+                    >
+                        🔗 Paste URL
+                    </button>
                 </div>
+
+                {formData.inputMode === 'text' ? (
+                    <>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Title</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
+                                placeholder="What happened?"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Description</label>
+                            <textarea
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                rows="4"
+                                className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors resize-none"
+                                placeholder="Provide details about the incident..."
+                                required
+                            />
+                        </div>
+                    </>
+                ) : (
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">News Article URL</label>
+                        <input
+                            type="url"
+                            name="url"
+                            value={formData.url}
+                            onChange={handleChange}
+                            className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
+                            placeholder="https://example.com/disaster-news-article"
+                            required
+                        />
+                        <p className="mt-1 text-xs text-gray-500 dark:text-surface-400">
+                            Paste a link to a news article - we'll extract and analyze the content automatically
+                        </p>
+                    </div>
+                )}
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
@@ -135,19 +208,6 @@ export default function ReportForm() {
                             placeholder="City, Area (optional - AI can detect)"
                         />
                     </div>
-                </div>
-
-                <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Description</label>
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
-                        rows="3"
-                        placeholder="Provide more details..."
-                        required
-                    ></textarea>
                 </div>
 
                 <button

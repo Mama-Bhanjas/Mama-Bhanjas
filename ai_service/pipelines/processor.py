@@ -10,6 +10,7 @@ from ai_service.pipelines.classify import ClassificationPipeline
 from ai_service.pipelines.summarize import SummarizationPipeline
 from ai_service.pipelines.ner import NERPipeline
 from ai_service.pipelines.verification import VerificationPipeline
+from ai_service.utils.content_extractor import ContentExtractor
 
 class UnifiedProcessor:
     """
@@ -28,6 +29,7 @@ class UnifiedProcessor:
         self._summarize = None
         self._ner = None
         self._verify = None
+        self.extractor = ContentExtractor()  # Initialize content extractor
         
         logger.info("Unified Processor initialized")
 
@@ -97,26 +99,45 @@ class UnifiedProcessor:
         logger.info(f"Processing report {request_id}")
         
         try:
+            # NEW: Check if text is actually a URL and extract content
+            extracted_text = None
+            extraction_method = "direct"
+            
+            if self.extractor.is_url(text):
+                logger.info(f"Detected URL input, extracting content: {text}")
+                extraction = self.extractor.extract_from_url(text)
+                if extraction["success"]:
+                    extracted_text = extraction["text"]
+                    actual_text = extracted_text
+                    source_url = text  # Use the URL as source
+                    extraction_method = "url"
+                    logger.info(f"Successfully extracted {len(actual_text)} characters from URL")
+                else:
+                    logger.warning(f"URL extraction failed: {extraction.get('error')}, treating as regular text")
+                    actual_text = text
+            else:
+                actual_text = text
+            
             # 1. Classification (General categories)
-            cls_result = self.classify_p.process(text)
+            cls_result = self.classify_p.process(actual_text)
             
             # 2. Summarization
-            sum_result = self.summarize_p.process(text)
+            sum_result = self.summarize_p.process(actual_text)
             
             # 3. NER (Locations & Disaster Specifics)
-            ner_result = self.ner_p.process(text)
+            ner_result = self.ner_p.process(actual_text)
             
             # 4. Verification
             # If it has a URL OR it looks like a news article (long + has headline), use news pipeline
-            is_likely_news = source_url is not None or "Headline:" in text or len(text) > 300
+            is_likely_news = source_url is not None or "Headline:" in actual_text or len(actual_text) > 300
             
             if is_likely_news:
-                ver_result = self.verify_p.verify_news(text, source_url)
+                ver_result = self.verify_p.verify_news(actual_text, source_url)
             else:
-                ver_result = self.verify_p.verify_report(text)
+                ver_result = self.verify_p.verify_report(actual_text)
                 
             # 5. Similarity Testing
-            sim_results = self._check_similarity(text)
+            sim_results = self._check_similarity(actual_text)
             
             # Memory Cleanup after heavy processing
             self._clear_memory()
@@ -126,6 +147,8 @@ class UnifiedProcessor:
                 "report_id": request_id,
                 "timestamp": datetime.datetime.now().isoformat(),
                 "original_text": text,
+                "extracted_text": extracted_text,  # NEW: Include extracted text if URL was used
+                "extraction_method": extraction_method,  # NEW: How text was obtained
                 "summary": sum_result.get("summary", ""),
                 "primary_category": cls_result.get("category", "Other"),
                 "category_confidence": cls_result.get("confidence", 0.0),
@@ -143,7 +166,7 @@ class UnifiedProcessor:
                     "count": len(sim_results)
                 },
                 "metadata": {
-                    "text_length": len(text),
+                    "text_length": len(actual_text),
                     "has_source": source_url is not None,
                     "all_entities": ner_result.get("all_entities", [])
                 }

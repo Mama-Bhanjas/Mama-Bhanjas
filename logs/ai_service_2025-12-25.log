@@ -179,3 +179,50 @@ See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-3243
 2025-12-25 10:02:47 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
 2025-12-25 10:02:50 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
 2025-12-25 10:02:50 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 1e279303-040d-4da0-8505-7ce3579a3950
+2025-12-25 11:11:32 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 11:11:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 11:11:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 11:13:22 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 11:13:22 | INFO | ai_service.pipelines.processor:__init__:34 | Unified Processor initialized
+2025-12-25 11:13:22 | INFO | ai_service.pipelines.processor:process_report:99 | Processing report fc67d3b1-40d4-4c11-91ce-9d5740fb2e60
+2025-12-25 11:13:22 | INFO | ai_service.pipelines.processor:process_report:107 | Detected URL input, extracting content: https://risingnepaldaily.com/news/49159
+2025-12-25 11:13:22 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://risingnepaldaily.com/news/49159
+2025-12-25 11:13:27 | INFO | ai_service.pipelines.processor:process_report:114 | Successfully extracted 1178 characters from URL
+2025-12-25 11:13:27 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:13:27 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:13:29 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 11:13:29 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 11:13:29 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 11:13:31 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Utilities' with confidence 0.248
+2025-12-25 11:13:31 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:13:31 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 11:13:37 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 11:13:37 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 11:13:40 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 189 chars from 1154 chars (ratio: 0.16)
+2025-12-25 11:13:40 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:13:40 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
+2025-12-25 11:13:43 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
+2025-12-25 11:13:43 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:13:43 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:13:53 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 11:13:53 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 11:13:53 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 11:13:55 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Earthquake' with confidence 0.427
+2025-12-25 11:13:55 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:13:55 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:13:55 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:13:59 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 11:13:59 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 11:13:59 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
+2025-12-25 11:14:05 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
+2025-12-25 11:14:05 | INFO | ai_service.pipelines.processor:process_report:175 | Successfully processed report fc67d3b1-40d4-4c11-91ce-9d5740fb2e60
+2025-12-25 11:20:36 | INFO | ai_service.pipelines.processor:process_report:99 | Processing report 2b986e17-a62b-4f18-82b5-b884e05e98ee
+2025-12-25 11:20:36 | INFO | ai_service.pipelines.processor:process_report:107 | Detected URL input, extracting content: https://kathmandupost.com/national/2025/01/02/4-8-magnitude-quake-strikes-sindhupalchok
+2025-12-25 11:20:36 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/national/2025/01/02/4-8-magnitude-quake-strikes-sindhupalchok
+2025-12-25 11:20:39 | INFO | ai_service.pipelines.processor:process_report:114 | Successfully extracted 272 characters from URL
+2025-12-25 11:20:40 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.288
+2025-12-25 11:20:43 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 173 chars from 271 chars (ratio: 0.64)
+2025-12-25 11:20:44 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Earthquake' with confidence 0.742
+2025-12-25 11:20:47 | INFO | ai_service.pipelines.processor:process_report:175 | Successfully processed report 2b986e17-a62b-4f18-82b5-b884e05e98ee
+2025-12-25 11:21:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 11:21:20 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level

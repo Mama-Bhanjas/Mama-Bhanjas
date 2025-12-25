@@ -26,6 +26,7 @@ beautifulsoup4>=4.12.2
 # Web Search & Verification
 # ===============================
 duckduckgo-search>=4.1.1
+pypdf>=4.0.0
 
 # ===============================
 # Clustering & Embeddings
