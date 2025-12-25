@@ -57,9 +57,9 @@ Thumbs.db
 *.swo
 
 # Project Specific
+ai_service/models/custom_*/
+ai_service/models/checkpoint-*/
 ai_service/data/*.json
-!ai_service/data/.gitkeep
-ai_service/models/custom_*/checkpoint-*
 *.json
 !frontend/package.json
 !backend/package.json

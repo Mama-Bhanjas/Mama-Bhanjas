@@ -36,14 +36,15 @@ class UnifiedProcessor:
     @property
     def classify_p(self):
         if self._classify is None:
-            # Check for fine-tuned model
             import os
-            model_path = "ai_service/models/custom_classifier"
-            # If not absolute, make it relative to cwd
-            if not os.path.exists(model_path):
-                model_path = "valhalla/distilbart-mnli-12-1" # Fallback
+            local_path = "ai_service/models/custom_classifier"
+            # If local doesn't exist, use Hugging Face repo
+            if os.path.exists(local_path):
+                model_path = local_path
+                logger.info(f"Using local fine-tuned Classification model from {model_path}")
             else:
-                 logger.info(f"Using fine-tuned Classification model from {model_path}")
+                model_path = "Sachin1224/nepal-disaster-classifier"
+                logger.info(f"Using Hugging Face fine-tuned Classification model: {model_path}")
                  
             self._classify = ClassificationPipeline(model_name=model_path, device=self.device)
         return self._classify
@@ -52,11 +53,13 @@ class UnifiedProcessor:
     def summarize_p(self):
         if self._summarize is None:
             import os
-            model_path = "ai_service/models/custom_summarizer" 
-            if not os.path.exists(model_path):
-                model_path = "sshleifer/distilbart-cnn-6-6"
+            local_path = "ai_service/models/custom_summarizer" 
+            if os.path.exists(local_path):
+                model_path = local_path
+                logger.info(f"Using local fine-tuned Summarization model from {model_path}")
             else:
-                 logger.info(f"Using fine-tuned Summarization model from {model_path}")
+                model_path = "Sachin1224/nepal-disaster-summarizer"
+                logger.info(f"Using Hugging Face fine-tuned Summarization model: {model_path}")
 
             self._summarize = SummarizationPipeline(model_name=model_path, device=self.device)
         return self._summarize
@@ -65,12 +68,14 @@ class UnifiedProcessor:
     def ner_p(self):
         if self._ner is None:
             import os
-            model_path = "ai_service/models/custom_ner"
-            if not os.path.exists(model_path):
-                # Fallback to default
-                self._ner = NERPipeline(device=self.device)
+            local_path = "ai_service/models/custom_ner"
+            if os.path.exists(local_path):
+                model_path = local_path
+                logger.info(f"Using local fine-tuned NER model from {model_path}")
+                self._ner = NERPipeline(ner_model=model_path, device=self.device)
             else:
-                logger.info(f"Using fine-tuned NER model from {model_path}")
+                model_path = "Sachin1224/nepal-disaster-ner"
+                logger.info(f"Using Hugging Face fine-tuned NER model: {model_path}")
                 self._ner = NERPipeline(ner_model=model_path, device=self.device)
         return self._ner
 
@@ -78,12 +83,14 @@ class UnifiedProcessor:
     def verify_p(self):
         if self._verify is None:
             import os
-            ver_path = "ai_service/models/custom_verifier"
-            if os.path.exists(ver_path):
-                 logger.info(f"Using fine-tuned Verification model from {ver_path}")
-                 self._verify = VerificationPipeline(news_model_name=ver_path)
+            local_path = "ai_service/models/custom_verifier"
+            if os.path.exists(local_path):
+                 logger.info(f"Using local fine-tuned Verification model from {local_path}")
+                 self._verify = VerificationPipeline(news_model_name=local_path)
             else:
-                self._verify = VerificationPipeline() 
+                model_path = "Sachin1224/nepal-disaster-verifier"
+                logger.info(f"Using Hugging Face fine-tuned Verification model: {model_path}")
+                self._verify = VerificationPipeline(news_model_name=model_path)
         return self._verify
 
     def _clear_memory(self):
