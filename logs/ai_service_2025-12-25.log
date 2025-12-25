@@ -226,3 +226,37 @@ See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-3243
 2025-12-25 11:20:47 | INFO | ai_service.pipelines.processor:process_report:175 | Successfully processed report 2b986e17-a62b-4f18-82b5-b884e05e98ee
 2025-12-25 11:21:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
 2025-12-25 11:21:20 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 11:22:13 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 11:22:13 | INFO | ai_service.pipelines.processor:__init__:34 | Unified Processor initialized
+2025-12-25 11:22:13 | INFO | ai_service.pipelines.processor:process_report:99 | Processing report f0d2b156-173a-4995-8f94-7b7d6008459e
+2025-12-25 11:22:13 | INFO | ai_service.pipelines.processor:process_report:107 | Detected URL input, extracting content: https://kathmandupost.com/national/2025/10/06/scores-dead-as-rains-batter-nepal-s-east-and-south
+2025-12-25 11:22:13 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/national/2025/10/06/scores-dead-as-rains-batter-nepal-s-east-and-south
+2025-12-25 11:22:15 | INFO | ai_service.pipelines.processor:process_report:114 | Successfully extracted 8611 characters from URL
+2025-12-25 11:22:15 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:22:15 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:22:18 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 11:22:18 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 11:22:18 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 11:22:21 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Public Safety' with confidence 0.143
+2025-12-25 11:22:21 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:22:21 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 11:22:25 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 11:22:25 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 11:22:32 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 330 chars from 8566 chars (ratio: 0.04)
+2025-12-25 11:22:32 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:22:32 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
+2025-12-25 11:22:34 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
+2025-12-25 11:22:34 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:22:34 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:22:36 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 11:22:36 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 11:22:36 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 11:22:41 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Flood' with confidence 0.101
+2025-12-25 11:22:42 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 11:22:42 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:22:42 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 11:22:44 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 11:22:44 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 11:22:44 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
+2025-12-25 11:22:46 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
+2025-12-25 11:22:47 | INFO | ai_service.pipelines.processor:process_report:175 | Successfully processed report f0d2b156-173a-4995-8f94-7b7d6008459e
