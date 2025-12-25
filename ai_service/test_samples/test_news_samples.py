@@ -8,6 +8,11 @@ from loguru import logger
 
 BASE_URL = os.environ.get("AI_SERVICE_URL", "http://localhost:8000")
 
+# Configure logger
+logger.remove()
+logger.add(sys.stdout, format="<green>{time:HH:mm:ss}</green> | <level>{message}</level>")
+logger.add("ai_service/test_sample_logs/test_news_samples.log", format="{message}", encoding="utf-8", mode="w")
+
 def log_factcheck(text, title):
     logger.info("\nSending for Fact-Check (Internet Search)...")
     try:

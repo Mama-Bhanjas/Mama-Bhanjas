@@ -16,7 +16,7 @@ class SummarizationPipeline:
     
     def __init__(
         self,
-        model_name: str = "facebook/bart-large-cnn",
+        model_name: str = "sshleifer/distilbart-cnn-6-6",
         use_cache: bool = True,
         device: Optional[str] = None
     ):

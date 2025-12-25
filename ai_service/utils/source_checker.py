@@ -35,7 +35,11 @@ class SourceChecker:
         # Regional (Nepal)
         "kathmandupost.com", "kathmandugazette.com", "risingnepal.org.np",
         "nepalnews.com", "khabarhub.com", "himalayadiary.com", "setopati.com",
-        "spacenews.com", "tass.com",
+        "spacenews.com", "tass.com", "mhi.com", "myrepublica.com", "nagariknetwork.com",
+        "who.int", "pib.gov.in", "risingnepaldaily.com",
+        "timesofindia.indiatimes.com", "thehindu.com", "indianexpress.com",
+        "business-standard.com", "moneycontrol.com", "livemint.com",
+        "myrepublica.nagariknetwork.com", "theannapurnaexpress.com", "english.onlinekhabar.com"
         # Universities/Research
         "rmit.edu.au", "sciencedaily.com", "mit.edu", "harvard.edu", "stanford.edu"
     }
@@ -47,7 +51,7 @@ class SourceChecker:
         "breitbart.com", "gatewaypundit.com", "zerohedge.com", "sputniknews.com",
         "rt.com", "conspiracy-theories.net", "thetruthobserver.blog",
         "londondailytruth.site", "tech-expose.blog", "ocean-council.online",
-        "medical-truth.blog"
+        "medical-truth.blog", "global-health-accord.net", "usb-secure.blog"
     }
 
     # Trusted top-level domains
@@ -61,7 +65,13 @@ class SourceChecker:
         "silicon-based", "clandestine", "shadow-biosphere",
         "official-notice", "emergency-alert", "truth", "leaked",
         "memory-wipe", "MNEM-7", "expiration-date", "bank-collective",
-        "tidal-tax", "continental-shield", "micro-cellular", "ocean-council"
+        "tidal-tax", "continental-shield", "micro-cellular", "ocean-council",
+        "bio-digital", "voltage-hijack", "brick-and-burn", "secret-annex",
+        "voltage hijack", "brick and burn", "no-software-patch", "immediate thermal runaway",
+        "strategic-waste", "abandoned-mines", "logic-loop", "hijacks", "mandatory-subscription",
+        "saltwater-battery", "blue-spark", "social-credit", "reliability-rating", "online-civility",
+        "mega-thrust", "electromagnetic-pulses", "leaked-data", "sub-surface",
+        "structural-fissures", "vertical-crack", "leaked-internal-memo", "catastrophic-failure"
     }
 
     SUSPICIOUS_TLDS = {".blog", ".site", ".online", ".xyz", ".top", ".buzz"}
@@ -136,11 +146,12 @@ class SourceChecker:
                     score -= 0.15
                     reasons.append(f"Generic or suspicious top-level domain ({tld})")
 
-            # 5️⃣ Suspicious keyword patterns
+            # 6️⃣ Suspicious keyword patterns (Check FULL URL)
+            full_url_lower = url.lower()
             for word in self.SUSPICIOUS_KEYWORDS:
-                if word in domain:
-                    score -= 0.2
-                    reasons.append("Suspicious domain naming pattern")
+                if word in full_url_lower:
+                    score -= 0.25
+                    reasons.append(f"Suspicious pattern detected in URL: {word}")
 
             # Clamp score
             score = min(max(score, 0.0), 1.0)

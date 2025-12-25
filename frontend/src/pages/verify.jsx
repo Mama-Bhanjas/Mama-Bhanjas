@@ -124,16 +124,16 @@ export default function Verify() {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
                             onClick={() => setSelectedArticle(null)}
-                            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] cursor-pointer"
+                            className="fixed inset-0 bg-black/80 z-[60] cursor-pointer"
                         />
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95, y: 10 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 10 }}
                             transition={{ type: 'spring', duration: 0.3, bounce: 0 }}
-                            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-surface-950 border border-surface-800 rounded-3xl z-[70] shadow-2xl custom-scrollbar"
+                            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-surface-950 border border-surface-800 rounded-3xl z-[70] shadow-2xl"
                         >
-                            <div className="sticky top-0 right-0 p-4 bg-surface-950/80 backdrop-blur-md flex justify-end z-10">
+                            <div className="sticky top-0 right-0 p-4 bg-surface-950/90 flex justify-end z-10">
                                 <button
                                     onClick={() => setSelectedArticle(null)}
                                     className="p-2 bg-surface-900 hover:bg-surface-800 rounded-full text-surface-400 hover:text-white transition-colors"

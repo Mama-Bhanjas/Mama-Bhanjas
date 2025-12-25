@@ -32,7 +32,8 @@ export default function ReportForm() {
             const payload = {
                 text: `${formData.title}: ${formData.description}`,
                 source_type: "WEB_USER",
-                source_identifier: formData.location || "anonymous_web",
+                source_identifier: "anonymous_web",
+                location: formData.location || null,
                 disaster_category: formData.category
             };
 
@@ -131,8 +132,7 @@ export default function ReportForm() {
                             value={formData.location}
                             onChange={handleChange}
                             className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
-                            placeholder="City, Area"
-                            required
+                            placeholder="City, Area (optional - AI can detect)"
                         />
                     </div>
                 </div>

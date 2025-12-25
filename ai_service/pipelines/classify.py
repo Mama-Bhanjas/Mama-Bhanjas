@@ -16,7 +16,7 @@ class ClassificationPipeline:
     
     def __init__(
         self,
-        model_name: str = "facebook/bart-large-mnli",
+        model_name: str = "typeform/distilbert-base-uncased-mnli",
         categories: Optional[List[str]] = None,
         use_cache: bool = True,
         device: Optional[str] = None

@@ -1,3 +1,150 @@
 2025-12-25 07:49:01 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
 2025-12-25 07:49:16 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
 2025-12-25 07:49:16 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 07:50:28 | INFO | ai_service.api:get_classification_pipeline:129 | Initializing classification pipeline
+2025-12-25 07:50:28 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 07:50:28 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: facebook/bart-large-mnli
+2025-12-25 07:50:36 | INFO | ai_service.models.classifier:__init__:54 | Classifier loaded successfully on cpu
+2025-12-25 07:50:36 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 07:50:40 | INFO | ai_service.models.classifier:classify:139 | Classified as 'Other' with confidence 0.505
+2025-12-25 07:50:42 | INFO | ai_service.api:get_summarization_pipeline:137 | Initializing summarization pipeline
+2025-12-25 07:50:42 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 07:50:42 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: facebook/bart-large-cnn
+2025-12-25 07:50:46 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 07:50:46 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 07:50:51 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 160 chars from 78 chars (ratio: 2.05)
+2025-12-25 07:59:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 07:59:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:13:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:13:15 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:13:15 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:13:52 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 08:13:52 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 08:13:52 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 3d26f31c-7154-4a32-9fdc-0928b28a848d
+2025-12-25 08:13:52 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:13:52 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:15:42 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 08:15:42 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 08:15:42 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:15:43 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.525
+2025-12-25 08:15:43 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:15:43 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:17:27 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:17:27 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 3d26f31c-7154-4a32-9fdc-0928b28a848d: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:22:56 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:22:57 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:23:09 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 08:23:09 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 08:23:09 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 0984e66b-c4f8-43e1-aa7b-7ba880df31e7
+2025-12-25 08:23:09 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:23:09 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:23:10 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 08:23:10 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 08:23:10 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:23:11 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.525
+2025-12-25 08:23:11 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:23:11 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:23:13 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:23:13 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 0984e66b-c4f8-43e1-aa7b-7ba880df31e7: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:25:18 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 88bfb583-39ae-474a-aaef-bf0040579e76
+2025-12-25 08:25:18 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 08:25:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:25:18 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:25:19 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:25:19 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 88bfb583-39ae-474a-aaef-bf0040579e76: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:25:21 | INFO | ai_service.api:get_summarization_pipeline:145 | Initializing summarization pipeline
+2025-12-25 08:25:21 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:25:21 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:25:24 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:25:24 | ERROR | ai_service.api:summarize_text:267 | Summarization endpoint error: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:27:03 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 1a8a60e2-afc3-4ff3-a40a-e5dac4d244a9
+2025-12-25 08:27:03 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Community Services' with confidence 0.665
+2025-12-25 08:27:03 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:27:03 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:27:05 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:27:05 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 1a8a60e2-afc3-4ff3-a40a-e5dac4d244a9: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+2025-12-25 08:51:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:52:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:53:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:55:24 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 08:55:24 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 08:55:24 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 1cf25abd-fa13-43c0-9b62-cec9150aaa9f
+2025-12-25 08:55:24 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:55:24 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:55:29 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 08:55:29 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 08:55:29 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:55:32 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.254
+2025-12-25 08:55:32 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:55:32 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:55:43 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 08:55:43 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 08:56:00 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 159 chars from 227 chars (ratio: 0.70)
+2025-12-25 08:56:00 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:56:00 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
+2025-12-25 08:58:00 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
+2025-12-25 08:58:00 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:58:00 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:58:02 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 08:58:02 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 08:58:02 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 08:58:14 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Flood' with confidence 0.358
+2025-12-25 08:58:14 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:58:14 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:58:14 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:58:16 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 08:58:16 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 08:58:16 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
+2025-12-25 08:58:30 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
+2025-12-25 08:58:38 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 1cf25abd-fa13-43c0-9b62-cec9150aaa9f
+2025-12-25 09:04:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:04:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:04:26 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:04:26 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 09:04:26 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 6646a44f-78f4-43aa-9365-64b83b205dc3
+2025-12-25 09:04:26 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:04:26 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:04:28 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 09:04:28 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 09:04:28 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:04:33 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.254
+2025-12-25 09:04:33 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:04:33 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:04:42 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:04:42 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:05:16 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 159 chars from 227 chars (ratio: 0.70)
+2025-12-25 09:05:16 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:16 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
+2025-12-25 09:05:19 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
+2025-12-25 09:05:19 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:19 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:05:21 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 09:05:21 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 09:05:21 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:05:29 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Flood' with confidence 0.358
+2025-12-25 09:05:29 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:29 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:05:29 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:05:31 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
+2025-12-25 09:05:31 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
+2025-12-25 09:05:31 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
+2025-12-25 09:05:34 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
+2025-12-25 09:05:48 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 6646a44f-78f4-43aa-9365-64b83b205dc3
+2025-12-25 09:10:51 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report df33c4d8-941c-4b12-9fb5-504257c189d1
+2025-12-25 09:10:53 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.224
+2025-12-25 09:11:29 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 247 chars from 750 chars (ratio: 0.33)
+2025-12-25 09:11:44 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Earthquake' with confidence 0.096
+2025-12-25 09:12:01 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report df33c4d8-941c-4b12-9fb5-504257c189d1
+2025-12-25 09:59:37 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level

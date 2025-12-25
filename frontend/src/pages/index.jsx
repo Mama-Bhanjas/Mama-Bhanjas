@@ -28,7 +28,7 @@ export default function Home() {
                     description: r.text,
                     category: (r.disaster_category || "other").toLowerCase(),
                     timestamp: new Date(r.timestamp).getTime(),
-                    location: "Unknown", // Backend doesn't have location yet
+                    location: r.location || "Unknown",
                     isVerified: r.is_verified,
                     verificationStatus: r.verification_status
                 }));

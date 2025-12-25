@@ -8,6 +8,7 @@ from loguru import logger
 # Configure simple logging for tests
 logger.remove()
 logger.add(sys.stdout, level="INFO")
+logger.add("ai_service/test_sample_logs/test_service.log", format="{message}", encoding="utf-8", mode="w")
 
 
 def test_classification():

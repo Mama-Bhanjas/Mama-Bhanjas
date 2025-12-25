@@ -20,7 +20,8 @@ class VerificationPipeline:
     REPORT_CATEGORIES = [
         "a civic issue",
         "spam",
-        "nonsense"
+        "nonsense",
+        "general news or information"
     ]
 
     def __init__(
@@ -171,6 +172,29 @@ class VerificationPipeline:
                 except Exception as e:
                     logger.warning(f"Auto-search failed: {e}")
                     is_reliable = is_content_reliable
+
+            # 3. Final Skepticism Check (Keyword override)
+            # Normalize text for better keyword matching (handle spaces/hyphens)
+            norm_text = text.lower().replace("-", " ")
+            suspicious_matches = []
+            for w in self.source_checker.SUSPICIOUS_KEYWORDS:
+                clean_w = w.replace("-", " ")
+                if clean_w in norm_text:
+                    suspicious_matches.append(w)
+
+            if suspicious_matches and is_reliable:
+                logger.info(f"Skepticism triggered: text contains {suspicious_matches}")
+                # Penalize or Flip
+                if final_status.startswith("Verified (Trusted Source)"):
+                    # If it's a trusted source, we still allow it but add a note
+                    confidence_score *= 0.85
+                    explanation += f" (Note: Content contains alarmist patterns like {suspicious_matches[0]})"
+                else:
+                    # Model says Real, but we found suspicious words and no trusted sources
+                    is_reliable = False
+                    confidence_score = 0.85
+                    final_status = "Likely Fake (Suspicious Patterns)"
+                    explanation = f"Model analysis suggests real, but content contains strong alarmist/misinformation patterns ({', '.join(suspicious_matches[:3])}) and lacks trusted source corroboration."
 
             result = {
                 "success": True,

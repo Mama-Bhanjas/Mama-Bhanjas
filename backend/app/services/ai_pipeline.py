@@ -99,4 +99,17 @@ class AIPipeline:
             print(f"Error calling AI service (fact_check): {e}")
             return {"success": False, "error": str(e)}
 
+    def process_report(self, text: str, source_url: str = None) -> dict:
+        """
+        Calls the Unified Processor to get classification, summary, NER, and verification in one go.
+        """
+        try:
+            payload = {"text": text, "source_url": source_url}
+            response = requests.post(f"{self.base_url}/api/process/report", json=payload)
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            print(f"Error calling AI service (process_report): {e}")
+            return {"success": False, "error": str(e)}
+
 ai_pipeline = AIPipeline()

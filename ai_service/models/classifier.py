@@ -51,6 +51,15 @@ class CategoryClassifier:
             self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
             self.model.to(self.device)
             self.model.eval()
+            
+            # Detect entailment index dynamically
+            self.entailment_idx = 2 # Default for BART
+            if hasattr(self.model.config, 'label2id'):
+                label_map = {k.lower(): v for k, v in self.model.config.label2id.items()}
+                if 'entailment' in label_map:
+                    self.entailment_idx = label_map['entailment']
+                    logger.info(f"Detected entailment index: {self.entailment_idx}")
+            
             logger.info(f"Classifier loaded successfully on {self.device}")
         except Exception as e:
             logger.error(f"Failed to load classifier model: {e}")
@@ -111,9 +120,9 @@ class CategoryClassifier:
                     outputs = self.model(**inputs)
                     logits = outputs.logits
                     
-                    # Get entailment score (index 2 for MNLI models)
+                    # Get entailment score
                     probs = torch.softmax(logits, dim=1)
-                    entailment_score = probs[0][2].item()
+                    entailment_score = probs[0][self.entailment_idx].item()
                     scores.append(entailment_score)
             
             # Normalize scores

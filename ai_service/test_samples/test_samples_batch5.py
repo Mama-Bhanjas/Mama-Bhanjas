@@ -10,7 +10,7 @@ BASE_URL = os.environ.get("AI_SERVICE_URL", "http://localhost:8000/api")
 # Configure logger
 logger.remove()
 logger.add(sys.stdout, format="<green>{time:HH:mm:ss}</green> | <level>{message}</level>")
-logger.add("verification_samples_batch5.log", format="{message}", encoding="utf-8", mode="w")
+logger.add("ai_service/test_sample_logs/verification_samples_batch5.log", format="{message}", encoding="utf-8", mode="w")
 
 def test_verify_news(text, source_url, label):
     """Test the /api/verify/news endpoint"""

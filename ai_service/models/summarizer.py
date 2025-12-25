@@ -17,7 +17,7 @@ class TextSummarizer:
     
     def __init__(
         self,
-        model_name: str = "sshleifer/distilbart-cnn-12-6",
+        model_name: str = "sshleifer/distilbart-cnn-6-6",
         device: Optional[str] = None
     ):
         """

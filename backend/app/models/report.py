@@ -13,3 +13,4 @@ class Report(Base):
     is_verified = Column(Boolean, default=False)
     verification_status = Column(String, default="Pending") # "Pending", "Verified", "Rejected"
     disaster_category = Column(String, nullable=True) # Populated by AI
+    location = Column(String, nullable=True)

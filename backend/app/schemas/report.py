@@ -6,9 +6,10 @@ class ReportBase(BaseModel):
     text: str
     source_type: str
     source_identifier: Optional[str] = None
+    location: Optional[str] = None
 
 class ReportCreate(ReportBase):
-    pass
+    disaster_category: Optional[str] = None
 
 class ReportResponse(ReportBase):
     id: int

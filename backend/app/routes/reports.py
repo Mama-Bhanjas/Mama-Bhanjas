@@ -12,18 +12,44 @@ router = APIRouter()
 
 @router.post("/", response_model=ReportResponse)
 def create_report(report: ReportCreate, db: Session = Depends(get_db)):
-    # 1. Verify Source
-    verification_result = VerificationService.verify_source(report.source_identifier, report.source_type)
+    # 2. Unified AI Processing
+    # Calls classification, summarization, NER, and verification in one go
+    ai_result = ai_pipeline.process_report(report.text, report.source_identifier)
     
-    # 2. AI Processing (Simulated as synchronous for simplicity, would be async in prod)
-    category = ai_pipeline.classify_report(report.text)
-    
+    # Defaults
+    category = "Other"
+    location = report.location  # Start with user-provided location
+    verification_status = "Pending"
+    is_verified = False
+
+    if ai_result.get("success") and ai_result.get("data"):
+        data = ai_result["data"]
+        
+        # 1. Category: Prefer user input, fallback to AI 'primary_category' or 'disaster_type'
+        if report.disaster_category:
+            category = report.disaster_category
+        else:
+            category = data.get("primary_category") or data.get("disaster_type") or "Other"
+
+        # 2. Location: Prefer user input, fallback to AI extracted location
+        # Only use AI location if user didn't provide one
+        if not location and data.get("location_entities") and len(data["location_entities"]) > 0:
+            # Take the first location entity found
+            location = data["location_entities"][0]
+        
+        # 3. Verification status from AI
+        verification_data = data.get("verification", {})
+        if verification_data.get("status"):
+            verification_status = verification_data["status"]
+            is_verified = verification_data.get("is_reliable", False)
+
     db_report = Report(
         text=report.text,
         source_type=report.source_type,
         source_identifier=report.source_identifier,
-        is_verified=verification_result["is_verified"],
-        verification_status=verification_result["status"],
+        location=location,
+        is_verified=is_verified,
+        verification_status=verification_status,
         disaster_category=category
     )
     

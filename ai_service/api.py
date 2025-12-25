@@ -14,6 +14,7 @@ from ai_service.pipelines.summarize import SummarizationPipeline
 from ai_service.pipelines.cluster import ClusteringPipeline
 from ai_service.pipelines.verification import VerificationPipeline
 from ai_service.pipelines.fact_check import FactCheckPipeline
+from ai_service.pipelines.processor import UnifiedProcessor
 from ai_service.utils import setup_logging
 
 
@@ -42,6 +43,7 @@ summarization_pipeline = None
 clustering_pipeline = None
 verification_pipeline = None
 factcheck_pipeline = None
+unified_processor = None
 
 
 # Request/Response Models
@@ -121,6 +123,12 @@ class VerificationResponse(BaseModel):
     error: Optional[str] = None
     details: Optional[dict] = None
 
+class UnifiedProcessResponse(BaseModel):
+    success: bool
+    data: Optional[dict] = None
+    error: Optional[str] = None
+    report_id: Optional[str] = None
+
 
 # Helper functions
 def get_classification_pipeline():
@@ -160,6 +168,13 @@ def get_factcheck_pipeline():
         factcheck_pipeline = FactCheckPipeline()
     return factcheck_pipeline
 
+def get_unified_processor():
+    global unified_processor
+    if unified_processor is None:
+        logger.info("Initializing Unified Processor (Lazy Loading)...")
+        unified_processor = UnifiedProcessor()
+    return unified_processor
+
 
 # API Endpoints
 @app.get("/")
@@ -176,7 +191,8 @@ async def root():
             "cluster": "/api/cluster",
             "similarity": "/api/similarity",
             "verify_news": "/api/verify/news",
-            "verify_report": "/api/verify/report"
+            "verify_report": "/api/verify/report",
+            "process_report": "/api/process/report"
         }
     }
 
@@ -408,6 +424,27 @@ async def fact_check_news(request: VerificationRequest):
         return result
     except Exception as e:
         logger.error(f"Fact-checking endpoint error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=str(e)
+        )
+
+
+@app.post("/api/process/report", response_model=UnifiedProcessResponse, tags=["Unified"])
+async def process_full_report(request: VerificationRequest):
+    """
+    Unified endpoint that runs classification, summarization, NER, and verification
+    in a single call. Returns structured data for DB storage and frontend.
+    """
+    try:
+        processor = get_unified_processor()
+        result = processor.process_report(
+            text=request.text,
+            source_url=request.source_url
+        )
+        return UnifiedProcessResponse(**result)
+    except Exception as e:
+        logger.error(f"Unified processing endpoint error: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e)
