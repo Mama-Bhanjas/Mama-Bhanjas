@@ -14,7 +14,7 @@ export default function Footer() {
                 <div className="flex flex-col items-center">
                     <div className="text-center">
                         <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-200 mb-2">
-                            Mama-Bhanjas
+                            D-Brief
                         </h3>
                         <p className="text-sm text-surface-400 max-w-xs mx-auto">
                             Decentralized Disaster Verification. Empowering communities with truth and speed.

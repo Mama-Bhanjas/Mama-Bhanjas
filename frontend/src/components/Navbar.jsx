@@ -36,19 +36,19 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className={`fixed w-full z-50 transition-all duration-500 shadow-2xl ${scrolled
+            <nav className={`fixed w-full z-50 transition-all duration-500 shadow-2xl font-[var(--font-roboto)] ${scrolled
                 ? 'bg-white/80 dark:bg-surface-950/80 backdrop-blur-md border-b border-gray-200 dark:border-surface-d800'
                 : 'bg-transparent'
-                }`}>
+                }`} style={{ fontFamily: 'var(--font-roboto), Roboto, ui-sans-serif, system-ui, sans-serif' }}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16 items-center">
                         <div className="flex items-center">
                             <Link href="/" className="flex-shrink-0 flex items-center space-x-2">
-                                <div className="bg-primary-600 p-2 rounded-lg">
-                                    <Shield className="h-6 w-6 text-white" />
+                                <div className="p-1 rounded-lg">
+                                    <img src="/branding/logo.png" alt="D-Brief Logo" className="h-8 w-8 object-contain" />
                                 </div>
-                                <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-indigo-600">
-                                    Mama-Bhanjas
+                                <span className="text-xl font-sans font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-indigo-600">
+                                    D-Brief
                                 </span>
                             </Link>
                             <div className="hidden md:ml-10 md:flex md:space-x-8">
@@ -58,7 +58,7 @@ export default function Navbar() {
                                         <Link
                                             key={link.name}
                                             href={link.href}
-                                            className={`inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors border-b-2
+                                            className={`inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors
                           ${isActive
                                                     ? 'text-primary-600 border-primary-600'
                                                     : 'text-surface-600 border-transparent hover:text-primary-600  dark:text-surface-400'
@@ -72,21 +72,29 @@ export default function Navbar() {
                         </div>
                         <div className="hidden md:flex items-center space-x-4">
                             {isAuthenticated ? (
-                                <div className="flex items-center space-x-4">
-                                    <div className="flex items-center space-x-2 px-3 py-1 bg-surface-100 dark:bg-surface-900 rounded-full border border-gray-200 dark:border-surface-800">
-                                        <div className="h-6 w-6 rounded-full bg-primary-600 flex items-center justify-center">
-                                            <User className="h-4 w-4 text-white" />
+                                <div className="flex items-center space-x-3">
+                                    <div className="flex items-center space-x-3 px-4 py-1.5 bg-surface-100 dark:bg-surface-900 rounded-2xl border border-gray-200 dark:border-surface-800 hover:border-primary-500/30 transition-all cursor-default group">
+                                        <div className="relative h-8 w-8 rounded-xl bg-gradient-to-br from-primary-500 to-indigo-600 p-[1px] flex items-center justify-center overflow-hidden shadow-lg shadow-primary-500/10">
+                                            <div className="absolute inset-0 bg-white dark:bg-surface-900 rounded-[10px]" />
+                                            {user.avatar_url ? (
+                                                <img src={user.avatar_url} alt={user.full_name} className="relative h-full w-full object-cover rounded-[10px]" />
+                                            ) : (
+                                                <User className="relative h-4 w-4 text-primary-600 dark:text-primary-400" />
+                                            )}
                                         </div>
-                                        <span className="text-sm font-medium dark:text-white truncate max-w-[100px]">
-                                            {user.name}
-                                        </span>
+                                        <div className="flex flex-col">
+                                            <span className="text-xs font-semibold text-gray-500 dark:text-surface-400 leading-none mb-0.5">Welcome,</span>
+                                            <span className="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                                                {user.full_name}
+                                            </span>
+                                        </div>
                                     </div>
                                     <button
                                         onClick={() => setShowLogoutModal(true)}
-                                        className="p-2 text-surface-500 hover:text-red-500 transition-colors"
+                                        className="p-2.5 text-surface-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-xl transition-all group"
                                         title="Logout"
                                     >
-                                        <LogOut className="h-5 w-5" />
+                                        <LogOut className="h-5 w-5 group-hover:scale-110 transition-transform" />
                                     </button>
                                 </div>
                             ) : (
