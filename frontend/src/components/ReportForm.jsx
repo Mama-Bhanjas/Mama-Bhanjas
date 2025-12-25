@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CATEGORIES } from '../constants/categories';
-import { Send, Loader2 } from 'lucide-react';
+import { Send, Loader2, FileText, Link, Upload, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { submitReport } from '../services/api';
 
 export default function ReportForm() {
     const [formData, setFormData] = useState({
-        inputMode: 'text', // 'text' or 'url'
+        inputMode: 'text', // 'text', 'url', or 'pdf'
         title: '',
         description: '',
         category: CATEGORIES[0].id,
@@ -16,12 +16,35 @@ export default function ReportForm() {
         source_identifier: 'anonymous'
     });
 
+    const [attachedFile, setAttachedFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
+    const fileInputRef = useRef(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type === 'application/pdf') {
+            setAttachedFile(file);
+            setSubmitStatus(null);
+        } else if (file) {
+            setSubmitStatus({
+                type: 'error',
+                message: 'Please upload a PDF file.'
+            });
+            e.target.value = null;
+        }
+    };
+
+    const removeFile = () => {
+        setAttachedFile(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = null;
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -30,24 +53,35 @@ export default function ReportForm() {
         setSubmitStatus(null);
 
         try {
-            // Build payload based on input mode
-            const payload = formData.inputMode === 'url'
-                ? {
-                    // URL mode: send URL as text, AI will extract content
+            let payload;
+            if (formData.inputMode === 'pdf') {
+                if (!attachedFile) {
+                    throw new Error('Please select a PDF file to upload.');
+                }
+                payload = new FormData();
+                payload.append('file', attachedFile);
+                payload.append('source_type', 'WEB_USER');
+                payload.append('source_identifier', 'anonymous_pdf');
+                payload.append('location', formData.location || '');
+                payload.append('disaster_category', formData.category);
+                payload.append('text', `PDF Report: ${attachedFile.name}`); // Fallback text
+            } else if (formData.inputMode === 'url') {
+                payload = {
                     text: formData.url,
                     source_type: "WEB_USER",
                     source_identifier: "anonymous_web",
                     location: formData.location || null,
                     disaster_category: formData.category
-                }
-                : {
-                    // Text mode: combine title and description
+                };
+            } else {
+                payload = {
                     text: `${formData.title}: ${formData.description}`,
                     source_type: "WEB_USER",
                     source_identifier: "anonymous_web",
                     location: formData.location || null,
                     disaster_category: formData.category
                 };
+            }
 
             await submitReport(payload);
 
@@ -55,7 +89,9 @@ export default function ReportForm() {
                 type: 'success',
                 message: formData.inputMode === 'url'
                     ? '✅ URL submitted! Extracting and analyzing content...'
-                    : '✅ Report submitted successfully!'
+                    : formData.inputMode === 'pdf'
+                        ? '✅ PDF uploaded! Analyzing content...'
+                        : '✅ Report submitted successfully!'
             });
 
             // Reset form
@@ -69,6 +105,8 @@ export default function ReportForm() {
                 source_type: 'WEB',
                 source_identifier: 'anonymous'
             });
+            setAttachedFile(null);
+            if (fileInputRef.current) fileInputRef.current.value = null;
 
         } catch (error) {
             console.error('Submission error:', error);
@@ -108,74 +146,162 @@ export default function ReportForm() {
                 className="space-y-6 max-w-lg mx-auto bg-white dark:bg-surface-800 p-8 rounded-xl shadow-md border border-gray-200 dark:border-surface-700"
             >
                 {/* Input Mode Toggle */}
-                <div className="flex gap-2 p-1 bg-gray-100 dark:bg-surface-900 rounded-lg">
+                <div className="flex gap-2 p-1 bg-gray-100 dark:bg-surface-900 rounded-lg overflow-x-auto">
                     <button
                         type="button"
                         onClick={() => setFormData(prev => ({ ...prev, inputMode: 'text' }))}
-                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${formData.inputMode === 'text'
+                        className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md text-sm font-medium transition-all min-w-[100px] ${formData.inputMode === 'text'
                             ? 'bg-white dark:bg-surface-700 text-primary-600 dark:text-primary-400 shadow-sm'
                             : 'text-gray-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white'
                             }`}
                     >
-                        📝 Type Report
+                        <FileText className="w-4 h-4" />
+                        <span>Text</span>
                     </button>
                     <button
                         type="button"
                         onClick={() => setFormData(prev => ({ ...prev, inputMode: 'url' }))}
-                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${formData.inputMode === 'url'
+                        className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md text-sm font-medium transition-all min-w-[100px] ${formData.inputMode === 'url'
                             ? 'bg-white dark:bg-surface-700 text-primary-600 dark:text-primary-400 shadow-sm'
                             : 'text-gray-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white'
                             }`}
                     >
-                        🔗 Paste URL
+                        <Link className="w-4 h-4" />
+                        <span>URL</span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, inputMode: 'pdf' }))}
+                        className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md text-sm font-medium transition-all min-w-[100px] ${formData.inputMode === 'pdf'
+                            ? 'bg-white dark:bg-surface-700 text-primary-600 dark:text-primary-400 shadow-sm'
+                            : 'text-gray-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white'
+                            }`}
+                    >
+                        <Upload className="w-4 h-4" />
+                        <span>PDF</span>
                     </button>
                 </div>
 
-                {formData.inputMode === 'text' ? (
-                    <>
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Title</label>
-                            <input
-                                type="text"
-                                name="title"
-                                value={formData.title}
-                                onChange={handleChange}
-                                className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
-                                placeholder="What happened?"
-                                required
-                            />
-                        </div>
+                <AnimatePresence mode="wait">
+                    {formData.inputMode === 'text' ? (
+                        <motion.div
+                            key="text"
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -10 }}
+                            className="space-y-4"
+                        >
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                    className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
+                                    placeholder="What happened?"
+                                    required={formData.inputMode === 'text'}
+                                />
+                            </div>
 
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Description</label>
-                            <textarea
-                                name="description"
-                                value={formData.description}
-                                onChange={handleChange}
-                                rows="4"
-                                className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors resize-none"
-                                placeholder="Provide details about the incident..."
-                                required
-                            />
-                        </div>
-                    </>
-                ) : (
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">News Article URL</label>
-                        <input
-                            type="url"
-                            name="url"
-                            value={formData.url}
-                            onChange={handleChange}
-                            className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
-                            placeholder="https://example.com/disaster-news-article"
-                            required
-                        />
-                        <p className="mt-1 text-xs text-gray-500 dark:text-surface-400">
-                            Paste a link to a news article - we'll extract and analyze the content automatically
-                        </p>
-                    </div>
-                )}
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Description</label>
+                                <textarea
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                    rows="4"
+                                    className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors resize-none"
+                                    placeholder="Provide details about the incident..."
+                                    required={formData.inputMode === 'text'}
+                                />
+                            </div>
+                        </motion.div>
+                    ) : formData.inputMode === 'url' ? (
+                        <motion.div
+                            key="url"
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -10 }}
+                        >
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">News Article URL</label>
+                            <div className="relative">
+                                <Link className="absolute left-3 top-3.5 h-4 w-4 text-gray-400" />
+                                <input
+                                    type="url"
+                                    name="url"
+                                    value={formData.url}
+                                    onChange={handleChange}
+                                    className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 pl-10 pr-3 py-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
+                                    placeholder="https://example.com/disaster-news-article"
+                                    required={formData.inputMode === 'url'}
+                                />
+                            </div>
+                            <p className="mt-1 text-xs text-gray-500 dark:text-surface-400">
+                                Paste a link to a news article - we'll extract and analyze the content automatically
+                            </p>
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="pdf"
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -10 }}
+                            className="space-y-4"
+                        >
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Upload PDF Report</label>
+                            <div
+                                onClick={() => fileInputRef.current?.click()}
+                                className={`relative border-2 border-dashed rounded-xl p-8 transition-all cursor-pointer text-center
+                                    ${attachedFile
+                                        ? 'border-primary-500 bg-primary-50/30 dark:bg-primary-900/10'
+                                        : 'border-gray-200 dark:border-surface-600 hover:border-primary-500 dark:hover:border-primary-400 bg-gray-50 dark:bg-surface-900/30'}`}
+                            >
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    onChange={handleFileChange}
+                                    accept=".pdf"
+                                    className="hidden"
+                                />
+                                {attachedFile ? (
+                                    <div className="flex flex-col items-center">
+                                        <div className="relative">
+                                            <div className="p-3 bg-primary-100 dark:bg-primary-900/40 rounded-full mb-3">
+                                                <FileText className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={(e) => { e.stopPropagation(); removeFile(); }}
+                                                className="absolute -top-1 -right-1 p-1 bg-white dark:bg-surface-800 rounded-full shadow-md border border-gray-200 dark:border-surface-600 hover:text-red-500 transition-colors"
+                                            >
+                                                <X className="w-3 h-3" />
+                                            </button>
+                                        </div>
+                                        <p className="text-sm font-medium text-gray-900 dark:text-white truncate max-w-[200px]">
+                                            {attachedFile.name}
+                                        </p>
+                                        <p className="text-xs text-gray-500 dark:text-surface-400 mt-1">
+                                            {(attachedFile.size / (1024 * 1024)).toFixed(2)} MB
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col items-center">
+                                        <div className="p-3 bg-gray-100 dark:bg-surface-800 rounded-full mb-3 group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 transition-colors">
+                                            <Upload className="w-8 h-8 text-gray-400 dark:text-surface-500 group-hover:text-primary-500 transition-colors" />
+                                        </div>
+                                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                            Click to upload PDF
+                                        </p>
+                                        <p className="text-xs text-gray-500 dark:text-surface-400 mt-1">
+                                            Max file size: 10MB
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
@@ -205,7 +331,7 @@ export default function ReportForm() {
                             value={formData.location}
                             onChange={handleChange}
                             className="block w-full rounded-lg border-gray-200 dark:border-surface-600 bg-gray-50 dark:bg-surface-900/50 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors"
-                            placeholder="City, Area (optional - AI can detect)"
+                            placeholder="City, Area (optional)"
                         />
                     </div>
                 </div>
