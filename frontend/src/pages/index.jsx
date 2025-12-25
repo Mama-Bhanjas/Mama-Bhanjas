@@ -7,8 +7,6 @@ import Link from 'next/link';
 import { ChevronRight, BarChart3, Users, CheckCircle } from 'lucide-react';
 import { fetchReports } from '../services/api';
 
-// ... (imports remain the same)
-
 export default function Home() {
     const [category, setCategory] = useState('all');
     const [reports, setReports] = useState([]);
