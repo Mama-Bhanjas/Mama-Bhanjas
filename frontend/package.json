@@ -19,6 +19,8 @@
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
     "tailwind": "^4.0.0",
     "tailwind-merge": "^3.4.0"
   },

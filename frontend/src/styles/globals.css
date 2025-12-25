@@ -40,7 +40,9 @@
     --color-surface-950: #020617;
     /* Obsidian */
 
-    --font-sans: var(--font-outfit), sans-serif;
+    /* Roboto Font */
+    --font-roboto: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: var(--font-roboto);
 
     --animate-fade-in: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --animate-slide-up: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -126,9 +128,18 @@ html {
 body {
     background-color: var(--color-surface-50);
     color: var(--color-surface-900);
-    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Navbar specific font */
+nav {
+    font-family: var(--font-roboto), 'Roboto', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+nav * {
+    font-family: inherit !important;
 }
 
 /* Custom Scrollbar Styling */

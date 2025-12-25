@@ -62,8 +62,8 @@ export default function Home() {
     return (
         <div className="space-y-12 pb-12">
             <Head>
-                <title>Mama-Bhanjas Dashboard</title>
-                <meta name="description" content="Disaster reporting and verification platform" />
+                <title>D-Brief Dashboard</title>
+                <meta name="description" content="D-Brief: Decentralized disaster reporting and real-time verification platform" />
             </Head>
 
             {/* Hero Section */}
@@ -77,7 +77,7 @@ export default function Home() {
                         transition={{ duration: 0.4 }}
                         className="text-3xl sm:text-5xl font-bold tracking-tight mb-4"
                     >
-                        Decentralized Disaster Response
+                        D-Brief: Decentralized Response
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
@@ -85,7 +85,7 @@ export default function Home() {
                         transition={{ delay: 0.1, duration: 0.4 }}
                         className="text-lg sm:text-xl text-surface-200 max-w-2xl mx-auto mb-8 leading-relaxed"
                     >
-                        Verify incidents in real-time using blockchain technology. Report disasters, validate claims, and help your community faster.
+                        D-Brief uses decentralized AI to verify disaster incidents in real-time. Report events, validate claims, and help your community faster.
                     </motion.p>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -93,7 +93,7 @@ export default function Home() {
                         transition={{ delay: 0.2 }}
                         className="flex flex-col sm:flex-row justify-center gap-4"
                     >
-                        <Link href="/submit" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-primary-700 bg-white hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl">
+                        <Link href="/submit" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-primary-600 bg-white hover:bg-primary-600 hover:text-white transition-all shadow-lg hover:shadow-xl">
                             Report Incident
                         </Link>
                         <Link href="/verify" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary-600 bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm border-white/20 transition-all">

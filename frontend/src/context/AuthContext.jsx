@@ -4,53 +4,67 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null); // Added token state
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Check local storage for existing session
         const savedUser = localStorage.getItem('user');
-        if (savedUser) {
+        const savedToken = localStorage.getItem('token'); // Check for token
+        if (savedUser && savedToken) {
             setUser(JSON.parse(savedUser));
+            setToken(savedToken); // Set token if found
         }
         setLoading(false);
     }, []);
 
     const login = async (email, password) => {
         setLoading(true);
-        // Mock login - in a real app, this would hit an API
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const userData = {
-                    id: '1',
-                    name: 'Guest User',
-                    email: email,
-                    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lucky'
-                };
-                setUser(userData);
-                localStorage.setItem('user', JSON.stringify(userData));
-                setLoading(false);
-                resolve(userData);
-            }, 1000);
-        });
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || 'Login failed');
+            }
+
+            const data = await response.json();
+            const { access_token, user: userData } = data;
+
+            setToken(access_token);
+            localStorage.setItem('token', access_token);
+            setUser(userData);
+            localStorage.setItem('user', JSON.stringify(userData));
+
+            return userData;
+        } finally {
+            setLoading(false);
+        }
     };
 
     const register = async (name, email, password) => {
         setLoading(true);
-        // Mock registration
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const userData = {
-                    id: Math.random().toString(36).substr(2, 9),
-                    name: name,
-                    email: email,
-                    avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`
-                };
-                setUser(userData);
-                localStorage.setItem('user', JSON.stringify(userData));
-                setLoading(false);
-                resolve(userData);
-            }, 1000);
-        });
+        try {
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ full_name: name, email, password }),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || 'Registration failed');
+            }
+
+            // If registration is successful, log the user in immediately
+            return login(email, password);
+        } finally {
+            setLoading(false);
+        }
     };
 
     /**
