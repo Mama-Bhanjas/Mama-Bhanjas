@@ -3,7 +3,7 @@ FastAPI-based API for AI Service
 Exposes ML endpoints for classification, summarization, and clustering
 """
 from typing import List, Optional
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, status, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from loguru import logger
@@ -430,25 +430,50 @@ async def fact_check_news(request: VerificationRequest):
         )
 
 
-@app.post("/api/process/report", response_model=UnifiedProcessResponse, tags=["Unified"])
+@app.post("/api/process/report", response_model=UnifiedProcessResponse, tags=["Unified"], status_code=status.HTTP_201_CREATED)
 async def process_full_report(request: VerificationRequest):
     """
     Unified endpoint that runs classification, summarization, NER, and verification
     in a single call. Returns structured data for DB storage and frontend.
+    Accepts raw text or a news link in the text field.
     """
+    logger.info(f"Received process report request. Text length: {len(request.text if request.text else '')}")
     try:
         processor = get_unified_processor()
         result = processor.process_report(
             text=request.text,
             source_url=request.source_url
         )
-        return UnifiedProcessResponse(**result)
+        if "error" in result:
+             return UnifiedProcessResponse(success=False, error=result["error"])
+        return UnifiedProcessResponse(success=True, data=result, report_id=result.get("report_id"))
     except Exception as e:
         logger.error(f"Unified processing endpoint error: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e)
         )
+
+@app.post("/api/process/upload", response_model=UnifiedProcessResponse, tags=["Unified"], status_code=status.HTTP_201_CREATED)
+async def process_upload(file: UploadFile = File(...)):
+    """
+    Process an uploaded news article PDF.
+    """
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Only PDF files are supported currently")
+        
+    try:
+        content = await file.read()
+        processor = get_unified_processor()
+        result = processor.process_report(file_bytes=content)
+        
+        if "error" in result:
+             return UnifiedProcessResponse(success=False, error=result["error"])
+             
+        return UnifiedProcessResponse(success=True, data=result, report_id=result.get("report_id"))
+    except Exception as e:
+        logger.error(f"File upload processing failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # Run server

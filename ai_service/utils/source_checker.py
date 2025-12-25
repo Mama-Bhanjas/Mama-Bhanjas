@@ -36,10 +36,12 @@ class SourceChecker:
         "kathmandupost.com", "kathmandugazette.com", "risingnepal.org.np",
         "nepalnews.com", "khabarhub.com", "himalayadiary.com", "setopati.com",
         "spacenews.com", "tass.com", "mhi.com", "myrepublica.com", "nagariknetwork.com",
-        "who.int", "pib.gov.in", "risingnepaldaily.com",
+        "thehimalayantimes.com", "who.int", "pib.gov.in", "risingnepaldaily.com",
         "timesofindia.indiatimes.com", "thehindu.com", "indianexpress.com",
         "business-standard.com", "moneycontrol.com", "livemint.com",
-        "myrepublica.nagariknetwork.com", "theannapurnaexpress.com", "english.onlinekhabar.com"
+        "myrepublica.nagariknetwork.com", "theannapurnaexpress.com", "english.onlinekhabar.com",
+        "nepalpress.com", "onlineradionepal.gov.np", "radio.gov.np", "nepalnews.com.np",
+        "downtoearth.org.in", "tribuneindia.com", "ndtv.com", "indiatoday.in", "thestatesman.com",
         # Universities/Research
         "rmit.edu.au", "sciencedaily.com", "mit.edu", "harvard.edu", "stanford.edu"
     }
@@ -60,18 +62,16 @@ class SourceChecker:
     # Suspicious patterns often found in fake news sites
     SUSPICIOUS_KEYWORDS = {
         "clickbait", "viral", "shocking", "truth-revealed",
-        "breaking-now", "exclusive", "thetruth", "observer",
+        "breaking-now", "exclusive", "babylonbee", "theonion",
         "dailytruth", "leaked-document", "lockout", "smart-fridge",
         "silicon-based", "clandestine", "shadow-biosphere",
-        "official-notice", "emergency-alert", "truth", "leaked",
-        "memory-wipe", "MNEM-7", "expiration-date", "bank-collective",
-        "tidal-tax", "continental-shield", "micro-cellular", "ocean-council",
+        "memory-wipe", "MNEM-7", "bank-collective",
+        "tidal-tax", "continental-shield", "micro-cellular",
         "bio-digital", "voltage-hijack", "brick-and-burn", "secret-annex",
         "voltage hijack", "brick and burn", "no-software-patch", "immediate thermal runaway",
-        "strategic-waste", "abandoned-mines", "logic-loop", "hijacks", "mandatory-subscription",
-        "saltwater-battery", "blue-spark", "social-credit", "reliability-rating", "online-civility",
-        "mega-thrust", "electromagnetic-pulses", "leaked-data", "sub-surface",
-        "structural-fissures", "vertical-crack", "leaked-internal-memo", "catastrophic-failure"
+        "logic-loop", "saltwater-battery", "blue-spark", "social-credit", "reliability-rating",
+        "online-civility", "mega-thrust", "electromagnetic-pulses",
+        "structural-fissures", "vertical-crack", "catastrophic-failure"
     }
 
     SUSPICIOUS_TLDS = {".blog", ".site", ".online", ".xyz", ".top", ".buzz"}
@@ -97,8 +97,11 @@ class SourceChecker:
             }
 
         try:
+            # Strip whitespace and normalize
+            url = url.strip()
             parsed = urlparse(url if "://" in url else f"https://{url}")
-            domain = parsed.netloc.lower().replace("www.", "")
+            # Ensure netloc is cleaned of port numbers or trailing dots
+            domain = parsed.netloc.lower().split(":")[0].replace("www.", "").strip(".")
 
             if not domain:
                 return {
@@ -117,7 +120,8 @@ class SourceChecker:
             # 2️⃣ Trusted domain (including subdomains)
             for trusted in self.TRUSTED_DOMAINS:
                 if domain == trusted or domain.endswith(f".{trusted}"):
-                    score = 0.9
+                    # logger.debug(f"Source match found: {domain} matches {trusted}")
+                    score = 0.95
                     reasons.append("Recognized trusted news or institutional source")
                     return {
                         "status": "Trusted",
