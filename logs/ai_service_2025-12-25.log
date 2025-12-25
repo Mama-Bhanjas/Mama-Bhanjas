@@ -1081,3 +1081,15 @@
 2025-12-25 10:44:59 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
 2025-12-25 10:45:01 | INFO | ai_service.models.classifier:classify:159 | Classified as 'fictional hoax or misinformation' with confidence 0.348
 2025-12-25 10:45:01 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report a432776f-aeb6-41ef-8820-42cafe623ebc
+2025-12-25 14:34:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 14:37:38 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 14:38:08 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 14:38:09 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 14:41:52 | INFO | ai_service.api:get_summarization_pipeline:145 | Initializing summarization pipeline
+2025-12-25 14:41:52 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 14:41:52 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 14:42:00 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 14:42:00 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 14:42:14 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 320 chars from 1098 chars
+2025-12-25 14:42:22 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 261 chars from 721 chars
+2025-12-25 14:42:30 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 185 chars from 328 chars
