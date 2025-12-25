@@ -73,7 +73,7 @@ export default function Home() {
                             Report Incident
                         </Link>
                         <Link href="/verify" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary-600 bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm border-white/20 transition-all">
-                            Verify Reports <ChevronRight className="ml-2 h-4 w-4" />
+                            Verified News <ChevronRight className="ml-2 h-4 w-4" />
                         </Link>
                     </motion.div>
                 </div>
