@@ -17,7 +17,7 @@ class TextSummarizer:
     
     def __init__(
         self,
-        model_name: str = "sshleifer/distilbart-cnn-6-6",
+        model_name: str = "facebook/bart-large-cnn",
         device: Optional[str] = None
     ):
         """
@@ -25,7 +25,7 @@ class TextSummarizer:
         
         Args:
             model_name: Hugging Face model name for summarization
-                       Default: sshleifer/distilbart-cnn-12-6 (~300MB, efficient distilled model)
+                       Default: facebook/bart-large-cnn (~1.6GB, state-of-the-art for abstraction)
             device: Device to run model on ('cuda' or 'cpu')
         """
         self.device = device or get_device()
@@ -46,36 +46,25 @@ class TextSummarizer:
     def summarize(
         self,
         text: str,
-        max_length: int = 150,
-        min_length: int = 30,
-        num_beams: int = 4,
-        length_penalty: float = 2.0,
+        max_length: int = 200,
+        min_length: int = 50,
+        num_beams: int = 5,
+        length_penalty: float = 1.0,
         early_stopping: bool = True
     ) -> Dict[str, any]:
         """
-        Generate summary of input text
-        
-        Args:
-            text: Input text to summarize
-            max_length: Maximum length of summary
-            min_length: Minimum length of summary
-            num_beams: Number of beams for beam search
-            length_penalty: Length penalty for beam search
-            early_stopping: Whether to stop early in beam search
-            
-        Returns:
-            Dictionary with summary and metadata
+        Generate summary of input text with optimized parameters
         """
         # Preprocess text
         cleaned_text = self.preprocessor.clean_text(text)
         
-        if not cleaned_text:
-            logger.warning("Empty text provided for summarization")
+        if not cleaned_text or len(cleaned_text) < 50:
+            logger.warning("Text too short for summarization")
             return {
-                "summary": "",
-                "original_length": 0,
-                "summary_length": 0,
-                "compression_ratio": 0.0
+                "summary": cleaned_text,
+                "original_length": len(cleaned_text),
+                "summary_length": len(cleaned_text),
+                "compression_ratio": 1.0
             }
         
         try:
@@ -96,7 +85,8 @@ class TextSummarizer:
                     num_beams=num_beams,
                     length_penalty=length_penalty,
                     early_stopping=early_stopping,
-                    no_repeat_ngram_size=3
+                    no_repeat_ngram_size=3,
+                    repetition_penalty=1.2
                 )
             
             # Decode summary
@@ -104,14 +94,14 @@ class TextSummarizer:
                 summary_ids[0],
                 skip_special_tokens=True,
                 clean_up_tokenization_spaces=True
-            )
+            ).strip()
             
             # Calculate metrics
             original_length = len(cleaned_text)
             summary_length = len(summary)
             compression_ratio = summary_length / original_length if original_length > 0 else 0.0
             
-            logger.info(f"Generated summary: {summary_length} chars from {original_length} chars (ratio: {compression_ratio:.2f})")
+            logger.info(f"Generated summary: {summary_length} chars from {original_length} chars")
             
             return {
                 "summary": summary,
@@ -123,7 +113,7 @@ class TextSummarizer:
         except Exception as e:
             logger.error(f"Summarization failed: {e}")
             return {
-                "summary": "",
+                "summary": self.extractive_summary(cleaned_text),
                 "original_length": len(cleaned_text),
                 "summary_length": 0,
                 "compression_ratio": 0.0,

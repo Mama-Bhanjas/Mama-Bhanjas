@@ -14,7 +14,7 @@ class EntityExtractor:
     
     def __init__(
         self,
-        model_name: str = "dslim/distilbert-NER",
+        model_name: str = "dslim/bert-base-NER",
         device: Optional[str] = None
     ):
         """
@@ -22,6 +22,7 @@ class EntityExtractor:
         
         Args:
             model_name: BERT-based NER model
+                       Default: dslim/bert-base-NER (More accurate than DistilBERT)
             device: Device to run on
         """
         self.device = device or get_device()
@@ -34,7 +35,7 @@ class EntityExtractor:
                 "ner", 
                 model=model_name, 
                 tokenizer=model_name, 
-                aggregation_strategy="simple",
+                aggregation_strategy="max", # Use max for better handling of fragmented entities
                 device=self.model_device
             )
             logger.info(f"NER model loaded successfully on {self.device}")
@@ -44,50 +45,46 @@ class EntityExtractor:
 
     def extract_entities(self, text: str) -> List[Dict]:
         """
-        Extract entities from text and clean subword tokens.
+        Extract entities from text and clean results.
         """
         if not text or len(text.strip()) < 5:
             return []
             
         try:
             results = self.ner_pipeline(text)
-            
-            # Clean up results and reconstruct subwords if the pipeline didn't catch them
-            # Although 'simple' aggregation should handle this, some models still leak '##'
             entities = []
+
             for res in results:
-                word = res["word"]
-                # Skip or merge subwords if they appear as standalone
+                word = res["word"].replace(" ", " ").strip()
+                label = res["entity_group"]
+                
+                # Cleanup common subword artifacts if any remain
                 if word.startswith("##"):
                     if entities:
                         entities[-1]["entity"] += word[2:]
                     continue
                 
-                # Check for " [SEP]" or " [CLS]" or other artifacts
-                if word in ["[SEP]", "[CLS]", "[PAD]"]:
+                # Skip artifacts
+                if word in ["[SEP]", "[CLS]", "[PAD]"] or len(word) < 2:
                     continue
 
                 entities.append({
-                    "entity": word.replace(" ", " ").strip(),
-                    "label": res["entity_group"],
+                    "entity": word.strip(",. "),
+                    "label": label,
                     "confidence": float(res["score"]),
                     "start": res["start"],
                     "end": res["end"]
                 })
             
-            # Final deduplication and cleaning of the string
-            seen = set()
+            # Deduplication logic with position awareness
             unique_entities = []
+            seen_entities = set()
+
             for ent in entities:
-                ent["entity"] = ent["entity"].strip(",. ")
-                if not ent["entity"] or len(ent["entity"]) < 2:
-                    continue
-                
-                # Deduplication key
                 key = (ent["entity"].lower(), ent["label"])
-                if key not in seen:
+                if key not in seen_entities:
                     unique_entities.append(ent)
-                    seen.add(key)
+                    seen_entities.add(key)
                     
             return unique_entities
         except Exception as e:
@@ -96,13 +93,43 @@ class EntityExtractor:
 
     def get_locations(self, text: str) -> List[str]:
         """Helper to specifically get location entities with cleaning"""
+        # Start with model entities
         entities = self.extract_entities(text)
-        # LOC (Location) label in dslim/distilbert-NER or dslim/bert-base-NER
-        locations = []
-        for ent in entities:
-            if ent["label"] in ["LOC", "GPE"]:
-                loc = ent["entity"]
-                if loc not in locations:
-                    locations.append(loc)
+        raw_locations = [ent["entity"] for ent in entities if ent["label"] in ["LOC", "GPE"]]
         
-        return sorted(locations)
+        # Add regex matches
+        import re
+        location_patterns = [
+            r"([A-Z][a-z]+ (District|Province|City|Village|Ward))",
+            r"((Central|Western|Eastern|Northern|Southern|Sudurpashchim|Lumbini|Bagmati|Gandaki|Karnali|Madhesh) Provinces?)",
+            r"((Kathmandu|Lalitpur|Bhaktapur|Pokhara|Chitwan|Narayani|Butwal|Biratnagar|Nepalgunj|Surkhet|Dhangadhi))"
+        ]
+        
+        for pattern in location_patterns:
+            matches = re.finditer(pattern, text, re.IGNORECASE)
+            for match in matches:
+                raw_locations.append(match.group(0).strip())
+        
+        # Deduplicate and normalize
+        unique_locations = []
+        for loc in raw_locations:
+            # Capitalize
+            norm_loc = " ".join([w.capitalize() for w in loc.split()])
+            
+            is_dup = False
+            for i, existing in enumerate(unique_locations):
+                # exact or plural match
+                if norm_loc == existing or norm_loc == f"{existing}s" or existing == f"{norm_loc}s":
+                    is_dup = True
+                    break
+                # Substring match (keep longer)
+                if norm_loc in existing or existing in norm_loc:
+                    if len(norm_loc) > len(existing):
+                        unique_locations[i] = norm_loc
+                    is_dup = True
+                    break
+            
+            if not is_dup:
+                unique_locations.append(norm_loc)
+        
+        return sorted(unique_locations)

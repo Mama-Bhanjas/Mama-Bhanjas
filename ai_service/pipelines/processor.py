@@ -31,6 +31,9 @@ class UnifiedProcessor:
         self._verify = None
         self.extractor = ContentExtractor()  # Initialize content extractor
         
+        from ai_service.utils.content_extractor import ContentExtractor
+        self.extractor = ContentExtractor()
+        
         logger.info("Unified Processor initialized")
 
     @property
@@ -91,9 +94,15 @@ class UnifiedProcessor:
                 })
         return sorted(results, key=lambda x: x["similarity_score"], reverse=True)
 
-    def process_report(self, text: str, source_url: Optional[str] = None) -> Dict[str, any]:
+    def process_report(
+        self, 
+        text: Optional[str] = None, 
+        source_url: Optional[str] = None,
+        file_bytes: Optional[bytes] = None
+    ) -> Dict[str, any]:
         """
-        Run all analysis on a single report
+        Run all analysis on a single report. 
+        Input can be raw text, a URL (detected in text or source_url), or PDF bytes.
         """
         request_id = str(uuid.uuid4())
         logger.info(f"Processing report {request_id}")
@@ -144,6 +153,7 @@ class UnifiedProcessor:
                 
             # Combine into PostgreSQL-ready format
             output = {
+                "success": True,
                 "report_id": request_id,
                 "timestamp": datetime.datetime.now().isoformat(),
                 "original_text": text,
@@ -173,10 +183,7 @@ class UnifiedProcessor:
             }
             
             logger.info(f"Successfully processed report {request_id}")
-            return {
-                "success": True,
-                "data": output
-            }
+            return output
             
         except Exception as e:
             logger.error(f"Unified processing failed for {request_id}: {e}")

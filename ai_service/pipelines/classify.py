@@ -16,7 +16,7 @@ class ClassificationPipeline:
     
     def __init__(
         self,
-        model_name: str = "typeform/distilbert-base-uncased-mnli",
+        model_name: str = "valhalla/distilbart-mnli-12-1",
         categories: Optional[List[str]] = None,
         use_cache: bool = True,
         device: Optional[str] = None
@@ -78,10 +78,13 @@ class ClassificationPipeline:
                 logger.info("Returning cached classification result")
                 return cached_result
         
-        # Classify
+        # Classify (using truncated text for better accuracy on news articles)
         try:
+            # First 1500 chars are usually the most relevant for classification
+            prompt_text = text[:1500] if len(text) > 1500 else text
+            
             result = self.classifier.classify(
-                text=text,
+                text=prompt_text,
                 top_k=top_k,
                 threshold=threshold
             )

@@ -1,228 +1,1083 @@
-2025-12-25 07:49:01 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 07:49:16 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 07:49:16 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 07:50:28 | INFO | ai_service.api:get_classification_pipeline:129 | Initializing classification pipeline
-2025-12-25 07:50:28 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 07:50:28 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: facebook/bart-large-mnli
-2025-12-25 07:50:36 | INFO | ai_service.models.classifier:__init__:54 | Classifier loaded successfully on cpu
-2025-12-25 07:50:36 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
-2025-12-25 07:50:40 | INFO | ai_service.models.classifier:classify:139 | Classified as 'Other' with confidence 0.505
-2025-12-25 07:50:42 | INFO | ai_service.api:get_summarization_pipeline:137 | Initializing summarization pipeline
-2025-12-25 07:50:42 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 07:50:42 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: facebook/bart-large-cnn
-2025-12-25 07:50:46 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
-2025-12-25 07:50:46 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
-2025-12-25 07:50:51 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 160 chars from 78 chars (ratio: 2.05)
-2025-12-25 07:59:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 07:59:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:13:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:13:15 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:13:15 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:13:52 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
-2025-12-25 08:13:52 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
-2025-12-25 08:13:52 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 3d26f31c-7154-4a32-9fdc-0928b28a848d
-2025-12-25 08:13:52 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:13:52 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 08:15:42 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 08:15:42 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 08:15:42 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
-2025-12-25 08:15:43 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.525
-2025-12-25 08:15:43 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:15:43 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 08:17:27 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:17:27 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 3d26f31c-7154-4a32-9fdc-0928b28a848d: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:22:56 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:22:57 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:23:09 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
-2025-12-25 08:23:09 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
-2025-12-25 08:23:09 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 0984e66b-c4f8-43e1-aa7b-7ba880df31e7
-2025-12-25 08:23:09 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:23:09 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 08:23:10 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 08:23:10 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 08:23:10 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
-2025-12-25 08:23:11 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.525
-2025-12-25 08:23:11 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:23:11 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 08:23:13 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:23:13 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 0984e66b-c4f8-43e1-aa7b-7ba880df31e7: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:25:18 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 88bfb583-39ae-474a-aaef-bf0040579e76
-2025-12-25 08:25:18 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
-2025-12-25 08:25:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:25:18 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 08:25:19 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:25:19 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 88bfb583-39ae-474a-aaef-bf0040579e76: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:25:21 | INFO | ai_service.api:get_summarization_pipeline:145 | Initializing summarization pipeline
-2025-12-25 08:25:21 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:25:21 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 08:25:24 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:25:24 | ERROR | ai_service.api:summarize_text:267 | Summarization endpoint error: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:27:03 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 1a8a60e2-afc3-4ff3-a40a-e5dac4d244a9
-2025-12-25 08:27:03 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Community Services' with confidence 0.665
-2025-12-25 08:27:03 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:27:03 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 08:27:05 | ERROR | ai_service.models.summarizer:__init__:43 | Failed to load summarization model: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:27:05 | ERROR | ai_service.pipelines.processor:process_report:159 | Unified processing failed for 1a8a60e2-afc3-4ff3-a40a-e5dac4d244a9: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
-See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
-2025-12-25 08:51:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:52:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:53:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 08:55:24 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
-2025-12-25 08:55:24 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
-2025-12-25 08:55:24 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 1cf25abd-fa13-43c0-9b62-cec9150aaa9f
-2025-12-25 08:55:24 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:55:24 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 08:55:29 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 08:55:29 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 08:55:29 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
-2025-12-25 08:55:32 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.254
-2025-12-25 08:55:32 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:55:32 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 08:55:43 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
-2025-12-25 08:55:43 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
-2025-12-25 08:56:00 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 159 chars from 227 chars (ratio: 0.70)
-2025-12-25 08:56:00 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:56:00 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
-2025-12-25 08:58:00 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
-2025-12-25 08:58:00 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:58:00 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 08:58:02 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 08:58:02 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 08:58:02 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
-2025-12-25 08:58:14 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Flood' with confidence 0.358
-2025-12-25 08:58:14 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 08:58:14 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
-2025-12-25 08:58:14 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 08:58:16 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 08:58:16 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 08:58:16 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
-2025-12-25 08:58:30 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
-2025-12-25 08:58:38 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 1cf25abd-fa13-43c0-9b62-cec9150aaa9f
-2025-12-25 09:04:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 09:04:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 09:04:26 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
-2025-12-25 09:04:26 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
-2025-12-25 09:04:26 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 6646a44f-78f4-43aa-9365-64b83b205dc3
-2025-12-25 09:04:26 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 09:04:26 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 09:04:28 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 09:04:28 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 09:04:28 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
-2025-12-25 09:04:33 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.254
-2025-12-25 09:04:33 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 09:04:33 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 09:04:42 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
-2025-12-25 09:04:42 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
-2025-12-25 09:05:16 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 159 chars from 227 chars (ratio: 0.70)
-2025-12-25 09:05:16 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 09:05:16 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
-2025-12-25 09:05:19 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
-2025-12-25 09:05:19 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 09:05:19 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 09:05:21 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 09:05:21 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 09:05:21 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
-2025-12-25 09:05:29 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Flood' with confidence 0.358
-2025-12-25 09:05:29 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 09:05:29 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
-2025-12-25 09:05:29 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 09:05:31 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 09:05:31 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 09:05:31 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
-2025-12-25 09:05:34 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
-2025-12-25 09:05:48 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 6646a44f-78f4-43aa-9365-64b83b205dc3
-2025-12-25 09:10:51 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report df33c4d8-941c-4b12-9fb5-504257c189d1
-2025-12-25 09:10:53 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.224
-2025-12-25 09:11:29 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 247 chars from 750 chars (ratio: 0.33)
-2025-12-25 09:11:44 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Earthquake' with confidence 0.096
-2025-12-25 09:12:01 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report df33c4d8-941c-4b12-9fb5-504257c189d1
-2025-12-25 09:59:37 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 09:59:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 09:59:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 10:02:29 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
-2025-12-25 10:02:29 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
-2025-12-25 10:02:29 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 1e279303-040d-4da0-8505-7ce3579a3950
-2025-12-25 10:02:29 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 10:02:29 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 10:02:32 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 10:02:32 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 10:02:32 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
-2025-12-25 10:02:34 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Environment' with confidence 0.562
-2025-12-25 10:02:34 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 10:02:34 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 10:02:38 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
-2025-12-25 10:02:38 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
-2025-12-25 10:02:41 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 262 chars from 606 chars (ratio: 0.43)
-2025-12-25 10:02:41 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 10:02:41 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
-2025-12-25 10:02:42 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
-2025-12-25 10:02:42 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 10:02:42 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 10:02:44 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 10:02:44 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 10:02:44 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
-2025-12-25 10:02:46 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Seismic Activity' with confidence 0.496
-2025-12-25 10:02:46 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 10:02:46 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
-2025-12-25 10:02:46 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 10:02:47 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 10:02:47 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 10:02:47 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
-2025-12-25 10:02:50 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
-2025-12-25 10:02:50 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 1e279303-040d-4da0-8505-7ce3579a3950
-2025-12-25 11:11:32 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 11:11:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 11:11:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 11:13:22 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
-2025-12-25 11:13:22 | INFO | ai_service.pipelines.processor:__init__:34 | Unified Processor initialized
-2025-12-25 11:13:22 | INFO | ai_service.pipelines.processor:process_report:99 | Processing report fc67d3b1-40d4-4c11-91ce-9d5740fb2e60
-2025-12-25 11:13:22 | INFO | ai_service.pipelines.processor:process_report:107 | Detected URL input, extracting content: https://risingnepaldaily.com/news/49159
-2025-12-25 11:13:22 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://risingnepaldaily.com/news/49159
-2025-12-25 11:13:27 | INFO | ai_service.pipelines.processor:process_report:114 | Successfully extracted 1178 characters from URL
-2025-12-25 11:13:27 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 11:13:27 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 11:13:29 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 11:13:29 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 11:13:29 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
-2025-12-25 11:13:31 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Utilities' with confidence 0.248
-2025-12-25 11:13:31 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 11:13:31 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
-2025-12-25 11:13:37 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
-2025-12-25 11:13:37 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
-2025-12-25 11:13:40 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 189 chars from 1154 chars (ratio: 0.16)
-2025-12-25 11:13:40 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 11:13:40 | INFO | ai_service.models.ner:__init__:30 | Loading NER model: dslim/distilbert-NER
-2025-12-25 11:13:43 | INFO | ai_service.models.ner:__init__:40 | NER model loaded successfully on cpu
-2025-12-25 11:13:43 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 11:13:43 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 11:13:53 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 11:13:53 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 11:13:53 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
-2025-12-25 11:13:55 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Earthquake' with confidence 0.427
-2025-12-25 11:13:55 | INFO | ai_service.utils:get_device:185 | Using device: cpu
-2025-12-25 11:13:55 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: typeform/distilbert-base-uncased-mnli
-2025-12-25 11:13:55 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
-2025-12-25 11:13:59 | INFO | ai_service.models.classifier:__init__:61 | Detected entailment index: 0
-2025-12-25 11:13:59 | INFO | ai_service.models.classifier:__init__:63 | Classifier loaded successfully on cpu
-2025-12-25 11:13:59 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: mrm8488/bert-tiny-finetuned-fake-news-detection
-2025-12-25 11:14:05 | INFO | ai_service.pipelines.verification:__init__:67 | Verification pipeline initialized
-2025-12-25 11:14:05 | INFO | ai_service.pipelines.processor:process_report:175 | Successfully processed report fc67d3b1-40d4-4c11-91ce-9d5740fb2e60
-2025-12-25 11:20:36 | INFO | ai_service.pipelines.processor:process_report:99 | Processing report 2b986e17-a62b-4f18-82b5-b884e05e98ee
-2025-12-25 11:20:36 | INFO | ai_service.pipelines.processor:process_report:107 | Detected URL input, extracting content: https://kathmandupost.com/national/2025/01/02/4-8-magnitude-quake-strikes-sindhupalchok
-2025-12-25 11:20:36 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/national/2025/01/02/4-8-magnitude-quake-strikes-sindhupalchok
-2025-12-25 11:20:39 | INFO | ai_service.pipelines.processor:process_report:114 | Successfully extracted 272 characters from URL
-2025-12-25 11:20:40 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Other' with confidence 0.288
-2025-12-25 11:20:43 | INFO | ai_service.models.summarizer:summarize:114 | Generated summary: 173 chars from 271 chars (ratio: 0.64)
-2025-12-25 11:20:44 | INFO | ai_service.models.classifier:classify:148 | Classified as 'Earthquake' with confidence 0.742
-2025-12-25 11:20:47 | INFO | ai_service.pipelines.processor:process_report:175 | Successfully processed report 2b986e17-a62b-4f18-82b5-b884e05e98ee
-2025-12-25 11:21:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
-2025-12-25 11:21:20 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:29:56 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:30:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:30:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:30:19 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 08:30:19 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 08:30:19 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 60aaeb0b-76f1-4a28-995e-779523400a6e
+2025-12-25 08:30:19 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:30:19 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:30:21 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 0
+2025-12-25 08:30:21 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:30:21 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:30:22 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Infrastructure' with confidence 0.111
+2025-12-25 08:30:22 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:30:22 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:30:24 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 08:30:24 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 08:30:28 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 141 chars from 425 chars
+2025-12-25 08:30:28 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:30:28 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/distilbert-NER
+2025-12-25 08:30:29 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 08:30:29 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:30:29 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:30:30 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:30:30 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:30:30 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 08:30:35 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Flood' with confidence 0.108
+2025-12-25 08:30:35 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:30:35 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 08:30:35 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:30:37 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:30:37 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:30:37 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 08:30:39 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 08:30:39 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 08:30:39 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 60aaeb0b-76f1-4a28-995e-779523400a6e
+2025-12-25 08:30:40 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report b3ba6c9e-4998-45d6-9080-f13b2be23359
+2025-12-25 08:30:41 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.112
+2025-12-25 08:30:44 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 185 chars from 414 chars
+2025-12-25 08:30:49 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.096
+2025-12-25 08:30:49 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report b3ba6c9e-4998-45d6-9080-f13b2be23359
+2025-12-25 08:30:50 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 77187c7b-548f-4b6b-936a-a05160251c88
+2025-12-25 08:30:51 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Transportation' with confidence 0.111
+2025-12-25 08:30:54 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 220 chars from 356 chars
+2025-12-25 08:30:59 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Seismic Activity' with confidence 0.072
+2025-12-25 08:30:59 | INFO | ai_service.pipelines.fact_check:__init__:28 | FactCheck pipeline initialized
+2025-12-25 08:30:59 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Amateur Inventor Develops Saltwater Battery Capable of Powering a Home for a Decade Without Recharging. Content A retired chemistry news
+2025-12-25 08:31:03 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 77187c7b-548f-4b6b-936a-a05160251c88
+2025-12-25 08:31:04 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report f541ebdf-57ee-4993-ab32-db559c1e80ae
+2025-12-25 08:31:05 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.111
+2025-12-25 08:31:10 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 294 chars from 436 chars
+2025-12-25 08:31:15 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.086
+2025-12-25 08:31:15 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Mandatory Social Credit Score Linked to Digital Wallets to be Implemented for Online Shopping. Content A leaked draft from news
+2025-12-25 08:31:20 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report f541ebdf-57ee-4993-ab32-db559c1e80ae
+2025-12-25 08:32:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:32:56 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:32:56 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:33:02 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 08:33:02 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 08:33:02 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 44e8e61d-b759-4507-aaa7-c18cd39770da
+2025-12-25 08:33:02 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:33:02 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:33:03 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 0
+2025-12-25 08:33:03 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:33:03 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:33:05 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Infrastructure' with confidence 0.111
+2025-12-25 08:33:05 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:33:05 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:33:07 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 08:33:07 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 08:33:11 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 141 chars from 425 chars
+2025-12-25 08:33:11 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:33:11 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/distilbert-NER
+2025-12-25 08:33:11 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 08:33:11 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:33:11 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:33:13 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:33:13 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:33:13 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 08:33:18 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Flood' with confidence 0.108
+2025-12-25 08:33:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:33:18 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 08:33:18 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:33:19 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:33:19 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:33:19 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 08:33:21 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 08:33:21 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 08:33:21 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 44e8e61d-b759-4507-aaa7-c18cd39770da
+2025-12-25 08:33:22 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 9dd477c9-ccf4-41e8-939c-434424f631cb
+2025-12-25 08:33:23 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.112
+2025-12-25 08:33:26 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 185 chars from 414 chars
+2025-12-25 08:33:31 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.096
+2025-12-25 08:33:31 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 9dd477c9-ccf4-41e8-939c-434424f631cb
+2025-12-25 08:33:32 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 9d0a7c08-e747-4eab-a7c2-ac71ed5d9b04
+2025-12-25 08:33:33 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Transportation' with confidence 0.111
+2025-12-25 08:33:36 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 220 chars from 356 chars
+2025-12-25 08:33:40 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Seismic Activity' with confidence 0.072
+2025-12-25 08:33:40 | INFO | ai_service.pipelines.fact_check:__init__:28 | FactCheck pipeline initialized
+2025-12-25 08:33:40 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Amateur Inventor Develops Saltwater Battery Capable of Powering a Home for a Decade Without Recharging. Content A retired chemistry news
+2025-12-25 08:33:40 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 9d0a7c08-e747-4eab-a7c2-ac71ed5d9b04
+2025-12-25 08:33:42 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 290340a3-47ca-4f50-96e5-b6ac47923302
+2025-12-25 08:33:42 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.111
+2025-12-25 08:33:46 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 294 chars from 436 chars
+2025-12-25 08:33:51 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.086
+2025-12-25 08:33:51 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Mandatory Social Credit Score Linked to Digital Wallets to be Implemented for Online Shopping. Content A leaked draft from news
+2025-12-25 08:33:56 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 290340a3-47ca-4f50-96e5-b6ac47923302
+2025-12-25 08:39:57 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:40:01 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:40:01 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:40:05 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:40:05 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:40:09 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 08:40:09 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 08:40:09 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 2c88e680-9264-4994-8a40-3c6779cfb3ee
+2025-12-25 08:40:09 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:40:09 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:40:10 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 0
+2025-12-25 08:40:10 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:40:10 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:40:11 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Infrastructure' with confidence 0.111
+2025-12-25 08:40:11 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:40:11 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:40:14 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 08:40:14 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 08:40:17 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 141 chars from 425 chars
+2025-12-25 08:40:17 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:40:17 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 08:40:18 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 08:40:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:40:18 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:40:20 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:40:20 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:40:20 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 08:40:25 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Flood' with confidence 0.108
+2025-12-25 08:40:25 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:40:25 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 08:40:25 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:40:26 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:40:26 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:40:26 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 08:40:29 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 08:40:29 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 08:40:29 | INFO | ai_service.pipelines.verification:verify_news:181 | Confidence in neutral range, performing zero-shot cross-check...
+2025-12-25 08:40:30 | INFO | ai_service.models.classifier:classify:154 | Classified as 'legitimate news article' with confidence 0.355
+2025-12-25 08:40:30 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 2c88e680-9264-4994-8a40-3c6779cfb3ee
+2025-12-25 08:40:31 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report de89dfae-6fc6-4e96-8ba3-07e5d01d9e0c
+2025-12-25 08:40:32 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.112
+2025-12-25 08:40:35 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 185 chars from 414 chars
+2025-12-25 08:40:41 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.096
+2025-12-25 08:40:41 | INFO | ai_service.pipelines.verification:verify_news:181 | Confidence in neutral range, performing zero-shot cross-check...
+2025-12-25 08:40:42 | INFO | ai_service.models.classifier:classify:154 | Classified as 'legitimate news article' with confidence 0.357
+2025-12-25 08:40:42 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report de89dfae-6fc6-4e96-8ba3-07e5d01d9e0c
+2025-12-25 08:40:43 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report ff74ad00-2d7d-41b9-8154-b583f1d21e0c
+2025-12-25 08:40:44 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Transportation' with confidence 0.111
+2025-12-25 08:40:47 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 220 chars from 356 chars
+2025-12-25 08:40:52 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Seismic Activity' with confidence 0.072
+2025-12-25 08:40:53 | INFO | ai_service.pipelines.fact_check:__init__:28 | FactCheck pipeline initialized
+2025-12-25 08:40:53 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Amateur Inventor Develops Saltwater Battery Capable of Powering a Home for a Decade Without Recharging. Content A retired chemistry news
+2025-12-25 08:40:53 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report ff74ad00-2d7d-41b9-8154-b583f1d21e0c
+2025-12-25 08:40:54 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 079fb115-decb-4c1d-bf9f-df3711d5e4fe
+2025-12-25 08:40:55 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.111
+2025-12-25 08:41:00 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 294 chars from 436 chars
+2025-12-25 08:41:05 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.086
+2025-12-25 08:41:05 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Mandatory Social Credit Score Linked to Digital Wallets to be Implemented for Online Shopping. Content A leaked draft from news
+2025-12-25 08:41:06 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 079fb115-decb-4c1d-bf9f-df3711d5e4fe
+2025-12-25 08:44:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:44:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:45:06 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:45:06 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:51:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:51:44 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:51:44 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:53:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:53:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:53:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:53:53 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 08:53:53 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 08:53:53 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 0e3df757-0f98-40cc-a31d-d91cc9d28c6a
+2025-12-25 08:53:53 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:53:53 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:53:54 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 0
+2025-12-25 08:53:54 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:53:54 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:53:56 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Other' with confidence 0.111
+2025-12-25 08:53:56 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:53:56 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 08:53:58 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 08:53:58 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 08:54:01 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 132 chars from 199 chars
+2025-12-25 08:54:01 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:54:01 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 08:54:02 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 08:54:02 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:54:02 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:54:04 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:54:04 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:54:04 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 08:54:07 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Flood' with confidence 0.124
+2025-12-25 08:54:07 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:54:07 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 08:54:07 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 08:54:09 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 08:54:09 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:54:09 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 08:54:11 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 08:54:11 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 08:54:12 | INFO | ai_service.models.classifier:classify:154 | Classified as 'unverified rumor' with confidence 0.336
+2025-12-25 08:54:12 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 0e3df757-0f98-40cc-a31d-d91cc9d28c6a
+2025-12-25 08:54:14 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report da4c175f-0b61-4d25-be16-13c7154cd6b9
+2025-12-25 08:54:15 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Infrastructure' with confidence 0.111
+2025-12-25 08:54:18 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 141 chars from 425 chars
+2025-12-25 08:54:23 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Flood' with confidence 0.108
+2025-12-25 08:54:24 | INFO | ai_service.models.classifier:classify:154 | Classified as 'legitimate news report' with confidence 0.347
+2025-12-25 08:54:24 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report da4c175f-0b61-4d25-be16-13c7154cd6b9
+2025-12-25 08:54:25 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 37de078a-572d-4288-a05d-7e3ffa138992
+2025-12-25 08:54:26 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.112
+2025-12-25 08:54:30 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 185 chars from 414 chars
+2025-12-25 08:54:35 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.096
+2025-12-25 08:54:36 | INFO | ai_service.models.classifier:classify:154 | Classified as 'legitimate news report' with confidence 0.358
+2025-12-25 08:54:36 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 37de078a-572d-4288-a05d-7e3ffa138992
+2025-12-25 08:54:37 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 66dd98fa-9982-4135-ab90-73f82c48386e
+2025-12-25 08:54:38 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Transportation' with confidence 0.111
+2025-12-25 08:54:41 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 220 chars from 356 chars
+2025-12-25 08:54:45 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Seismic Activity' with confidence 0.072
+2025-12-25 08:54:46 | INFO | ai_service.pipelines.fact_check:__init__:28 | FactCheck pipeline initialized
+2025-12-25 08:54:46 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Amateur Inventor Develops Saltwater Battery Capable of Powering a Home for a Decade Without Recharging. Content A retired chemistry news
+2025-12-25 08:54:51 | INFO | ai_service.models.classifier:classify:154 | Classified as 'unverified rumor' with confidence 0.348
+2025-12-25 08:54:51 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 66dd98fa-9982-4135-ab90-73f82c48386e
+2025-12-25 08:54:52 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report f25133b3-0881-492b-9926-fab92d7b8a45
+2025-12-25 08:54:53 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Environment' with confidence 0.111
+2025-12-25 08:54:57 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 294 chars from 436 chars
+2025-12-25 08:55:02 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Storm' with confidence 0.086
+2025-12-25 08:55:02 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Mandatory Social Credit Score Linked to Digital Wallets to be Implemented for Online Shopping. Content A leaked draft from news
+2025-12-25 08:55:08 | INFO | ai_service.models.classifier:classify:154 | Classified as 'unverified rumor' with confidence 0.381
+2025-12-25 08:55:08 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report f25133b3-0881-492b-9926-fab92d7b8a45
+2025-12-25 08:56:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:56:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:57:17 | INFO | ai_service.api:get_classification_pipeline:137 | Initializing classification pipeline
+2025-12-25 08:57:17 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:57:17 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:57:18 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 0
+2025-12-25 08:57:18 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 08:57:18 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:57:18 | INFO | ai_service.pipelines.classify:batch_process:125 | Processing batch of 1 texts
+2025-12-25 08:57:19 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Other' with confidence 0.111
+2025-12-25 08:57:19 | INFO | ai_service.pipelines.classify:batch_process:135 | Batch processing complete: 1/1 successful
+2025-12-25 08:57:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:57:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:57:53 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:57:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:57:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:58:07 | INFO | ai_service.api:get_classification_pipeline:137 | Initializing classification pipeline
+2025-12-25 08:58:07 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 08:58:07 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 08:58:10 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 08:58:10 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 08:58:10 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 08:58:10 | INFO | ai_service.pipelines.classify:batch_process:125 | Processing batch of 1 texts
+2025-12-25 08:58:11 | INFO | ai_service.models.classifier:classify:155 | Classified as 'OtherDisaster' with confidence 0.111
+2025-12-25 08:58:11 | INFO | ai_service.pipelines.classify:batch_process:135 | Batch processing complete: 1/1 successful
+2025-12-25 08:58:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:58:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:59:24 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 08:59:24 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:00:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:00:04 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:00:04 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:00:12 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:00:12 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 09:00:12 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 6b47cd39-ab10-4bcf-9c45-9d2098cadb96
+2025-12-25 09:00:12 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:12 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:00:14 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 0
+2025-12-25 09:00:14 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 09:00:14 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:00:15 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Infrastructure' with confidence 0.111
+2025-12-25 09:00:15 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:15 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:00:18 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:00:18 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:00:21 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 141 chars from 425 chars
+2025-12-25 09:00:21 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:21 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 09:00:22 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 09:00:22 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:22 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:00:24 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 09:00:24 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 09:00:24 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:00:29 | INFO | ai_service.models.classifier:classify:154 | Classified as 'Flood' with confidence 0.108
+2025-12-25 09:00:30 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:30 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 09:00:30 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:00:31 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 09:00:31 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 09:00:31 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 09:00:33 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 09:00:33 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 09:00:35 | INFO | ai_service.models.classifier:classify:154 | Classified as 'legitimate news report' with confidence 0.347
+2025-12-25 09:00:35 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 6b47cd39-ab10-4bcf-9c45-9d2098cadb96
+2025-12-25 09:00:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:00:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:00:41 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:00:41 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 09:00:41 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 1fbaa3fc-3efe-480a-b920-b420acd6b8b1
+2025-12-25 09:00:41 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:41 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:00:42 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 09:00:42 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:00:42 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:00:44 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Environment' with confidence 0.101
+2025-12-25 09:00:44 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:44 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:00:46 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:00:46 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:00:50 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 185 chars from 414 chars
+2025-12-25 09:00:50 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:50 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 09:00:51 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 09:00:51 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:51 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:00:52 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:00:52 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:00:52 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:00:57 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Storm' with confidence 0.096
+2025-12-25 09:00:58 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:00:58 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 09:00:58 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:00:59 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:00:59 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:00:59 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 09:01:01 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 09:01:01 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 09:01:02 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.358
+2025-12-25 09:01:02 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 1fbaa3fc-3efe-480a-b920-b420acd6b8b1
+2025-12-25 09:01:03 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report b2d2ed82-f992-4932-bfc3-9d70de0981ea
+2025-12-25 09:01:04 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Transportation' with confidence 0.100
+2025-12-25 09:01:08 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 220 chars from 356 chars
+2025-12-25 09:01:12 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Seismic Activity' with confidence 0.072
+2025-12-25 09:01:13 | INFO | ai_service.pipelines.fact_check:__init__:28 | FactCheck pipeline initialized
+2025-12-25 09:01:13 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Amateur Inventor Develops Saltwater Battery Capable of Powering a Home for a Decade Without Recharging. Content A retired chemistry news
+2025-12-25 09:01:39 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.348
+2025-12-25 09:01:39 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report b2d2ed82-f992-4932-bfc3-9d70de0981ea
+2025-12-25 09:01:40 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report bb7efa45-add4-46b5-91b2-171a976a4e2b
+2025-12-25 09:01:41 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Environment' with confidence 0.100
+2025-12-25 09:01:45 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 294 chars from 436 chars
+2025-12-25 09:01:51 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Storm' with confidence 0.086
+2025-12-25 09:01:51 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Mandatory Social Credit Score Linked to Digital Wallets to be Implemented for Online Shopping. Content A leaked draft from news
+2025-12-25 09:02:00 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.381
+2025-12-25 09:02:00 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report bb7efa45-add4-46b5-91b2-171a976a4e2b
+2025-12-25 09:02:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:02:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:02:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:02:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:02:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:02:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:02:59 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:05:28 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:05:28 | INFO | ai_service.pipelines.processor:__init__:32 | Unified Processor initialized
+2025-12-25 09:05:28 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report f8822695-6e01-4e84-b6aa-e30d0a29f2b4
+2025-12-25 09:05:28 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:28 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:05:29 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 09:05:29 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:05:29 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:05:31 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Infrastructure' with confidence 0.100
+2025-12-25 09:05:31 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:31 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:05:33 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:05:33 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:05:36 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 141 chars from 425 chars
+2025-12-25 09:05:36 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:36 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 09:05:37 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 09:05:37 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:37 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:05:39 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:05:39 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:05:39 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:05:44 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Flood' with confidence 0.108
+2025-12-25 09:05:44 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:05:44 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 09:05:44 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:05:46 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:05:46 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:05:46 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 09:05:47 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 09:05:47 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 09:05:49 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.347
+2025-12-25 09:05:49 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report f8822695-6e01-4e84-b6aa-e30d0a29f2b4
+2025-12-25 09:05:50 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 93bc756c-d0cc-4485-8fe1-50200f0e43c2
+2025-12-25 09:05:50 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Environment' with confidence 0.101
+2025-12-25 09:05:54 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 185 chars from 414 chars
+2025-12-25 09:05:58 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Storm' with confidence 0.096
+2025-12-25 09:05:59 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.358
+2025-12-25 09:06:00 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 93bc756c-d0cc-4485-8fe1-50200f0e43c2
+2025-12-25 09:06:01 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report ce1220a5-6041-4c75-bb9a-635fc8bcd794
+2025-12-25 09:06:01 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Transportation' with confidence 0.100
+2025-12-25 09:06:04 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 220 chars from 356 chars
+2025-12-25 09:06:09 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Seismic Activity' with confidence 0.072
+2025-12-25 09:06:09 | INFO | ai_service.pipelines.fact_check:__init__:28 | FactCheck pipeline initialized
+2025-12-25 09:06:09 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Amateur Inventor Develops Saltwater Battery Capable of Powering a Home for a Decade Without Recharging. Content A retired chemistry news
+2025-12-25 09:06:14 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.348
+2025-12-25 09:06:14 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report ce1220a5-6041-4c75-bb9a-635fc8bcd794
+2025-12-25 09:06:15 | INFO | ai_service.pipelines.processor:process_report:97 | Processing report 3fb0a7b6-2060-48c0-9f40-62f9e8ba5f6e
+2025-12-25 09:06:16 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Environment' with confidence 0.100
+2025-12-25 09:06:20 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 294 chars from 436 chars
+2025-12-25 09:06:25 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Storm' with confidence 0.086
+2025-12-25 09:06:25 | INFO | ai_service.pipelines.fact_check:verify_claim:100 | Fact checking query: Headline Mandatory Social Credit Score Linked to Digital Wallets to be Implemented for Online Shopping. Content A leaked draft from news
+2025-12-25 09:06:33 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.381
+2025-12-25 09:06:33 | INFO | ai_service.pipelines.processor:process_report:152 | Successfully processed report 3fb0a7b6-2060-48c0-9f40-62f9e8ba5f6e
+2025-12-25 09:42:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:42:11 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:42:11 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:42:11 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:42:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:43:07 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:43:12 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:43:12 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:45:31 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:45:36 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:45:36 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:50:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:50:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:50:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:50:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:50:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:50:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:50:47 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:50:47 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 09:50:47 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 4b2e6293-667b-4767-966a-cb45df2df445
+2025-12-25 09:50:47 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:50:48 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:50:48 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:50:48 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:50:49 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 09:50:49 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:50:49 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:50:55 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Other' with confidence 0.165
+2025-12-25 09:50:55 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:50:55 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:50:58 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:50:58 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:51:06 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 234 chars from 2016 chars
+2025-12-25 09:51:06 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:51:06 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 09:51:08 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 09:51:08 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:51:08 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:51:11 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:51:11 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:51:11 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:51:48 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Extreme Weather' with confidence 0.083
+2025-12-25 09:51:50 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:51:50 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 09:51:50 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:51:52 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:51:52 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:51:52 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 09:51:55 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 09:51:55 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 09:52:03 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.363
+2025-12-25 09:52:04 | INFO | ai_service.pipelines.processor:process_report:185 | Successfully processed report 4b2e6293-667b-4767-966a-cb45df2df445
+2025-12-25 09:52:04 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 273e01d9-fe38-4715-904a-8d941de7743a
+2025-12-25 09:52:04 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:52:04 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:52:04 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 09:52:04 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 09:52:04 | INFO | ai_service.pipelines.processor:process_report:185 | Successfully processed report 273e01d9-fe38-4715-904a-8d941de7743a
+2025-12-25 09:52:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:52:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:53:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:53:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:54:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:54:04 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:54:04 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:54:20 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 3b78f4b9-c3e5-42e4-ba90-7389f55d23c0
+2025-12-25 09:54:20 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:54:20 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:54:20 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 09:54:20 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 09:54:21 | INFO | ai_service.pipelines.processor:process_report:185 | Successfully processed report 3b78f4b9-c3e5-42e4-ba90-7389f55d23c0
+2025-12-25 09:54:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:54:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:54:33 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:54:33 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 09:54:33 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 54b74151-c190-4431-a0ee-45f81e7aa091
+2025-12-25 09:54:33 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:54:34 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:54:34 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:54:34 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:54:35 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 09:54:35 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:54:35 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:54:40 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Other' with confidence 0.165
+2025-12-25 09:54:40 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:54:40 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:54:42 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:54:42 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:54:48 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 234 chars from 2016 chars
+2025-12-25 09:54:48 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:54:48 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 09:54:49 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 09:54:49 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:54:49 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:54:51 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:54:51 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:54:51 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:55:14 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Extreme Weather' with confidence 0.083
+2025-12-25 09:55:15 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:55:15 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 09:55:15 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:55:17 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:55:17 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:55:17 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 09:55:18 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:18 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 09:55:18 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 09:55:23 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:23 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:24 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:24 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:25 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.363
+2025-12-25 09:55:25 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 54b74151-c190-4431-a0ee-45f81e7aa091
+2025-12-25 09:55:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:38 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 90
+2025-12-25 09:55:38 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:55:38 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 09:55:38 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report c839b2bb-e007-4f30-947a-7c0865c4cc24
+2025-12-25 09:55:38 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:55:38 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:55:38 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:55:38 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:55:39 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:39 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:55:40 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 09:55:40 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:55:40 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:55:44 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Other' with confidence 0.165
+2025-12-25 09:55:44 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:55:44 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:55:47 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:55:47 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:55:52 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 234 chars from 2016 chars
+2025-12-25 09:55:52 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:55:52 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 09:55:53 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 09:55:53 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:55:53 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:55:55 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:55:55 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:55:55 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:56:03 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:56:03 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:56:19 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Extreme Weather' with confidence 0.083
+2025-12-25 09:56:20 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:56:20 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 09:56:20 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:56:22 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:56:22 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:56:22 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 09:56:23 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 09:56:23 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 09:56:29 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.363
+2025-12-25 09:56:29 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report c839b2bb-e007-4f30-947a-7c0865c4cc24
+2025-12-25 09:56:42 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 90
+2025-12-25 09:56:42 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 3a9a4f80-fdd4-4224-a475-1062ca93a6bd
+2025-12-25 09:56:42 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:56:42 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:56:42 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 09:56:42 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 09:56:42 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 3a9a4f80-fdd4-4224-a475-1062ca93a6bd
+2025-12-25 09:57:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:57:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:57:25 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 90
+2025-12-25 09:57:25 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report c0adfc4a-39a8-4669-a7a5-9b6253c3ce58
+2025-12-25 09:57:25 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:57:25 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:57:25 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 09:57:25 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 09:57:25 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report c0adfc4a-39a8-4669-a7a5-9b6253c3ce58
+2025-12-25 09:57:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:57:30 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:57:36 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 90
+2025-12-25 09:57:36 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 09:57:36 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 09:57:36 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 70398413-eaae-4e44-89bb-80e5dba7d9da
+2025-12-25 09:57:36 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:57:36 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:57:36 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:57:36 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 09:57:38 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 09:57:38 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:57:38 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 09:57:42 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Other' with confidence 0.165
+2025-12-25 09:57:42 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:57:42 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 09:57:44 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 09:57:44 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 09:57:49 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 234 chars from 2016 chars
+2025-12-25 09:57:49 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:57:49 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 09:57:50 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 09:57:50 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:57:50 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:57:51 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:57:51 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:57:51 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 09:58:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:58:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:58:16 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Extreme Weather' with confidence 0.083
+2025-12-25 09:58:17 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 09:58:17 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 09:58:17 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 09:58:19 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 09:58:19 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 09:58:19 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 09:58:21 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 09:58:21 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 09:58:27 | INFO | ai_service.models.classifier:classify:155 | Classified as 'unverified rumor' with confidence 0.363
+2025-12-25 09:58:27 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 70398413-eaae-4e44-89bb-80e5dba7d9da
+2025-12-25 09:58:53 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:58:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:58:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:01 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:01 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:09 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:09 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:15 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 90
+2025-12-25 09:59:15 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report f96587c0-7cc0-4523-8cef-c4ddf9a1b3a4
+2025-12-25 09:59:15 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://kathmandupost.com/health/2024/11/30/nepal-to-receive-more-doses-of-cholera-vaccine
+2025-12-25 09:59:15 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 2037 characters from URL
+2025-12-25 09:59:15 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 09:59:15 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 09:59:15 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report f96587c0-7cc0-4523-8cef-c4ddf9a1b3a4
+2025-12-25 09:59:20 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:20 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 09:59:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:00:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:00:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:02:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:02:22 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:02:46 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:02:50 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:02:50 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:02:58 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:02:58 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:02:58 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:02:58 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 98e215ab-5c28-42ec-9606-d6bcfeba08ca
+2025-12-25 10:02:58 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:03:00 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:03:00 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:03:00 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 10:03:02 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 10:03:02 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:03:02 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:03:08 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Health & Sanitation' with confidence 0.100
+2025-12-25 10:03:08 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:03:08 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:03:10 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:03:10 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:03:18 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 345 chars from 3601 chars
+2025-12-25 10:03:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:03:18 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:03:18 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:03:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:03:18 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:03:21 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:03:21 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:03:21 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 10:03:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:03:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:03:48 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Fire' with confidence 0.079
+2025-12-25 10:03:49 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:03:49 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:03:49 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:03:51 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:03:51 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:03:51 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:03:53 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:03:53 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:04:00 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.352
+2025-12-25 10:04:00 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 98e215ab-5c28-42ec-9606-d6bcfeba08ca
+2025-12-25 10:04:02 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:02 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:05 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:05 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:31 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:04:31 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:04:31 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:04:31 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report b0775c02-1cf5-4b1d-9ec9-2f0d51cb8e86
+2025-12-25 10:04:31 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:04:32 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:04:32 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:04:32 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 10:04:33 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 10:04:33 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:04:33 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:04:39 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:39 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:39 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Health & Sanitation' with confidence 0.100
+2025-12-25 10:04:39 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:04:39 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:04:41 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:04:41 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:04:49 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 345 chars from 3601 chars
+2025-12-25 10:04:49 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:04:49 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:04:50 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:04:50 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:04:50 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:04:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:04:53 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:04:53 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:04:53 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 10:05:20 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Fire' with confidence 0.079
+2025-12-25 10:05:20 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:20 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:21 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:05:21 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:05:21 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:05:23 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:05:23 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:05:23 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:05:24 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:05:24 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:05:31 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.352
+2025-12-25 10:05:31 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report b0775c02-1cf5-4b1d-9ec9-2f0d51cb8e86
+2025-12-25 10:05:36 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:36 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:38 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:38 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:41 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:05:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:06:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:06:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:06:25 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:06:29 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:06:29 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:06:38 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:06:38 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:06:38 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:06:38 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report cf0548cd-04aa-4e97-ae01-a27f71f87792
+2025-12-25 10:06:38 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:06:39 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:06:39 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:06:39 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 10:06:40 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 10:06:40 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:06:40 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:06:46 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Health & Sanitation' with confidence 0.100
+2025-12-25 10:06:46 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:06:46 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:06:48 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:06:48 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:06:56 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 345 chars from 3601 chars
+2025-12-25 10:06:56 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:06:56 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:06:56 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:06:56 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:06:56 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:06:58 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:06:58 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:06:58 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 10:07:25 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Fire' with confidence 0.079
+2025-12-25 10:07:26 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:07:26 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:07:26 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:07:27 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:07:27 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:07:27 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:07:29 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:07:29 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:07:36 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.352
+2025-12-25 10:07:36 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report cf0548cd-04aa-4e97-ae01-a27f71f87792
+2025-12-25 10:07:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:07:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:07:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:07:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:08:17 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:08:17 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:08:17 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:08:17 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 2e7b2a34-1469-455e-a930-b2cb4f65f75b
+2025-12-25 10:08:17 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:08:18 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:08:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:08:18 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 10:08:19 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 10:08:19 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:08:19 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:08:25 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Health & Sanitation' with confidence 0.100
+2025-12-25 10:08:25 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:08:25 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:08:27 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:08:27 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:08:35 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 345 chars from 3601 chars
+2025-12-25 10:08:35 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:08:35 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:08:35 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:08:35 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:08:35 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:08:37 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:08:37 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:08:37 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 10:08:56 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:08:56 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:04 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:04 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:04 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Fire' with confidence 0.079
+2025-12-25 10:09:05 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:09:05 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:09:05 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:09:09 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:09:09 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:09:09 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:09:11 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:09:11 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:09:18 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.352
+2025-12-25 10:09:18 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 2e7b2a34-1469-455e-a930-b2cb4f65f75b
+2025-12-25 10:09:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:19 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:24 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:24 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:32 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:09:32 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:09:32 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:09:32 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 873ce6c0-025d-460a-a3e2-ea6e0d7ec82d
+2025-12-25 10:09:32 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:09:33 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:09:33 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:09:33 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 10:09:34 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 10:09:34 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:09:34 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:09:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:41 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Health & Sanitation' with confidence 0.100
+2025-12-25 10:09:41 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:09:41 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:09:43 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:09:43 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:09:52 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 345 chars from 3601 chars
+2025-12-25 10:09:52 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:09:52 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:09:53 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:09:53 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:09:53 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:09:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:54 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:09:56 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:09:56 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:09:56 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 10:10:23 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Fire' with confidence 0.079
+2025-12-25 10:10:24 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:10:24 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:10:24 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:10:26 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:10:26 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:10:26 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:10:29 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:10:29 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:10:36 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.352
+2025-12-25 10:10:36 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 873ce6c0-025d-460a-a3e2-ea6e0d7ec82d
+2025-12-25 10:10:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:40 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:42 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:45 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:45 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:52 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:10:58 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:11:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:11:26 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:12:09 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:12:09 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:12:38 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:12:38 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:12:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:12:47 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:13:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:13:00 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:13:09 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:13:09 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:13:09 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:13:09 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report f9006cb8-f26b-4ca6-9996-a4f611e13bef
+2025-12-25 10:13:09 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:13:10 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:13:10 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:13:10 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: typeform/distilbert-base-uncased-mnli
+2025-12-25 10:13:12 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 0
+2025-12-25 10:13:12 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:13:12 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:13:18 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Health & Sanitation' with confidence 0.100
+2025-12-25 10:13:18 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:13:18 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:13:20 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:13:20 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:13:27 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 345 chars from 3601 chars
+2025-12-25 10:13:27 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:13:27 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:13:28 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:13:28 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:13:28 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:13:30 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:13:30 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:13:30 | INFO | ai_service.pipelines.ner:__init__:32 | NER pipeline initialized
+2025-12-25 10:13:57 | INFO | ai_service.models.classifier:classify:155 | Classified as 'Fire' with confidence 0.079
+2025-12-25 10:13:58 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:13:58 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:13:58 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:14:00 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:14:00 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:14:00 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:14:02 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:14:02 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:14:08 | INFO | ai_service.models.classifier:classify:155 | Classified as 'legitimate news report' with confidence 0.352
+2025-12-25 10:14:08 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report f9006cb8-f26b-4ca6-9996-a4f611e13bef
+2025-12-25 10:15:07 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:15:07 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report cd1ff9db-8c9e-4426-8eac-ef388a5c32f5
+2025-12-25 10:15:07 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:15:08 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:15:08 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:15:08 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:15:08 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report cd1ff9db-8c9e-4426-8eac-ef388a5c32f5
+2025-12-25 10:15:21 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:15:21 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 8958f329-0ce2-4828-b892-fb1760402894
+2025-12-25 10:15:21 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:15:23 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:15:23 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:15:23 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:15:23 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 8958f329-0ce2-4828-b892-fb1760402894
+2025-12-25 10:15:35 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:15:35 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 2ffd6972-1e26-4b96-9066-d1b3884d904d
+2025-12-25 10:15:35 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:15:35 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:15:35 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:15:35 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:15:35 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 2ffd6972-1e26-4b96-9066-d1b3884d904d
+2025-12-25 10:16:21 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:16:21 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 089f8f4d-935b-4c7b-a468-d0c1e0ee2d77
+2025-12-25 10:16:21 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:16:22 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:16:22 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:16:22 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:16:22 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 089f8f4d-935b-4c7b-a468-d0c1e0ee2d77
+2025-12-25 10:37:16 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:37:16 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:37:27 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:37:27 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:37:27 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:37:27 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report fe494300-5126-4be8-b947-aa91018b446b
+2025-12-25 10:37:27 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:37:28 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:37:28 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:37:28 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:37:30 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:37:30 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:37:30 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:37:41 | INFO | ai_service.models.classifier:classify:160 | Classified as 'Disaster' with confidence 0.120
+2025-12-25 10:37:41 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:37:41 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:37:44 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:37:44 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:37:51 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 345 chars from 3601 chars
+2025-12-25 10:37:51 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:37:51 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:37:52 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:37:52 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:37:52 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:37:54 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:37:54 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:37:54 | INFO | ai_service.pipelines.ner:__init__:31 | NER pipeline initialized
+2025-12-25 10:38:09 | INFO | ai_service.models.classifier:classify:160 | Classified as 'Flood' with confidence 0.091
+2025-12-25 10:38:10 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:38:10 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:38:10 | INFO | ai_service.models.classifier:__init__:48 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:38:12 | INFO | ai_service.models.classifier:__init__:66 | Detected entailment index: 2
+2025-12-25 10:38:12 | INFO | ai_service.models.classifier:__init__:67 | Classifier loaded successfully on cpu
+2025-12-25 10:38:12 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:38:14 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:38:14 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:38:20 | INFO | ai_service.models.classifier:classify:160 | Classified as 'legitimate news report' with confidence 0.352
+2025-12-25 10:38:20 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report fe494300-5126-4be8-b947-aa91018b446b
+2025-12-25 10:38:31 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:38:31 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 06d065a4-3468-4932-ba7e-3af632dd23ae
+2025-12-25 10:38:31 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:38:31 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:38:31 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:38:31 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:38:31 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 06d065a4-3468-4932-ba7e-3af632dd23ae
+2025-12-25 10:38:50 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:38:50 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report ccdd7fe5-678c-4dcc-a3c8-45c2db4db16c
+2025-12-25 10:38:50 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:38:50 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:38:50 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:38:50 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:38:50 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report ccdd7fe5-678c-4dcc-a3c8-45c2db4db16c
+2025-12-25 10:39:20 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 115
+2025-12-25 10:39:20 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report 770b1a8e-32ae-4a2d-b832-faf04dbfe767
+2025-12-25 10:39:20 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://www.aljazeera.com/news/2025/10/5/at-least-47-killed-in-nepal-as-heavy-rains-trigger-landslides-flash-floods
+2025-12-25 10:39:20 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 3613 characters from URL
+2025-12-25 10:39:20 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:39:20 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:39:21 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report 770b1a8e-32ae-4a2d-b832-faf04dbfe767
+2025-12-25 10:41:02 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 100
+2025-12-25 10:41:02 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report ac6a8cc0-618f-4b70-b410-cf288a5e435a
+2025-12-25 10:41:02 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://thehimalayantimes.com/nepal/over-4600-disaster-incidents-recorded-in-six-months-across-nepal
+2025-12-25 10:41:05 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 721 characters from URL
+2025-12-25 10:41:09 | INFO | ai_service.models.classifier:classify:160 | Classified as 'Disaster' with confidence 0.126
+2025-12-25 10:41:15 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 316 chars from 718 chars
+2025-12-25 10:41:22 | INFO | ai_service.models.classifier:classify:160 | Classified as 'Flood' with confidence 0.087
+2025-12-25 10:41:25 | INFO | ai_service.models.classifier:classify:160 | Classified as 'fictional hoax or misinformation' with confidence 0.348
+2025-12-25 10:41:25 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report ac6a8cc0-618f-4b70-b410-cf288a5e435a
+2025-12-25 10:41:33 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 100
+2025-12-25 10:41:33 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report b061632d-031d-4315-bb1e-b8fcf72f8820
+2025-12-25 10:41:33 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://thehimalayantimes.com/nepal/over-4600-disaster-incidents-recorded-in-six-months-across-nepal
+2025-12-25 10:41:34 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 721 characters from URL
+2025-12-25 10:41:34 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:41:34 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:41:34 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report b061632d-031d-4315-bb1e-b8fcf72f8820
+2025-12-25 10:42:44 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 100
+2025-12-25 10:42:44 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report de91ad4f-6432-4a85-a401-571c2be8d4b2
+2025-12-25 10:42:44 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://thehimalayantimes.com/nepal/over-4600-disaster-incidents-recorded-in-six-months-across-nepal
+2025-12-25 10:42:45 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 721 characters from URL
+2025-12-25 10:42:45 | INFO | ai_service.pipelines.classify:process:78 | Returning cached classification result
+2025-12-25 10:42:45 | INFO | ai_service.pipelines.summarize:process:74 | Returning cached summarization result
+2025-12-25 10:42:45 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report de91ad4f-6432-4a85-a401-571c2be8d4b2
+2025-12-25 10:44:10 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:44:14 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:44:14 | INFO | ai_service.utils:setup_logging:147 | Logging initialized at INFO level
+2025-12-25 10:44:24 | INFO | ai_service.api:process_full_report:440 | Received process report request. Text length: 100
+2025-12-25 10:44:24 | INFO | ai_service.api:get_unified_processor:174 | Initializing Unified Processor (Lazy Loading)...
+2025-12-25 10:44:24 | INFO | ai_service.pipelines.processor:__init__:35 | Unified Processor initialized
+2025-12-25 10:44:24 | INFO | ai_service.pipelines.processor:process_report:106 | Processing report a432776f-aeb6-41ef-8820-42cafe623ebc
+2025-12-25 10:44:24 | INFO | ai_service.utils.content_extractor:extract_from_url:26 | Extracting content from URL: https://thehimalayantimes.com/nepal/over-4600-disaster-incidents-recorded-in-six-months-across-nepal
+2025-12-25 10:44:25 | INFO | ai_service.pipelines.processor:process_report:119 | Extracted 721 characters from URL
+2025-12-25 10:44:25 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:44:25 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:44:29 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 10:44:29 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 10:44:29 | INFO | ai_service.pipelines.classify:__init__:41 | Classification pipeline initialized
+2025-12-25 10:44:36 | INFO | ai_service.models.classifier:classify:159 | Classified as 'Disaster' with confidence 0.126
+2025-12-25 10:44:36 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:44:36 | INFO | ai_service.models.summarizer:__init__:34 | Loading summarization model: sshleifer/distilbart-cnn-6-6
+2025-12-25 10:44:38 | INFO | ai_service.models.summarizer:__init__:41 | Summarizer loaded successfully on cpu
+2025-12-25 10:44:38 | INFO | ai_service.pipelines.summarize:__init__:38 | Summarization pipeline initialized
+2025-12-25 10:44:43 | INFO | ai_service.models.summarizer:summarize:104 | Generated summary: 316 chars from 718 chars
+2025-12-25 10:44:43 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:44:43 | INFO | ai_service.models.ner:__init__:31 | Loading NER model: dslim/bert-base-NER
+2025-12-25 10:44:44 | INFO | ai_service.models.ner:__init__:41 | NER model loaded successfully on cpu
+2025-12-25 10:44:44 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:44:44 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:44:46 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 10:44:46 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 10:44:46 | INFO | ai_service.pipelines.ner:__init__:31 | NER pipeline initialized
+2025-12-25 10:44:55 | INFO | ai_service.models.classifier:classify:159 | Classified as 'Flood' with confidence 0.087
+2025-12-25 10:44:55 | INFO | ai_service.utils:get_device:185 | Using device: cpu
+2025-12-25 10:44:55 | INFO | ai_service.pipelines.verification:__init__:44 | Loading Report Classifier: valhalla/distilbart-mnli-12-1
+2025-12-25 10:44:55 | INFO | ai_service.models.classifier:__init__:47 | Loading classifier model: valhalla/distilbart-mnli-12-1
+2025-12-25 10:44:57 | INFO | ai_service.models.classifier:__init__:65 | Detected entailment index: 2
+2025-12-25 10:44:57 | INFO | ai_service.models.classifier:__init__:66 | Classifier loaded successfully on cpu
+2025-12-25 10:44:57 | INFO | ai_service.pipelines.verification:__init__:52 | Loading News Classifier: hamzab/roberta-fake-news-classification
+2025-12-25 10:44:59 | INFO | ai_service.pipelines.verification:__init__:65 | Model ID2Label: {0: 'FAKE', 1: 'TRUE'}
+2025-12-25 10:44:59 | INFO | ai_service.pipelines.verification:__init__:71 | Verification pipeline initialized
+2025-12-25 10:45:01 | INFO | ai_service.models.classifier:classify:159 | Classified as 'fictional hoax or misinformation' with confidence 0.348
+2025-12-25 10:45:01 | INFO | ai_service.pipelines.processor:process_report:186 | Successfully processed report a432776f-aeb6-41ef-8820-42cafe623ebc

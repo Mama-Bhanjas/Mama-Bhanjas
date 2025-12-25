@@ -52,12 +52,12 @@ httpx==0.25.2
 # ===============================
 # Additional Dependencies
 # ===============================
-# ===============================
-# Additional Dependencies
-# ===============================
-sentencepiece
-tokenizers
-numba>=0.58.1
-pynndescent
-typing-extensions
-filelock
+sentencepiece==0.1.99
+tokenizers==0.15.0
+numba==0.58.1
+pynndescent==0.5.11
+typing-extensions==4.8.0
+filelock==3.13.1
+pypdf==4.1.0
+beautifulsoup4==4.12.3
+duckduckgo_search==5.0

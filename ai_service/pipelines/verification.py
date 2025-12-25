@@ -26,8 +26,8 @@ class VerificationPipeline:
 
     def __init__(
         self,
-        news_model_name: str = "mrm8488/bert-tiny-finetuned-fake-news-detection",
-        report_model_name: str = "typeform/distilbert-base-uncased-mnli",
+        news_model_name: str = "hamzab/roberta-fake-news-classification",
+        report_model_name: str = "valhalla/distilbart-mnli-12-1",
         use_cache: bool = True,
         device: Optional[str] = None
     ):
@@ -56,15 +56,20 @@ class VerificationPipeline:
             self.news_model.to(self.device)
             self.news_model.eval()
 
-            # For mrm8488/bert-tiny-finetuned-fake-news-detection
-            # Labels: 0 -> Fake, 1 -> Real
+            # For Hate-speech-CNERG/roberta-base-fake-news-detector
+            # Labels mapping: 0 -> Fake, 1 -> Real
             self.news_labels_map = {0: "Fake", 1: "Real"}
+            
+            # Check model config for actual label names if available
+            if hasattr(self.news_model.config, 'id2label'):
+                logger.info(f"Model ID2Label: {self.news_model.config.id2label}")
 
         except Exception as e:
             logger.error(f"Failed to load news classifier: {e}")
             raise
 
         logger.info("Verification pipeline initialized")
+
 
     def verify_news(
         self,
@@ -94,57 +99,44 @@ class VerificationPipeline:
             with torch.no_grad():
                 outputs = self.news_model(**inputs)
                 probs = torch.softmax(outputs.logits, dim=1)
-                confidence, predicted_class_idx = torch.max(probs, dim=1)
+                
+                # Model confidence for each class
+                # Labels: 0 (Fake), 1 (Real)
+                prob_fake = probs[0][0].item()
+                prob_real = probs[0][1].item()
+                
+                verdict = "Real" if prob_real > prob_fake else "Fake"
+                content_confidence = max(prob_fake, prob_real)
 
-                predicted_idx = predicted_class_idx.item()
-                confidence_score = confidence.item()
-
-                if hasattr(self, 'news_labels_map'):
-                    verdict = self.news_labels_map[predicted_idx]
-                else:
-                    verdict = "Real" if predicted_idx == 1 else "Fake"
-
-            # Normalize verdict text
-            is_content_reliable = verdict.lower() in ["real", "true", "reliable"]
-
-            # 2. Source Logic
-            final_status = verdict
-            verification_method = "Model Analysis"
-            explanation = "Analysis based on writing style."
+            # 2. Source & Fact Check Analysis
+            source_score = 0.5 # Neutral
+            fact_check_score = 0.5 # Neutral
             found_sources = []
             primary_sources = []
+            explanation = ""
+            verification_method = "Hybrid Analysis"
 
             if source_url:
-                # A. Explicit Source Check
                 source_result = self.source_checker.check_source(source_url)
-                source_status = source_result["status"]
-                source_score = source_result["source_score"]
-                verification_method = "Model + Provided Source"
-
-                if source_status == "Untrusted":
-                    final_status = "Likely Fake (Untrusted Source)"
-                    is_reliable = False
-                    confidence_score = 1.0  # Certain it's unsafe
-                    explanation = f"Source {source_url} is known for misinformation or satire."
-                elif source_status == "Trusted":
-                    final_status = "Verified (Trusted Source)"
-                    is_reliable = True
-                    confidence_score = 1.0  # Certain it's safe
-                    explanation = f"Source {source_url} is a recognized trusted news or institutional outlet."
-                    primary_sources = [{
-                        "url": source_url,
-                        "status": source_status,
-                        "source_score": source_score,
-                        "reasons": source_result.get("reasons", [])
-                    }]
+                s_status = source_result["status"]
+                if s_status == "Trusted":
+                    source_score = 1.0
+                    explanation = f"Verified by trusted source: {source_url}. "
+                elif s_status == "Untrusted":
+                    source_score = 0.0
+                    explanation = f"Source {source_url} is flagged as untrusted. "
                 else:
-                    is_reliable = is_content_reliable
-                    explanation = "Analysis based on writing style. Source credibility is unknown."
+                    source_score = 0.5
+                    explanation = f"Source {source_url} is unknown. "
+                
+                primary_sources = [{
+                    "url": source_url,
+                    "status": s_status,
+                    "score": source_score
+                }]
             else:
-                # B. Auto-Search (Fact Check)
-                verification_method = "Model + Internet Search"
+                # Auto-Search (Fact Check)
                 try:
-                    # Lazy load FactCheckPipeline if not present
                     if not hasattr(self, 'fact_checker'):
                         from ai_service.pipelines.fact_check import FactCheckPipeline
                         self.fact_checker = FactCheckPipeline()
@@ -155,57 +147,75 @@ class VerificationPipeline:
                     explanation = fc_result.get("explanation", "")
 
                     if fc_result.get("status") == "Verified":
-                        final_status = "Verified (Corroborated)"
-                        is_reliable = True
-                        confidence_score = 0.95
+                        fact_check_score = 1.0
                     elif fc_result.get("status") == "Fake":
-                        final_status = "Debunked (Untrusted Sources)"
-                        is_reliable = False
-                        confidence_score = 0.95
+                        fact_check_score = 0.0
                     else:
-                        # Unverified by search -> Fallback to model
-                        is_reliable = is_content_reliable
-                        confidence_score = confidence_score * 0.65
-                        final_status = f"Unverified ({verdict} by text analysis)"
-                        explanation += " No corroborating high-trust sources found. Proceed with caution."
-
+                        fact_check_score = 0.5
                 except Exception as e:
-                    logger.warning(f"Auto-search failed: {e}")
-                    is_reliable = is_content_reliable
+                    logger.warning(f"Fact check failed: {e}")
 
-            # 3. Final Skepticism Check (Keyword override)
-            # Normalize text for better keyword matching (handle spaces/hyphens)
+            # 4. Zero-Shot Content Validation
+            # Specialized models are often biased; DistilBART cross-check provides a robust second opinion.
+            zs_result = self.report_classifier.classify(
+                text=text,
+                categories=["legitimate news report", "fictional hoax or misinformation", "unverified rumor"],
+                hypothesis_template="This text is {}."
+            )
+            # Find the score for 'legitimate news report'
+            zs_prob_real = 0.5
+            for cat in zs_result["top_categories"]:
+                if cat["category"] == "legitimate news report":
+                    zs_prob_real = cat["raw_score"]
+                    break
+
+            # Combine scores: Weighted average of specialized model and zero-shot model
+            content_score = (prob_real * 0.4) + (zs_prob_real * 0.6)
+            
+            # 5. Weighted Scoring
+            # Weights: Content (0.4), Source (0.6)
+            # Trusted sources are very influential baseline.
+            w_content, w_source = 0.4, 0.6
+            
+            if not source_url:
+                w_content, w_source = 0.7, 0.3 # Rely more on models, search as secondary
+                source_score = fact_check_score # Use fact check score as source score
+            
+            final_score = (content_score * w_content) + (source_score * w_source)
+            
+            # 6. Double Check Pattern Penalties
             norm_text = text.lower().replace("-", " ")
-            suspicious_matches = []
-            for w in self.source_checker.SUSPICIOUS_KEYWORDS:
-                clean_w = w.replace("-", " ")
-                if clean_w in norm_text:
-                    suspicious_matches.append(w)
+            suspicious_matches = [w for w in self.source_checker.SUSPICIOUS_KEYWORDS if w.replace("-", " ") in norm_text]
+            
+            if suspicious_matches:
+                penalty = 0.1 * len(suspicious_matches[:2])
+                final_score = max(0.0, final_score - penalty)
+                explanation += f"Found suspicious patterns: {', '.join(suspicious_matches[:2])}. "
 
-            if suspicious_matches and is_reliable:
-                logger.info(f"Skepticism triggered: text contains {suspicious_matches}")
-                # Penalize or Flip
-                if final_status.startswith("Verified (Trusted Source)"):
-                    # If it's a trusted source, we still allow it but add a note
-                    confidence_score *= 0.85
-                    explanation += f" (Note: Content contains alarmist patterns like {suspicious_matches[0]})"
-                else:
-                    # Model says Real, but we found suspicious words and no trusted sources
-                    is_reliable = False
-                    confidence_score = 0.85
-                    final_status = "Likely Fake (Suspicious Patterns)"
-                    explanation = f"Model analysis suggests real, but content contains strong alarmist/misinformation patterns ({', '.join(suspicious_matches[:3])}) and lacks trusted source corroboration."
+            # 7. Final Verdict
+            is_reliable = final_score > 0.6
+            if final_score > 0.8:
+                final_status = "Verified"
+            elif final_score > 0.6:
+                final_status = "Likely Real"
+            elif final_score > 0.4:
+                final_status = "Unverified"
+            else:
+                final_status = "Likely Fake"
 
             result = {
                 "success": True,
                 "status": final_status,
-                "confidence": confidence_score,
+                "confidence": final_score,
                 "is_reliable": is_reliable,
+                "explanation": explanation.strip(),
                 "details": {
                     "method": verification_method,
-                    "content_verdict": verdict,
-                    "content_confidence": confidence_score,
-                    "explanation": explanation,
+                    "content_score": content_score,
+                    "model_score": prob_real,
+                    "zs_score": zs_prob_real,
+                    "source_score": source_score,
+                    "explanation": explanation.strip(),
                     "found_sources": found_sources,
                     "primary_sources": primary_sources
                 }
