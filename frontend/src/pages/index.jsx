@@ -115,7 +115,7 @@ export default function Home() {
 
             {/* Stats Section */}
             <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white dark:bg-surface-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-700 flex items-center space-x-4">
                         <div className="p-3 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl">
                             <BarChart3 className="h-6 w-6" />
@@ -135,17 +135,6 @@ export default function Home() {
                             <p className="text-sm text-gray-500 dark:text-surface-400 font-medium">Verified Events</p>
                             <h4 className="text-2xl font-bold text-gray-900 dark:text-white">
                                 {loading ? "..." : reports.filter(r => r.isVerified).length}
-                            </h4>
-                        </div>
-                    </div>
-                    <div className="bg-white dark:bg-surface-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-700 flex items-center space-x-4">
-                        <div className="p-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl">
-                            <Users className="h-6 w-6" />
-                        </div>
-                        <div>
-                            <p className="text-sm text-gray-500 dark:text-surface-400 font-medium">Active Verifiers</p>
-                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">
-                                {loading ? "..." : Math.ceil(reports.length * 0.4) + 12}
                             </h4>
                         </div>
                     </div>

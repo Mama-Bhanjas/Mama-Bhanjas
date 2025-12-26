@@ -274,15 +274,6 @@ export default function Verify() {
                                     </div>
                                 </div>
 
-                                <div className="mt-10 flex flex-wrap gap-4">
-                                    <button className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-bold flex items-center shadow-lg shadow-primary-600/20 transition-all">
-                                        <ExternalLink className="h-4 w-4 mr-2" />
-                                        Support Response
-                                    </button>
-                                    <button className="px-6 py-3 bg-surface-900 hover:bg-surface-800 text-white rounded-xl font-bold border border-surface-800 transition-all">
-                                        Share Report
-                                    </button>
-                                </div>
                             </div>
                         </motion.div>
                     </>
