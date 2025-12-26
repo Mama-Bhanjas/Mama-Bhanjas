@@ -40,13 +40,19 @@ class VerificationPipeline:
         self.cache = ModelCache() if use_cache else None
         self.source_checker = SourceChecker()
 
-        # 1. Initialize Report Classifier (Zero-Shot)
-        logger.info(f"Loading Report Classifier: {report_model_name}")
-        self.report_classifier = CategoryClassifier(
-            model_name=report_model_name,
-            categories=self.REPORT_CATEGORIES,
-            device=self.device
-        )
+        # 1. Initialize Report Classifier (Zero-Shot) - OPTIONAL due to memory constraints
+        self.report_classifier = None
+        try:
+            logger.info(f"Loading Report Classifier: {report_model_name}")
+            self.report_classifier = CategoryClassifier(
+                model_name=report_model_name,
+                categories=self.REPORT_CATEGORIES,
+                device=self.device
+            )
+            logger.info("Report Classifier loaded successfully")
+        except Exception as e:
+            logger.warning(f"Could not load Report Classifier (memory constraints): {e}")
+            logger.warning("Report verification will use simplified heuristics instead")
 
         # 2. Initialize News Fake/Real Classifier (Dedicated)
         logger.info(f"Loading News Classifier: {news_model_name}")
@@ -155,19 +161,25 @@ class VerificationPipeline:
                 except Exception as e:
                     logger.warning(f"Fact check failed: {e}")
 
-            # 4. Zero-Shot Content Validation
+            # 4. Zero-Shot Content Validation (if available)
             # Specialized models are often biased; DistilBART cross-check provides a robust second opinion.
-            zs_result = self.report_classifier.classify(
-                text=text,
-                categories=["legitimate news report", "fictional hoax or misinformation", "unverified rumor"],
-                hypothesis_template="This text is {}."
-            )
-            # Find the score for 'legitimate news report'
-            zs_prob_real = 0.5
-            for cat in zs_result["top_categories"]:
-                if cat["category"] == "legitimate news report":
-                    zs_prob_real = cat["raw_score"]
-                    break
+            zs_prob_real = 0.5  # Default neutral score
+            if self.report_classifier:
+                try:
+                    zs_result = self.report_classifier.classify(
+                        text=text,
+                        categories=["legitimate news report", "fictional hoax or misinformation", "unverified rumor"],
+                        hypothesis_template="This text is {}."
+                    )
+                    # Find the score for 'legitimate news report'
+                    for cat in zs_result["top_categories"]:
+                        if cat["category"] == "legitimate news report":
+                            zs_prob_real = cat["raw_score"]
+                            break
+                except Exception as e:
+                    logger.warning(f"Zero-shot classification failed: {e}")
+            else:
+                logger.debug("Report classifier not available, using default score")
 
             # Combine scores: Weighted average of specialized model and zero-shot model
             content_score = (prob_real * 0.4) + (zs_prob_real * 0.6)

@@ -512,11 +512,15 @@ async def fetch_all_intelligence(news_api_key: Optional[str] = None):
         logger.error(f"Fetch Cycle Failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+
 async def background_refresh_task():
     """
     Periodic task to refresh disaster intelligence from all sources.
     Saves to a local file so the frontend can read results instantly.
     """
+    # Wait 60 seconds on startup to let models load first
+    await asyncio.sleep(60)
+    
     while True:
         logger.info("Background Refresh: Starting fetch cycle...")
         try:
@@ -550,7 +554,9 @@ async def background_refresh_task():
 @app.on_event("startup")
 async def startup_event():
     """Start the background task when API begins"""
-    asyncio.create_task(background_refresh_task())
+    # Disabled during testing to reduce memory usage
+    # asyncio.create_task(background_refresh_task())
+    logger.info("AI Service started. Background task disabled for testing.")
 
 @app.get("/api/realtime/news", tags=["Fetching"])
 async def get_realtime_news():
