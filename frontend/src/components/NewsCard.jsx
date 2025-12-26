@@ -8,7 +8,8 @@ import {
     Flame,
     Droplets,
     Waves,
-    Info
+    Info,
+    User
 } from 'lucide-react';
 
 const TYPE_ICONS = {
@@ -56,6 +57,12 @@ export default function NewsCard({ article, onViewDetails }) {
                         <Clock className="h-3 w-3 mr-1 text-surface-600" />
                         {article.time}
                     </div>
+                    {article.author && (
+                        <div className="flex items-center text-xs text-surface-500">
+                            <User className="h-3 w-3 mr-1 text-primary-500" />
+                            {article.author}
+                        </div>
+                    )}
                 </div>
                 <button
                     className="text-xs font-bold text-primary-500 hover:text-primary-400 flex items-center group-hover:translate-x-1 transition-transform"

@@ -16,11 +16,12 @@ class MultiSourceFetcher:
     Combines Levels 1-4 to produce verifiable intelligence.
     """
     
-    def __init__(self, news_api_key: str = "PLACEHOLDER"):
+    def __init__(self, news_api_key: str = "PLACEHOLDER", test_mode: bool = False):
         self.bipad = BIPADFetcher()
         self.relief = ReliefWebFetcher()
         self.usgs = USGSFetcher()
         self.news = NewsFetcher(api_key=news_api_key)
+        self.test_mode = test_mode  # Limits news to 5 articles for faster testing
         
         # Load our fine-tuned AI brain
         self.ai = UnifiedProcessor()
@@ -42,6 +43,12 @@ class MultiSourceFetcher:
         
         # 4. Level 4 (Analysis candidates)
         news_reports = self.news.fetch_disaster_news()
+        
+        # TEST MODE: Limit to 5 articles for faster testing
+        # TO REMOVE THIS LIMIT: Set test_mode=False when creating MultiSourceFetcher
+        if self.test_mode and len(news_reports) > 5:
+            logger.info(f"TEST MODE: Limiting news from {len(news_reports)} to 5 articles")
+            news_reports = news_reports[:5]
         
         # 5. The "Intelligence" Layer: Cross-Reference
         # We process news reports through our AI to see if they match Level 1
@@ -72,40 +79,43 @@ class MultiSourceFetcher:
         
         try:
             # A. AI Analysis (Classification, NER, Verification)
-            ai_result = self.ai.process_report(text=text)
+            ai_result = self.ai.process_report(text=text, source_url=news_item.get("url"))
             
-            # Check if AI processing was successful
             if not ai_result.get("success", False):
-                logger.warning(f"AI processing failed: {ai_result.get('error', 'Unknown error')}")
+                logger.warning(f"AI processing failed for {news_item.get('title')}: {ai_result.get('error')}")
                 news_item["status"] = "Unverified (AI Processing Failed)"
                 return news_item
             
             # Extract core signals
-            ai_locs = set(ai_result.get("location_entities", []))
+            ai_locs = ai_result.get("location_entities", [])
             ai_type = ai_result.get("disaster_type", "Unknown")
             ai_cat = ai_result.get("primary_category", "Other")
-            ver_status = ai_result.get("verification", {}).get("status", "Unknown")
-            ai_is_fake = ver_status == "Likely Fake"
+            verification = ai_result.get("verification", {})
+            ver_status = verification.get("status", "Unknown")
+            is_reliable = verification.get("is_reliable", False)
             
-            # Strict Disaster Filtering
-            # Skip if BOTH categorized as 'Other' AND disaster type is Unknown/Other/Low Confidence
-            ai_type_conf = ai_result.get("type_confidence", 0.0)
-            if (ai_cat == "Other" and ai_type in ["Unknown", "None", "Other", "Unknown Disaster"]) or ai_type_conf < 0.1:
-                logger.info(f"Skipping non-disaster or low-confidence news: {news_item.get('title')} (Conf: {ai_type_conf})")
+            # Looser Disaster Filtering: If the API gave it to us, only skip if clearly irrelevant (Other + Unknown)
+            # And if it's even slightly reliable, we keep it.
+            if ai_cat == "Other" and ai_type in ["Unknown", "Other"] and not is_reliable and "disaster" not in text.lower():
+                logger.info(f"Filtered out: {news_item.get('title')} - Classified as {ai_cat}/{ai_type}")
                 news_item["status"] = "Skipped (Not a Disaster)"
                 return news_item
 
-            if ai_is_fake:
+            if ver_status == "Likely Fake":
+                logger.warning(f"Rejected Fake: {news_item.get('title')}")
                 news_item["status"] = "Rejected (AI Detected Fake)"
                 return news_item
 
-            # Location Validation: Ensure it's actually about Nepal
-            # Check if any identified entities are 'Nepal' or known Nepali locations
-            nepal_keywords = {"nepal", "kathmandu", "pokhara", "lalitpur", "bhaktapur", "biratnagar", "nepali"}
-            has_nepal_context = any(loc.lower() in nepal_keywords for loc in ai_locs) or "nepal" in text.lower()
+            # Location Validation: Since NewsData.io is already filtered by country='np', we are lenient
+            has_nepal_context = (
+                len(ai_locs) > 0 or 
+                "nepal" in text.lower() or 
+                "nepal" in news_item.get("title", "").lower() or
+                news_item.get("source") == "NewsData.io" # Trust the API's country filter
+            )
             
             if not has_nepal_context:
-                logger.info(f"Skipping news without Nepal context: {news_item.get('title')}")
+                logger.info(f"Skipping (No Nepal context): {news_item.get('title')}")
                 news_item["status"] = "Skipped (Not Nepal Related)"
                 return news_item
 

@@ -1,10 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CATEGORIES } from '../constants/categories';
 import { Send, Loader2, FileText, Link, Upload, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { submitReport } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 export default function ReportForm() {
+    const { user } = useAuth();
     const [formData, setFormData] = useState({
         inputMode: 'text', // 'text', 'url', or 'pdf'
         title: '',
@@ -13,8 +15,16 @@ export default function ReportForm() {
         location: '',
         url: '',
         source_type: 'WEB',
-        source_identifier: 'anonymous'
+        source_identifier: 'anonymous',
+        submitted_by: ''
     });
+
+    // Auto-fill user name if logged in
+    useEffect(() => {
+        if (user && user.full_name) {
+            setFormData(prev => ({ ...prev, submitted_by: user.full_name }));
+        }
+    }, [user]);
 
     const [attachedFile, setAttachedFile] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -64,6 +74,7 @@ export default function ReportForm() {
                 payload.append('source_identifier', 'anonymous_pdf');
                 payload.append('location', formData.location || '');
                 payload.append('disaster_category', formData.category);
+                payload.append('submitted_by', formData.submitted_by || 'Anonymous');
                 payload.append('text', `PDF Report: ${attachedFile.name}`); // Fallback text
             } else if (formData.inputMode === 'url') {
                 payload = {
@@ -71,15 +82,18 @@ export default function ReportForm() {
                     source_type: "WEB_USER",
                     source_identifier: "anonymous_web",
                     location: formData.location || null,
-                    disaster_category: formData.category
+                    disaster_category: formData.category,
+                    submitted_by: formData.submitted_by || 'Anonymous'
                 };
             } else {
                 payload = {
                     text: `${formData.title}: ${formData.description}`,
+                    title: formData.title,
                     source_type: "WEB_USER",
                     source_identifier: "anonymous_web",
                     location: formData.location || null,
-                    disaster_category: formData.category
+                    disaster_category: formData.category,
+                    submitted_by: formData.submitted_by || 'Anonymous'
                 };
             }
 
@@ -334,6 +348,19 @@ export default function ReportForm() {
                             placeholder="City, Area (optional)"
                         />
                     </div>
+                </div>
+
+                <div>
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-surface-300 mb-1">Your Name (Optional)</label>
+                    <input
+                        type="text"
+                        name="submitted_by"
+                        value={formData.submitted_by}
+                        onChange={handleChange}
+                        disabled={!!user}
+                        className={`block w-full rounded-lg border-gray-200 dark:border-surface-600 p-3 text-sm dark:text-white focus:border-primary-500 focus:ring-primary-500 transition-colors ${user ? 'bg-gray-100 dark:bg-surface-800 text-gray-500 cursor-not-allowed' : 'bg-gray-50 dark:bg-surface-900/50'}`}
+                        placeholder="Leave blank to remain anonymous"
+                    />
                 </div>
 
                 <button

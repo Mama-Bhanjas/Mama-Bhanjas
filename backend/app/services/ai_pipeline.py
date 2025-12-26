@@ -112,4 +112,29 @@ class AIPipeline:
             print(f"Error calling AI service (process_report): {e}")
             return {"success": False, "error": str(e)}
 
+    def upload_report(self, file_content: bytes, filename: str) -> dict:
+        """
+        Uploads a PDF report to the AI Service for processing.
+        """
+        try:
+            files = {"file": (filename, file_content, "application/pdf")}
+            response = requests.post(f"{self.base_url}/api/process/upload", files=files)
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            print(f"Error calling AI service (upload_report): {e}")
+            return {"success": False, "error": str(e)}
+
+    def get_realtime_news(self) -> dict:
+        """
+        Fetches the cached real-time disaster news from the AI Service.
+        """
+        try:
+            response = requests.get(f"{self.base_url}/api/realtime/news")
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            print(f"Error calling AI service (get_realtime_news): {e}")
+            return {"success": False, "error": str(e)}
+
 ai_pipeline = AIPipeline()

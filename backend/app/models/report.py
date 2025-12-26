@@ -14,3 +14,9 @@ class Report(Base):
     verification_status = Column(String, default="Pending") # "Pending", "Verified", "Rejected"
     disaster_category = Column(String, nullable=True) # Populated by AI
     location = Column(String, nullable=True)
+    
+    # New fields for enhanced tracking
+    title = Column(String, nullable=True) # Explicit title
+    submitted_by = Column(String, nullable=True, default="Anonymous")  # User who submitted
+    summary = Column(Text, nullable=True)  # AI-generated summary
+    confidence_score = Column(Float, nullable=True)  # AI confidence in classification

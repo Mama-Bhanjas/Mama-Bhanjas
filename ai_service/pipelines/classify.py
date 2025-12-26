@@ -88,6 +88,30 @@ class ClassificationPipeline:
                 top_k=top_k,
                 threshold=threshold
             )
+
+            # Keyword Boosting: If confidence is low, check for strong keywords
+            if result.get("confidence", 0) < 0.7:
+                lower_text = text.lower()
+                keyword_map = {
+                    "flood": "Flood", 
+                    "inundation": "Flood", 
+                    "landslide": "Landslide", 
+                    "fire": "Fire", 
+                    "earthquake": "Earthquake", 
+                    "quake": "Earthquake",
+                    "storm": "Storm",
+                    "avalanche": "Avalanche"
+                }
+                
+                for keyword, category in keyword_map.items():
+                    # If keyword appears multiple times or is in a short text
+                    if lower_text.count(keyword) >= 2 or (keyword in lower_text and len(text) < 300):
+                        logger.info(f"Boosting category '{category}' based on keyword '{keyword}'")
+                        result["category"] = category
+                        result["confidence"] = 0.85 # Artificial boost
+                        # Update top categories list too
+                        result["top_categories"].insert(0, {"category": category, "confidence": 0.85})
+                        break
             
             # Add metadata
             result["success"] = True

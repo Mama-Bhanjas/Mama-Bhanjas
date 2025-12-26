@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Menu, X, Shield, Activity, FileText, LogIn, LogOut, User } from 'lucide-react';
+import { Menu, X, Shield, Activity, FileText, LogIn, LogOut, User, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
@@ -26,6 +26,7 @@ export default function Navbar() {
         { name: 'Dashboard', href: '/', icon: Activity },
         { name: 'Submit Report', href: '/submit', icon: FileText },
         { name: 'Verified News', href: '/verify', icon: Shield },
+        { name: 'Daily Intelligence', href: '/intelligence', icon: Sparkles },
     ];
 
     const handleLogout = () => {

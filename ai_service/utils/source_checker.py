@@ -42,6 +42,10 @@ class SourceChecker:
         "myrepublica.nagariknetwork.com", "theannapurnaexpress.com", "english.onlinekhabar.com",
         "nepalpress.com", "onlineradionepal.gov.np", "radio.gov.np", "nepalnews.com.np",
         "downtoearth.org.in", "tribuneindia.com", "ndtv.com", "indiatoday.in", "thestatesman.com",
+        "ekantipur.com", "kantipurdaily.com", "annapurnapost.com", "himalayantimes.com", "gorkhapatraonline.com",
+        "ratopati.com", "pahilopost.com", "lokaantar.com", "hamropatro.com", "setopati.com",
+        "deshsanchar.com", "thahakhabar.com", "nepallive.com", "ujyaaloonline.com", "imagekhabar.com",
+        "avenues.tv", "news24nepal.tv", "ap1.tv", "himalayakhabar.com",
         # Universities/Research
         "rmit.edu.au", "sciencedaily.com", "mit.edu", "harvard.edu", "stanford.edu"
     }
@@ -70,8 +74,9 @@ class SourceChecker:
         "bio-digital", "voltage-hijack", "brick-and-burn", "secret-annex",
         "voltage hijack", "brick and burn", "no-software-patch", "immediate thermal runaway",
         "logic-loop", "saltwater-battery", "blue-spark", "social-credit", "reliability-rating",
-        "online-civility", "mega-thrust", "electromagnetic-pulses",
-        "structural-fissures", "vertical-crack", "catastrophic-failure"
+        "online-civility", "mega-thrust", "mega-quake", "megaquake", "mega-earthquake",
+        "prophecy", "doomsday", "apocalyptic", "shocking-discovery",
+        "electromagnetic-pulses", "structural-fissures", "vertical-crack", "catastrophic-failure"
     }
 
     SUSPICIOUS_TLDS = {".blog", ".site", ".online", ".xyz", ".top", ".buzz"}
@@ -137,6 +142,17 @@ class SourceChecker:
                         "source_score": 0.0,
                         "reasons": ["Known misinformation or satire domain"]
                     }
+
+            # 4️⃣ Enhanced Nepal-specific official trust logic
+            if domain.endswith(".gov.np") or domain.endswith(".gov"):
+                score = 0.98
+                reasons.append("Official government domain (.gov)")
+                return {"status": "Trusted", "source_score": 0.98, "reasons": reasons}
+            
+            if domain.endswith(".edu.np") or domain.endswith(".edu"):
+                score = 0.90
+                reasons.append("Educational institution domain (.edu)")
+                return {"status": "Trusted", "source_score": 0.90, "reasons": reasons}
 
             # 4️⃣ Trusted TLD
             for tld in self.TRUSTED_TLDS:

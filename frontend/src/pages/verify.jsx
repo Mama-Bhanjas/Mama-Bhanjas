@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -9,14 +9,76 @@ import {
 } from 'lucide-react';
 import { CATEGORIES } from '../constants/categories';
 import NewsCard from '../components/NewsCard';
-import newsData from '../data/news.json';
+import { fetchReports, fetchRealtimeNews } from '../services/api';
 
 export default function Verify() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedArticle, setSelectedArticle] = useState(null);
+    const [news, setNews] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const filteredNews = newsData.filter(item => {
+    useEffect(() => {
+        const loadAllVerifiedContent = async () => {
+            try {
+                setLoading(true);
+                // 1. Fetch Verified Reports from Database
+                const reportsData = await fetchReports();
+                const verifiedReports = reportsData
+                    .filter(r => r.is_verified)
+                    .map(r => ({
+                        id: `report-${r.id}`,
+                        type: (r.disaster_category || "incident").toLowerCase(),
+                        title: r.title || `${r.disaster_category || "Verified Report"} in ${r.location || "Nepal"}`,
+                        description: r.text.substring(0, 150) + "...",
+                        fullContent: r.text,
+                        location: r.location || "Nepal",
+                        time: new Date(r.timestamp).toLocaleString(),
+                        author: r.submitted_by || r.source_type || "Citizen Report",
+                        coordinates: "N/A",
+                        isReport: true,
+                        verified: true
+                    }));
+
+                // 2. Fetch AI Intelligence News
+                const realtimeResponse = await fetchRealtimeNews();
+                let intelligenceNews = [];
+                if (realtimeResponse.success && realtimeResponse.data && realtimeResponse.data.news_intelligence) {
+                    intelligenceNews = realtimeResponse.data.news_intelligence
+                        .filter(item => {
+                            // Only show if AI marked it as reliable OR it has official confirmation
+                            const isReliable = item.verification?.is_reliable === true;
+                            const isOfficial = item.status && item.status.includes("Verified");
+                            return isReliable || isOfficial;
+                        })
+                        .map((item, index) => ({
+                            id: `news-${index}`,
+                            type: (item.disaster_type || item.primary_category || "news").toLowerCase(),
+                            title: item.title,
+                            description: item.summarization || item.summary, // Use AI summary
+                            fullContent: item.original_article || item.text,
+                            location: item.location_entities?.[0] || item.location || "Nepal",
+                            time: item.timestamp || "Recent",
+                            author: item.source || "Verified Source",
+                            coordinates: "Verified by AI",
+                            url: item.url,
+                            isNews: true,
+                            verified: true
+                        }));
+                }
+
+                setNews([...verifiedReports, ...intelligenceNews]);
+            } catch (error) {
+                console.error("Failed to load verified content", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadAllVerifiedContent();
+    }, []);
+
+    const filteredNews = news.filter(item => {
         const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             item.location.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesCategory = selectedCategory === 'all' || item.type === selectedCategory;
@@ -89,28 +151,39 @@ export default function Verify() {
 
             {/* News Feed */}
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-                    {filteredNews.map((news) => (
-                        <NewsCard
-                            key={news.id}
-                            article={news}
-                            onViewDetails={(article) => setSelectedArticle(article)}
-                        />
-                    ))}
-                </div>
-
-                {filteredNews.length === 0 && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="text-center py-20"
-                    >
-                        <div className="inline-flex items-center justify-center p-4 bg-surface-900 rounded-full mb-4">
-                            <Search className="h-8 w-8 text-surface-700" />
+                {loading ? (
+                    <div className="py-20">
+                        <div className="flex flex-col items-center justify-center space-y-4">
+                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+                            <p className="text-surface-400 font-medium">Fetching verified intelligence...</p>
                         </div>
-                        <h3 className="text-xl font-medium text-white">No verified news found</h3>
-                        <p className="text-surface-500">Try adjusting your filters or search terms.</p>
-                    </motion.div>
+                    </div>
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                            {filteredNews.map((news) => (
+                                <NewsCard
+                                    key={news.id}
+                                    article={news}
+                                    onViewDetails={(article) => setSelectedArticle(article)}
+                                />
+                            ))}
+                        </div>
+
+                        {filteredNews.length === 0 && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="text-center py-20"
+                            >
+                                <div className="inline-flex items-center justify-center p-4 bg-surface-900 rounded-full mb-4">
+                                    <Search className="h-8 w-8 text-surface-700" />
+                                </div>
+                                <h3 className="text-xl font-medium text-white">No verified news found</h3>
+                                <p className="text-surface-500">Try adjusting your filters or search terms.</p>
+                            </motion.div>
+                        )}
+                    </>
                 )}
             </div>
 

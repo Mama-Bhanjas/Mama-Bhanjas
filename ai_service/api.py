@@ -49,7 +49,7 @@ verification_pipeline = None
 factcheck_pipeline = None
 unified_processor = None
 REALTIME_DATA_FILE = "ai_service/data/realtime_news.json"
-REFRESH_INTERVAL_SECONDS = 86400 # Refresh news once per day (every 24 hours)
+REFRESH_INTERVAL_SECONDS = 86400 # Refresh news every 24 hours (24 * 3600)
 
 
 # Request/Response Models
@@ -500,14 +500,23 @@ async def fetch_all_intelligence(news_api_key: Optional[str] = None):
     if not key or key == "your_api_key_here":
         logger.warning("Using free tier/public APIs where possible. NewsData.io requires a valid key.")
         
-    fetcher = MultiSourceFetcher(news_api_key=key)
+    # TEST_MODE enabled for faster manual testing
+    # Production Mode: Fetches all available news stories
+    fetcher = MultiSourceFetcher(news_api_key=key, test_mode=False)
     try:
         results = fetcher.poll_all_sources()
-        return {
+        output = {
             "success": True, 
-            "timestamp": datetime.datetime.now().isoformat(),
+            "last_updated": datetime.datetime.now().isoformat(),
             "data": results
         }
+        
+        # Save to cache immediately if manual trigger
+        os.makedirs(os.path.dirname(REALTIME_DATA_FILE), exist_ok=True)
+        with open(REALTIME_DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(output, f, indent=2)
+            
+        return output
     except Exception as e:
         logger.error(f"Fetch Cycle Failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -529,8 +538,12 @@ async def background_refresh_task():
             load_dotenv()
             
             key = os.getenv("NEWSDATA_API_KEY")
-            fetcher = MultiSourceFetcher(news_api_key=key)
-            results = fetcher.poll_all_sources()
+            # Production Mode: Fetches all available news stories
+            fetcher = MultiSourceFetcher(news_api_key=key, test_mode=False)
+            
+            # Run synchronous blocking code in a separate thread to avoid blocking the event loop
+            loop = asyncio.get_event_loop()
+            results = await loop.run_in_executor(None, fetcher.poll_all_sources)
             
             output = {
                 "success": True,

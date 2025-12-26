@@ -143,6 +143,7 @@ class UnifiedProcessor:
         try:
             # 0. Text Extraction
             extracted_text = None
+            extracted_title = None # Initialize
             extraction_method = "direct"
             actual_text = text
             
@@ -168,6 +169,7 @@ class UnifiedProcessor:
                     actual_text = extracted_text
                     source_url = text  # Use the URL as source
                     extraction_method = "url"
+                    extracted_title = extraction.get("title", "") # Capture title
                     logger.info(f"Successfully extracted {len(actual_text)} characters from URL")
                 else:
                     logger.warning(f"URL extraction failed: {extraction.get('error')}, treating as regular text")
@@ -183,9 +185,22 @@ class UnifiedProcessor:
             # 1. Classification (General categories)
             cls_result = self.classify_p.process(actual_text)
             
-            # 2. Summarization
+            # 2. Summarization & Title Generation
             sum_result = self.summarize_p.process(actual_text)
+            generated_summary = sum_result.get("summary", "")
             
+            # Generate a title if we don't have a good one
+            if not extracted_title or len(extracted_title) < 5 or extracted_title.lower() in ["home", "index", "page"]:
+                # Use the summarizer to generate a very short headline-like title
+                # We can reuse the summary pipeline but take the first sentence or truncate
+                if generated_summary:
+                    # Heuristic: Take first sentence, or first 10 words
+                    extracted_title = generated_summary.split('.')[0]
+                    if len(extracted_title) > 80:
+                        extracted_title = " ".join(extracted_title.split()[:10]) + "..."
+                else:
+                    extracted_title = f"Report detected: {cls_result.get('category', 'Disaster')} Event"
+
             # 3. NER (Locations & Disaster Specifics)
             ner_result = self.ner_p.process(actual_text)
             
@@ -198,6 +213,13 @@ class UnifiedProcessor:
             else:
                 ver_result = self.verify_p.verify_report(actual_text)
                 
+            # FORCE VERIFICATION: If source is trusted, override model
+            if ver_result.get("details", {}).get("status") == "Trusted":
+                ver_result["status"] = "Verified"
+                ver_result["is_reliable"] = True
+                ver_result["confidence"] = 0.99
+                ver_result["explanation"] = "Source is in trusted whitelist."
+
             # 5. Similarity Testing
             sim_results = self._check_similarity(actual_text)
             
@@ -212,6 +234,7 @@ class UnifiedProcessor:
                 "original_text": text,
                 "extracted_text": extracted_text,  # NEW: Include extracted text if URL was used
                 "extraction_method": extraction_method,  # NEW: How text was obtained
+                "title": extracted_title, # NEW: Extracted title
                 "summary": sum_result.get("summary", ""),
                 "primary_category": cls_result.get("category", "Other"),
                 "category_confidence": cls_result.get("confidence", 0.0),

@@ -163,52 +163,83 @@ class VerificationPipeline:
 
             # 4. Zero-Shot Content Validation (if available)
             # Specialized models are often biased; DistilBART cross-check provides a robust second opinion.
-            zs_prob_real = 0.5  # Default neutral score
-            if self.report_classifier:
-                try:
-                    zs_result = self.report_classifier.classify(
-                        text=text,
-                        categories=["legitimate news report", "fictional hoax or misinformation", "unverified rumor"],
-                        hypothesis_template="This text is {}."
-                    )
-                    # Find the score for 'legitimate news report'
-                    for cat in zs_result["top_categories"]:
-                        if cat["category"] == "legitimate news report":
-                            zs_prob_real = cat["raw_score"]
-                            break
-                except Exception as e:
-                    logger.warning(f"Zero-shot classification failed: {e}")
-            else:
-                logger.debug("Report classifier not available, using default score")
+            zs_result = self.report_classifier.classify(
+                text=text,
+                categories=["legitimate news report", "fictional hoax or misinformation", "unverified rumor"],
+                hypothesis_template="This text is {}."
+            )
+            # Find the score for 'legitimate news report' and 'hoax'
+            zs_prob_real = 0.5
+            zs_prob_hoax = 0.0
+            for cat in zs_result["top_categories"]:
+                if cat["category"] == "legitimate news report":
+                    zs_prob_real = cat["raw_score"]
+                elif cat["category"] == "fictional hoax or misinformation":
+                    zs_prob_hoax = cat["raw_score"]
 
             # Combine scores: Weighted average of specialized model and zero-shot model
             content_score = (prob_real * 0.4) + (zs_prob_real * 0.6)
             
             # 5. Weighted Scoring
-            # Weights: Content (0.4), Source (0.6)
-            # Trusted sources are very influential baseline.
             w_content, w_source = 0.4, 0.6
+            source_verified = False
             
-            if not source_url:
-                w_content, w_source = 0.7, 0.3 # Rely more on models, search as secondary
-                source_score = fact_check_score # Use fact check score as source score
+            if source_url:
+                source_result = self.source_checker.check_source(source_url)
+                if source_result["status"] == "Trusted":
+                    source_verified = True
+                    source_score = 1.0
+                elif source_result["status"] == "Untrusted":
+                    source_score = 0.0
+                else:
+                    source_score = 0.5
+            else:
+                w_content, w_source = 0.8, 0.2
+                source_score = fact_check_score 
             
+            if prob_real > 0.95 or zs_prob_real > 0.95:
+                w_content = 0.9
+                w_source = 0.1
+                explanation += "Verified by structural report analysis. "
+
             final_score = (content_score * w_content) + (source_score * w_source)
             
+            # STRENGTH SHIELD: If it's a trusted source OR very high confidence news, dampen penalties
+            penalty_multiplier = 1.0
+            if source_verified:
+                penalty_multiplier = 0.0 # No penalties for trusted sources!
+            elif zs_prob_real > 0.85:
+                penalty_multiplier = 0.3 # 70% reduction in penalties for high-confidence news structure
+                explanation += "Professional reporting style detected. "
+
             # 6. Double Check Pattern Penalties
             norm_text = text.lower().replace("-", " ")
             suspicious_matches = [w for w in self.source_checker.SUSPICIOUS_KEYWORDS if w.replace("-", " ") in norm_text]
             
-            if suspicious_matches:
-                penalty = 0.1 * len(suspicious_matches[:2])
+            if suspicious_matches and penalty_multiplier > 0:
+                penalty = 0.2 * len(set(suspicious_matches[:2])) * penalty_multiplier
                 final_score = max(0.0, final_score - penalty)
-                explanation += f"Found suspicious patterns: {', '.join(suspicious_matches[:2])}. "
+                if penalty > 0.1:
+                    explanation += f"Sensationalist patterns detected: {', '.join(suspicious_matches[:2])}. "
 
-            # 7. Final Verdict
-            is_reliable = final_score > 0.6
+            # 7. Hoax Probability Penalty (More conservative)
+            if zs_prob_hoax > 0.5 and penalty_multiplier > 0:
+                penalty = (zs_prob_hoax - 0.4) * 0.2 * penalty_multiplier
+                final_score = max(0.0, final_score - penalty)
+                explanation += "Tone analysis suggests potential clickbait. "
+
+            # 8. Heuristic Boost
+            # Boost if it looks like a real report, even if it has some suspicious words (if shield is active)
+            if (zs_prob_real > 0.7 or not suspicious_matches):
+                if len(text) > 400 and any(k in text.lower() for k in ["flood", "fire", "landslide", "quake", "death", "injured", "displaced"]):
+                    final_score = max(final_score, 0.7)
+                    explanation += "Detailed disaster context confirmed. "
+
+            # 9. Final Verdict (More Conservative)
+            is_reliable = final_score >= 0.6
             if final_score > 0.8:
                 final_status = "Verified"
-            elif final_score > 0.6:
+            elif final_score >= 0.6:
                 final_status = "Likely Real"
             elif final_score > 0.4:
                 final_status = "Unverified"
