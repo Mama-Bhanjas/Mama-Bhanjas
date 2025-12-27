@@ -9,7 +9,7 @@ D-Brief is an AI-powered disaster response and intelligence platform that provid
 
 ---
 
-## 🎯 Key Features
+##  Key Features
 
 ### Multi-Input Report Processing
 - **Text Reports**: Direct text input with automatic categorization
@@ -41,7 +41,7 @@ D-Brief is an AI-powered disaster response and intelligence platform that provid
 
 ---
 
-## 🏗️ Technical Architecture
+##  Technical Architecture
 
 ### System Components
 
@@ -74,7 +74,7 @@ D-Brief is an AI-powered disaster response and intelligence platform that provid
 
 ---
 
-## 🚀 Installation and Setup
+##  Installation and Setup
 
 ### Prerequisites
 - **Python**: 3.11 or higher
@@ -133,7 +133,7 @@ npm run dev
 
 ---
 
-## 📡 API Reference
+##  API Reference
 
 ### AI Service Endpoints (Port 8002)
 
@@ -159,7 +159,7 @@ npm run dev
 
 ---
 
-## 💻 Usage Examples
+## Usage Examples
 
 ### Submit Text Report
 ```bash
@@ -191,7 +191,7 @@ curl -X POST "http://localhost:8002/api/process/upload" \
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### Verify System Setup (No Model Loading)
 ```bash
@@ -211,7 +211,7 @@ python test_complete_integration.py
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 D-Brief/
@@ -263,7 +263,7 @@ D-Brief/
 
 ---
 
-## 🤖 AI Models
+##  AI Models
 
 ### Fine-Tuned Models (HuggingFace)
 All models are fine-tuned on Nepal disaster data for improved accuracy:
@@ -292,7 +292,7 @@ If fine-tuned models unavailable, system uses:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Component | Technology |
 |-----------|-----------|
@@ -307,7 +307,7 @@ If fine-tuned models unavailable, system uses:
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Memory Requirements
 - **Minimum**: 8GB RAM
@@ -339,7 +339,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8001
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Memory Errors
 If you encounter "MemoryError" or "paging file too small":
@@ -373,7 +373,7 @@ python -m ai_service.api  # Not: cd ai_service && python api.py
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 ### Development Guidelines
 1. **Code Style**: Follow PEP 8 for Python, ESLint for JavaScript
@@ -405,7 +405,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **HuggingFace**: For providing the model hosting and transformers library
 - **FastAPI**: For the high-performance API framework
@@ -415,7 +415,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---
 
-## 📞 Support
+##  Support
 
 For issues, questions, or contributions:
 - **GitHub Issues**: [Create an issue](https://github.com/your-username/D-Brief/issues)
@@ -424,4 +424,4 @@ For issues, questions, or contributions:
 
 ---
 
-**Built with ❤️ by Team Mama-Bhanjas for humanitarian disaster response**
+
