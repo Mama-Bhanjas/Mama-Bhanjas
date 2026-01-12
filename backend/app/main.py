@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from .database import engine, Base
+from .models.report import Report 
+from .models.summary import Summary
 from .routes import reports, summaries
 from .config import settings
 

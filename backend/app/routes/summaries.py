@@ -25,10 +25,13 @@ def get_summaries(db: Session = Depends(get_db)):
         
     response_summaries = []
     
+    print(f"DEBUG: Grouped reports categories: {list(grouped_reports.keys())}")
+    
     for category, category_reports in grouped_reports.items():
         if not category_reports:
             continue
 
+        print(f"DEBUG: Processing category: {category}")
         report_texts = [r.text for r in category_reports]
         summary_text = ai_pipeline.summarize_reports(report_texts)
         
@@ -39,8 +42,11 @@ def get_summaries(db: Session = Depends(get_db)):
         
         report_ids = [r.id for r in category_reports]
         
+        # Use a more stable integer ID (hash() can be negative which Pydantic might dislike)
+        mock_id = abs(hash(category)) % 1000000
+        
         summary = SummaryResponse(
-            id=hash(category), # Mock ID
+            id=mock_id,
             category=category,
             summary_text=summary_text,
             reputation_score=reputation_score,
@@ -48,4 +54,5 @@ def get_summaries(db: Session = Depends(get_db)):
         )
         response_summaries.append(summary)
         
+    print(f"DEBUG: Returning {len(response_summaries)} summaries")
     return response_summaries

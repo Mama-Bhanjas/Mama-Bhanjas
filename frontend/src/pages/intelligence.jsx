@@ -307,16 +307,6 @@ export default function Intelligence() {
                                     </div>
                                 </div>
 
-                                <div className="mt-16 pt-8 border-t border-gray-100 dark:border-surface-800">
-                                    <a 
-                                        href={selectedArticle.url} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center w-full py-4 bg-primary-600 text-white rounded-2xl font-black text-lg shadow-xl shadow-primary-600/30 hover:bg-primary-700 hover:-translate-y-1 transition-all"
-                                    >
-                                        Read Original Source <ArrowRight className="ml-3 h-5 w-5" />
-                                    </a>
-                                </div>
                             </div>
                         </motion.div>
                     </>

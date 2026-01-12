@@ -21,7 +21,7 @@ export const fetchSummaries = async () => {
         console.error("API Error:", error);
         return [];
     }
-}
+};
 
 export const submitReport = async (data) => {
     try {
