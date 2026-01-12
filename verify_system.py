@@ -34,7 +34,7 @@ def main():
     # Check all services
     print("\n📡 Checking Services...")
     ai_ok = check_service("AI Service (Port 8002)", "http://localhost:8002/")
-    backend_ok = check_service("Backend API (Port 8000)", "http://localhost:8000/")
+    backend_ok = check_service("Backend API (Port 8000)", "http://localhost:8001/")
     frontend_ok = check_service("Frontend (Port 3000)", "http://localhost:3000/")
     
     if not all([ai_ok, backend_ok, frontend_ok]):
@@ -44,7 +44,7 @@ def main():
     # Test Backend → AI Service integration
     print("\n🔗 Testing Backend → AI Service Integration...")
     try:
-        response = requests.get("http://localhost:8000/news/realtime", timeout=10)
+        response = requests.get("http://localhost:8001/news/realtime", timeout=10)
         if response.status_code == 200:
             data = response.json()
             print(f"✅ Backend can communicate with AI Service")
@@ -57,7 +57,7 @@ def main():
     # Test database
     print("\n💾 Testing Database...")
     try:
-        response = requests.get("http://localhost:8000/reports/")
+        response = requests.get("http://localhost:8001/reports/")
         if response.status_code == 200:
             reports = response.json()
             print(f"✅ Database accessible")

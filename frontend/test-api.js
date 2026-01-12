@@ -1,5 +1,5 @@
 // Test script to verify API connectivity
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
 
 async function testBackendConnection() {
     console.log('='.repeat(60));

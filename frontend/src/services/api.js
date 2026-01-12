@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
 console.log("Using API URL:", API_URL);
 
 export const fetchReports = async () => {
@@ -27,7 +27,7 @@ export const submitReport = async (data) => {
     try {
         const isFormData = data instanceof FormData;
         const endpoint = isFormData ? `${API_URL}/reports/upload/` : `${API_URL}/reports/`;
-        
+
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: isFormData ? {} : {

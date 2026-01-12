@@ -2,7 +2,7 @@ import requests
 import json
 
 # Test the complete end-to-end flow
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://localhost:8001"
 
 print("=" * 70)
 print("TESTING COMPLETE INTEGRATION - Backend + AI Service")
